@@ -5139,7 +5139,7 @@ com.crittercism.app.Crittercism: crittercism.android.e f
 com.crittercism.app.Crittercism: boolean g
 com.crittercism.app.Crittercism: android.content.Context h
 com.crittercism.app.Crittercism: float i
-com.crittercism.app.Crittercism: java.lang.String a
+com.crittercism.app.Crittercism: java.lang.String textValue
 com.crittercism.app.Crittercism: crittercism.android.i j
 com.crittercism.app.Crittercism: crittercism.android.m k
 com.crittercism.app.Crittercism: crittercism.android.k l
@@ -5157,12 +5157,12 @@ com.crittercism.app.Crittercism: java.lang.String w
 com.crittercism.app.Crittercism: boolean x
 com.crittercism.app.Crittercism: android.os.Handler b
 com.crittercism.app.Crittercism: Crittercism()
-com.crittercism.app.Crittercism: com.crittercism.app.Crittercism a()
+com.crittercism.app.Crittercism: com.crittercism.app.Crittercism textValue()
 com.crittercism.app.Crittercism: boolean init(android.content.Context,java.lang.String,org.json.JSONObject[])
 com.crittercism.app.Crittercism: void sendAppLoadData()
 com.crittercism.app.Crittercism: boolean b()
 com.crittercism.app.Crittercism: boolean c()
-com.crittercism.app.Crittercism: boolean a(java.lang.Throwable)
+com.crittercism.app.Crittercism: boolean textValue(java.lang.Throwable)
 com.crittercism.app.Crittercism: boolean d()
 com.crittercism.app.Crittercism: boolean e()
 com.crittercism.app.Crittercism: void logHandledException(java.lang.Throwable)
@@ -5174,21 +5174,21 @@ com.crittercism.app.Crittercism: java.lang.String j()
 com.crittercism.app.Crittercism: android.content.Context k()
 com.crittercism.app.Crittercism: crittercism.android.b l()
 com.crittercism.app.Crittercism: crittercism.android.i m()
-com.crittercism.app.Crittercism: void a(crittercism.android.i)
+com.crittercism.app.Crittercism: void textValue(crittercism.android.i)
 com.crittercism.app.Crittercism: crittercism.android.m n()
-com.crittercism.app.Crittercism: void a(crittercism.android.m)
+com.crittercism.app.Crittercism: void textValue(crittercism.android.m)
 com.crittercism.app.Crittercism: crittercism.android.k o()
-com.crittercism.app.Crittercism: void a(crittercism.android.k)
+com.crittercism.app.Crittercism: void textValue(crittercism.android.k)
 com.crittercism.app.Crittercism: crittercism.android.l p()
-com.crittercism.app.Crittercism: void a(crittercism.android.l)
+com.crittercism.app.Crittercism: void textValue(crittercism.android.l)
 com.crittercism.app.Crittercism: java.lang.String w()
 com.crittercism.app.Crittercism: int x()
 com.crittercism.app.Crittercism: java.lang.String q()
 com.crittercism.app.Crittercism: java.lang.String r()
-com.crittercism.app.Crittercism: boolean a(android.content.Context)
+com.crittercism.app.Crittercism: boolean textValue(android.content.Context)
 com.crittercism.app.Crittercism: void setOptOutStatus(boolean)
 com.crittercism.app.Crittercism: boolean getOptOutStatus()
-com.crittercism.app.Crittercism: boolean a(android.content.Context,java.lang.String)
+com.crittercism.app.Crittercism: boolean textValue(android.content.Context,java.lang.String)
 com.crittercism.app.Crittercism: boolean didCrashOnLastAppLoad()
 com.crittercism.app.Crittercism: java.lang.String getNotificationTitle()
 com.crittercism.app.Crittercism: boolean s()
@@ -5197,61 +5197,61 @@ com.crittercism.app.Crittercism: void setMetadata(org.json.JSONObject)
 com.crittercism.app.Crittercism: int t()
 com.crittercism.app.Crittercism: void leaveBreadcrumb(java.lang.String)
 com.crittercism.app.Crittercism: java.lang.String u()
-com.crittercism.app.Crittercism: long a(java.util.Date)
+com.crittercism.app.Crittercism: long textValue(java.util.Date)
 com.crittercism.app.Crittercism: void v()
-com.crittercism.app.Crittercism: java.lang.String a(com.crittercism.app.Crittercism)
+com.crittercism.app.Crittercism: java.lang.String textValue(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism: android.content.Context b(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism: crittercism.android.b c(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism: void <clinit>()
 com.crittercism.app.Crittercism$1
-com.crittercism.app.Crittercism$1: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$1: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$1: Crittercism$1(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism$1: void run()
 com.crittercism.app.Crittercism$10
-com.crittercism.app.Crittercism$10: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$10: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$10: Crittercism$10(com.crittercism.app.Crittercism)
-com.crittercism.app.Crittercism$10: java.lang.Boolean a()
+com.crittercism.app.Crittercism$10: java.lang.Boolean textValue()
 com.crittercism.app.Crittercism$10: java.lang.Object call()
 com.crittercism.app.Crittercism$2
-com.crittercism.app.Crittercism$2: org.json.JSONObject a
+com.crittercism.app.Crittercism$2: org.json.JSONObject textValue
 com.crittercism.app.Crittercism$2: com.crittercism.app.Crittercism b
 com.crittercism.app.Crittercism$2: Crittercism$2(com.crittercism.app.Crittercism,org.json.JSONObject)
 com.crittercism.app.Crittercism$2: void run()
 com.crittercism.app.Crittercism$3
-com.crittercism.app.Crittercism$3: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$3: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$3: Crittercism$3(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism$3: void handleMessage(android.os.Message)
 com.crittercism.app.Crittercism$4
-com.crittercism.app.Crittercism$4: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$4: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$4: Crittercism$4(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism$4: void run()
 com.crittercism.app.Crittercism$5
 com.crittercism.app.Crittercism$5: Crittercism$5()
 com.crittercism.app.Crittercism$5: void run()
 com.crittercism.app.Crittercism$6
-com.crittercism.app.Crittercism$6: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$6: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$6: Crittercism$6(com.crittercism.app.Crittercism)
-com.crittercism.app.Crittercism$6: java.lang.Boolean a()
+com.crittercism.app.Crittercism$6: java.lang.Boolean textValue()
 com.crittercism.app.Crittercism$6: java.lang.Object call()
 com.crittercism.app.Crittercism$7
-com.crittercism.app.Crittercism$7: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$7: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$7: Crittercism$7(com.crittercism.app.Crittercism)
-com.crittercism.app.Crittercism$7: java.lang.Boolean a()
+com.crittercism.app.Crittercism$7: java.lang.Boolean textValue()
 com.crittercism.app.Crittercism$7: java.lang.Object call()
 com.crittercism.app.Crittercism$8
-com.crittercism.app.Crittercism$8: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$8: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$8: Crittercism$8(com.crittercism.app.Crittercism)
 com.crittercism.app.Crittercism$8: void run()
 com.crittercism.app.Crittercism$9
-com.crittercism.app.Crittercism$9: com.crittercism.app.Crittercism a
+com.crittercism.app.Crittercism$9: com.crittercism.app.Crittercism textValue
 com.crittercism.app.Crittercism$9: Crittercism$9(com.crittercism.app.Crittercism)
-com.crittercism.app.Crittercism$9: java.lang.Boolean a()
+com.crittercism.app.Crittercism$9: java.lang.Boolean textValue()
 com.crittercism.app.Crittercism$9: java.lang.Object call()
-com.crittercism.app.Crittercism$a
-com.crittercism.app.Crittercism$a: java.lang.Thread$UncaughtExceptionHandler b
-com.crittercism.app.Crittercism$a: com.crittercism.app.Crittercism a
-com.crittercism.app.Crittercism$a: Crittercism$a(com.crittercism.app.Crittercism,java.lang.Thread$UncaughtExceptionHandler)
-com.crittercism.app.Crittercism$a: void uncaughtException(java.lang.Thread,java.lang.Throwable)
+com.crittercism.app.Crittercism$textValue
+com.crittercism.app.Crittercism$textValue: java.lang.Thread$UncaughtExceptionHandler b
+com.crittercism.app.Crittercism$textValue: com.crittercism.app.Crittercism textValue
+com.crittercism.app.Crittercism$textValue: Crittercism$textValue(com.crittercism.app.Crittercism,java.lang.Thread$UncaughtExceptionHandler)
+com.crittercism.app.Crittercism$textValue: void uncaughtException(java.lang.Thread,java.lang.Throwable)
 com.crittercism.app.CrittercismNDK
 com.crittercism.app.CrittercismNDK: java.lang.String LIBNAME
 com.crittercism.app.CrittercismNDK: java.lang.String LIBPATH
@@ -5314,7 +5314,7 @@ com.slidingmenu.lib.app.SlidingListActivity: void setBehindContentView(android.v
 com.slidingmenu.lib.app.SlidingPreferenceActivity
 com.slidingmenu.lib.app.SlidingPreferenceActivity: void setContentView(android.view.View)
 com.slidingmenu.lib.app.SlidingPreferenceActivity: void setBehindContentView(android.view.View)
-crittercism.android.d$a: crittercism.android.d$a[] values()
-crittercism.android.d$a: crittercism.android.d$a valueOf(java.lang.String)
-crittercism.android.f$a: crittercism.android.f$a[] values()
-crittercism.android.f$a: crittercism.android.f$a valueOf(java.lang.String)
+crittercism.android.d$textValue: crittercism.android.d$textValue[] values()
+crittercism.android.d$textValue: crittercism.android.d$textValue valueOf(java.lang.String)
+crittercism.android.f$textValue: crittercism.android.f$textValue[] values()
+crittercism.android.f$textValue: crittercism.android.f$textValue valueOf(java.lang.String)

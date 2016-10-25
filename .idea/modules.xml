@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/libraries/ActionBarSherlock/actionbarsherlock/ActionBarSherlock_actionbarsherlock.iml" filepath="$PROJECT_DIR$/libraries/ActionBarSherlock/actionbarsherlock/ActionBarSherlock_actionbarsherlock.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SkelDBUI.iml" filepath="$PROJECT_DIR$/SkelDBUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/SlidingMenu/library/SlidingMenu_library.iml" filepath="$PROJECT_DIR$/libraries/SlidingMenu/library/SlidingMenu_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uipoc.iml" filepath="$PROJECT_DIR$/uipoc.iml" />
     </modules>
   </component>
 </project>

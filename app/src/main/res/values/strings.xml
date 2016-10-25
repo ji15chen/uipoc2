@@ -3,4 +3,14 @@
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_entry">EntryActivity</string>
+    <string name="title_home_1">FUN1</string>
+    <string name="title_home_2">FUN2</string>
+    <string name="title_home_3">FUN3</string>
+    <string name="title_home_4">FUN4</string>
+    <string name="title_home_5">FUN5</string>
+    <string name="title_home_6">FUN6</string>
+    <string name="id_presentation_data">modelData</string>
+    <string name="title_activity_power_indicator">PowerIndicatorActivity</string>
 </resources>

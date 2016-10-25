@@ -940,7 +940,7 @@ crittercism.android.f:
     private static final long serialVersionUID
 crittercism.android.g:
     private static int b(byte[],byte[])
-    static synthetic byte[] a()
-    static synthetic int a(byte[],byte[])
-    static synthetic byte[] a(byte[],byte[],int)
-crittercism.android.g$a
+    static synthetic byte[] textValue()
+    static synthetic int textValue(byte[],byte[])
+    static synthetic byte[] textValue(byte[],byte[],int)
+crittercism.android.g$textValue

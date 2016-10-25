@@ -1,6 +1,12 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter
+                {
+                    url "http://maven.aliyun.com/nexus/content/repositories/jcenter/"
+                }
+        maven {
+            url "http://maven.aliyun.com/nexus/content/repositories/central"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
@@ -13,12 +19,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 22
     buildToolsVersion "24.0.3"
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 24
+        targetSdkVersion 22
     }
 
     sourceSets {
