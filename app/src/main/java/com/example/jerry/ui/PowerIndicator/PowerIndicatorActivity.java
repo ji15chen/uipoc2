@@ -32,4 +32,9 @@ public class PowerIndicatorActivity extends AbstractUIStateBindingActivity {
     protected void onFinishUIBinding(ViewDataBinding viewDataBinding) {
 
     }
+
+    @Override
+    public String getShortName() {
+        return "性能指标";
+    }
 }

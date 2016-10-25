@@ -1,16 +1,37 @@
 package com.example.jerry.ui.core.ui_state;
 
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+
+import com.example.jerry.core.Utils;
+import com.example.jerry.ui.core.AbstractUIStateBindingActivity;
+
 import java.io.Serializable;
 
 /**
  * Created by ChenJi on 2016/10/25.
  */
 
-public class UIState implements Serializable{
+public class UIState implements Serializable,Cloneable{
     private Class uiClass;
-    private Class uiModelClass;
+    private String name;
+
     private byte [] rawModelData;
+    private byte [] jpegSnapshot;//
     private long timestamp;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public UIState(){
+        setTimestamp(System.currentTimeMillis());
+    }
 
     public Class getUiClass() {
         return uiClass;
@@ -20,13 +41,13 @@ public class UIState implements Serializable{
         this.uiClass = uiClass;
     }
 
-    public Class getUiModelClass() {
-        return uiModelClass;
-    }
-
-    public void setUiModelClass(Class uiModelClass) {
-        this.uiModelClass = uiModelClass;
-    }
+//    public Class getUiModelClass() {
+//        return uiModelClass;
+//    }
+//
+//    public void setUiModelClass(Class uiModelClass) {
+//        this.uiModelClass = uiModelClass;
+//    }
 
     public byte[] getRawModelData() {
         return rawModelData;
@@ -36,11 +57,26 @@ public class UIState implements Serializable{
         this.rawModelData = rawModelData;
     }
 
+
+
+
     public long getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public byte[] getJpegSnapshot() {
+        return jpegSnapshot;
+    }
+
+    public void setJpegSnapshot(byte[] jpegSnapshot) {
+        this.jpegSnapshot = jpegSnapshot;
+    }
+
+    public String toString(){
+        return getName()+":"+getTimestamp();
     }
 }

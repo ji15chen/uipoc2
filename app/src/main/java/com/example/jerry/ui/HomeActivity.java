@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.jerry.ui.core.AbstractBaseActivity;
 import com.example.jerry.ui.menu.CircleMenuLayout;
 
@@ -21,6 +22,14 @@ public class HomeActivity extends AbstractBaseActivity {
             R.string.title_home_4,
             R.string.title_home_5,
             R.string.title_home_6,
+    };
+    private static final Class<? extends AbstractBaseActivity> mItemClasses [] = new Class[]{
+            PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class
     };
 
     private String[] mItemTexts = new String[mItemTextResource.length];
@@ -49,17 +58,21 @@ public class HomeActivity extends AbstractBaseActivity {
             @Override
             public void itemClick(View view, int pos)
             {
-                Toast.makeText(HomeActivity.this, mItemTexts[pos],
-                        Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(HomeActivity.this, mItemTexts[pos],
+//                        Toast.LENGTH_SHORT).show();
+                if ((pos < 0)|| (pos >= mItemClasses.length)) {
+                    return;
+                }
+                Class<? extends AbstractBaseActivity> curActivityCls = mItemClasses[pos];
+                startActivity(curActivityCls);
             }
 
             @Override
             public void itemCenterClick(View view)
             {
-                Toast.makeText(HomeActivity.this,
-                        "you can do something just like ccb  ",
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomeActivity.this,
+//                        "you can do something just like ccb  ",
+//                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -67,4 +80,8 @@ public class HomeActivity extends AbstractBaseActivity {
     }
 
 
+    @Override
+    public String getShortName() {
+        return "首页";
+    }
 }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'android-native-dependencies'
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.3"
@@ -28,8 +29,14 @@ android {
     }
 }
 
+native_dependencies {
+    artifact 'com.snappydb:snappydb-native:0.2+:armeabi'
+    artifact 'com.snappydb:snappydb-native:0.2+:x86'
+}
+
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar','*.so'], dir: 'libs')
+    compile 'com.esotericsoftware.kryo:kryo:2.24.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
