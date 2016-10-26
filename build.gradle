@@ -2,8 +2,8 @@
 
 buildscript {
     repositories {
-                jcenter
-		{ 
+        jcenter
+		{
 			url "http://maven.aliyun.com/nexus/content/repositories/jcenter/"
 		}
         maven {

@@ -2,8 +2,10 @@ package com.example.jerry.ui.core.ui_state;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.apkfuns.logutils.LogUtils;
 import com.example.jerry.core.BaseApplication;
 import com.example.jerry.core.Utils;
 import com.google.common.collect.Lists;
@@ -12,6 +14,7 @@ import com.google.common.collect.Maps;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -28,18 +31,24 @@ public class UIStateManager {
     private static final int BATCH_SIZE=16;
     public static final String LAST_UI_STATE=".LAST_UI_STATE";
     public static final String UI_STATE_DB=".UI_STATE_DB";
+    public static final String UI_STATE_KEY=".UI_STATE_KEY";
+    private static UIStateList uiStateList = new UIStateList();
 
 //    private HashMap<String,String> activityMap = Maps.newHashMap();
-    private DB uiStateDB;
 
     private static final UIStateManager uiStateManager = new UIStateManager();
 
+    private DB uiStateDB;
 
-    protected UIStateManager(){
-        try {
-            uiStateDB = DBFactory.open(BaseApplication.getApp().getApplicationContext(), UI_STATE_DB);
+    protected UIStateManager() {
+        uiStateDB = BaseApplication.getApp().getUiStateDB();
+        try{
+            if (uiStateDB.exists(UI_STATE_KEY)) {
+                UIStateList tmpList = uiStateDB.getObject(UI_STATE_KEY,UIStateList.class);
+                uiStateList = tmpList;
+            }
         }catch (Exception e){
-            //TODO:
+
         }
     }
 
@@ -50,59 +59,65 @@ public class UIStateManager {
 
     public List<UIState> getUIStates(String category){
         KeyIterator it;
-        List<UIState> states = Lists.newArrayList();
 
         try {
+            String [] arr;
             if ((category == null) || (category.length() <= 0)) {
-                it = uiStateDB.allKeysIterator();
+                return uiStateList;
             } else {
-                it = uiStateDB.findKeysIterator(category);
-            }
-            for (String[] batch : uiStateDB.findKeysIterator(category).byBatch(BATCH_SIZE)) {
-                for (String key : batch) {
-                    UIState state = uiStateDB.getObject(key, UIState.class);
-                    states.add(state);
+                UIStateList tmpList = new UIStateList();
+                for (UIState state : tmpList) {
+                    if (state.getName().equals(category)) {
+                        tmpList.add(state);
+                    }
                 }
+                return tmpList;
             }
         }catch (Exception ex){
-            return states;
+            LogUtils.e("fail to get states", ex);
+            return null;
         }
-        return states;
     }
 
-    public void addUIState(UIState state){
+    public synchronized void addUIState(UIState state){
         try {
-            uiStateDB.put(state.toString(), state);
+            uiStateList.add(state);
+            uiStateDB.put(UI_STATE_KEY, uiStateList);
         }catch (Exception e){
-
+            LogUtils.e("fail to add states", e);
         }
     }
 
-    public void delUIStates(UIState state){
+    public synchronized void delUIStates(UIState state){
         try {
-            uiStateDB.del(state.toString());
+            uiStateList.remove(state);
+            uiStateDB.put(UI_STATE_KEY, uiStateList);
         }catch (Exception ex){
-
+            LogUtils.e("fail to del states", ex);
         }
     }
 
 
 
-    public  Object loadModelData(final Bundle savedInstanceState){
-        if (savedInstanceState == null) return null;
+    public  Object loadModelData(final Intent intent){
+        if (intent == null){
+            return null;
+        }
+        Bundle savedInstanceState = intent.getBundleExtra(LAST_UI_STATE);
+
+        if (savedInstanceState == null){
+            LogUtils.i("invalid bundle");
+            return null;
+        }
 
 //        Serializable bundle = savedInstanceState.getBundle(UIStateManager.BUNDLE_UI_STATE);
         Serializable rawData = savedInstanceState.getSerializable(UIStateManager.LAST_UI_STATE);
-        if (rawData == null) return null;
-
-        try{
-            UIState uiState = (UIState) rawData;
-            byte [] modelData = uiState.getRawModelData();
-            Object o = Utils.toObject(modelData);
-            return o;
-        }catch (Exception e){
+        if (rawData == null){
+            LogUtils.i("empty bundle");
             return null;
         }
+
+        return rawData;
     }
 
 

@@ -6,13 +6,16 @@ import android.databinding.ViewDataBinding;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import com.apkfuns.logutils.LogUtils;
 import com.example.jerry.core.Utils;
+import com.example.jerry.ui.BR;
 import com.example.jerry.ui.R;
 import com.example.jerry.ui.core.ui_state.UIState;
 import com.example.jerry.ui.core.ui_state.UIStateBrief;
 import com.example.jerry.ui.core.ui_state.UIStateManager;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -26,8 +29,10 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseActivit
     private Object modelData;
 
 
-    public UIState getActivityUIState(){
+    //get current UIState
+    private UIState getActivityUIState(){
         UIState uiState = new UIState();
+        uiState.setName(getShortName());
         uiState.setUiClass(this.getClass());
         uiState.setRawModelData(Utils.toByteArray(getModelData()));
         Bitmap bitmap = Utils.takeScreenShot(this);
@@ -37,6 +42,15 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseActivit
         return uiState;
     }
 
+    public void saveUIState(){
+        LogUtils.i("saving ui for:"+this.getShortName());
+        try {
+            UIState uiState = getActivityUIState();
+            UIStateManager.getInstance().addUIState(uiState);
+        }catch (Exception e){
+            LogUtils.e("save ui fail", e);
+        }
+    }
 
     protected abstract Class getPresentationModelClass();
     protected abstract void onFinishUIBinding(ViewDataBinding viewDataBinding);
@@ -53,8 +67,14 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseActivit
         this.modelData = modelData;
     }
 
-
-
+    public  UIState getLatestUIState(){
+        List<UIState> uiStateList = UIStateManager.getInstance().getUIStates(getShortName());
+        if (uiStateList.size() <= 0){
+            return null;
+        }else {
+            return uiStateList.get(0);
+        }
+    }
 
     private Object createDefaultPresentationModelObject(){
         try {
@@ -69,14 +89,16 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseActivit
     protected final void onCreate(Bundle savedInstanceState, int activityId){
         super.onCreate(savedInstanceState);
         ViewDataBinding binding = DataBindingUtil.setContentView(this, activityId);
-        Object modelObject = UIStateManager.getInstance().loadModelData(savedInstanceState);
-        if (modelObject == null){
-            Object defObject = createDefaultPresentationModelObject();
-            if (defObject != null) {
-                binding.setVariable(R.string.id_presentation_data, defObject);
+        modelData = UIStateManager.getInstance().loadModelData(getIntent());
+        if (modelData == null){
+            LogUtils.i("new activity, using default model data");
+            modelData = createDefaultPresentationModelObject();
+            if (modelData != null) {
+                binding.setVariable(BR.modelData, modelData);
             }
         }else{
-            binding.setVariable(R.string.id_presentation_data, modelObject);
+            LogUtils.i("loding history model data");
+            binding.setVariable(BR.modelData, modelData);
         }
 
         onFinishUIBinding(binding);

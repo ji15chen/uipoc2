@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.jerry.ui.core.ui_state.UIStateBrief;
 import com.example.jerry.ui.core.ui_state.UIStateManager;
 
@@ -29,7 +30,7 @@ public abstract class AbstractBaseActivity extends Activity {
     }
 
     public void startActivity(Class<? extends AbstractBaseActivity> activityClass){
-        Intent saveIntent = new Intent(this,activityClass.getClass());
+        Intent saveIntent = new Intent(this, activityClass);
         startActivity(saveIntent);
     }
 }

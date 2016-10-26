@@ -6,7 +6,12 @@ import android.widget.Toast;
 
 import com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.jerry.ui.core.AbstractBaseActivity;
+import com.example.jerry.ui.core.ui_state.UIState;
+import com.example.jerry.ui.core.ui_state.UIStateBrief;
+import com.example.jerry.ui.core.ui_state.UIStateManager;
 import com.example.jerry.ui.menu.CircleMenuLayout;
+
+import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -63,8 +68,23 @@ public class HomeActivity extends AbstractBaseActivity {
                 if ((pos < 0)|| (pos >= mItemClasses.length)) {
                     return;
                 }
-                Class<? extends AbstractBaseActivity> curActivityCls = mItemClasses[pos];
-                startActivity(curActivityCls);
+                switch (pos){
+                    case 0:
+                    {
+                        Class<? extends AbstractBaseActivity> curActivityCls = mItemClasses[pos];
+                        startActivity(curActivityCls);
+                    }
+                    break;
+                    case 1:
+                    {
+                        List<UIState> uiStateList = UIStateManager.getInstance().getUIStates(null);
+                        if ((uiStateList != null) && (uiStateList.size() > 0)){
+                            UIStateBrief uiStateBrief = new UIStateBrief(uiStateList.get(0));
+                            startSavedActivity(uiStateBrief);
+                        }
+                    }
+                }
+
             }
 
             @Override

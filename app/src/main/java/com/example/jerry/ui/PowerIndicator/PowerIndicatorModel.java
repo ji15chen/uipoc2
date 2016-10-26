@@ -1,10 +1,12 @@
 package com.example.jerry.ui.PowerIndicator;
 
+import java.io.Serializable;
+
 /**
  * Created by ChenJi on 2016/10/25.
  */
 
-public class PowerIndicatorModel {
+public class PowerIndicatorModel implements Serializable{
     public String textValue;
 
     public String getTextValue() {
@@ -16,6 +18,7 @@ public class PowerIndicatorModel {
     }
 
     public PowerIndicatorModel(){
+
         textValue ="test";
     }
 }
