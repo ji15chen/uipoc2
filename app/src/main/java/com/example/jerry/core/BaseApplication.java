@@ -36,6 +36,7 @@ public class BaseApplication extends Application {
     public void onCreate()
     {
         super.onCreate();
+       // TypefaceProvider.registerDefaultIconSets();
         LogUtils.i("init ui database");
         try {
             uiStateDB = DBFactory.open(getApplicationContext(), UI_STATE_DB);

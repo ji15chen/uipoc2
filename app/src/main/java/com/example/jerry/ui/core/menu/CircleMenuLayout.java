@@ -1,9 +1,8 @@
-package com.example.jerry.ui.menu;
+package com.example.jerry.ui.core.menu;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,7 +35,7 @@ public class CircleMenuLayout extends ViewGroup
 	/**
 	 * 该容器的内边距,无视padding属性，如需边距请用该变量
 	 */
-	private static final float RADIO_PADDING_LAYOUT = 1 / 12f;
+	private static final float RADIO_PADDING_LAYOUT = 1 / 24f;
 
 	/**
 	 * 当每秒移动角度达到该值时，认为是快速移动

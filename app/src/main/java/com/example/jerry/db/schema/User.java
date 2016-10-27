@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable{
     @Id
     private Long id;
- 
+    public static final long serialVersionUID=0L;
     private String name;
  
     @Transient

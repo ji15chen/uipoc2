@@ -1,15 +1,18 @@
-package com.example.jerry.ui;
+package com.example.jerry.ui.Home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity;
+import com.example.jerry.ui.R;
 import com.example.jerry.ui.core.AbstractBaseActivity;
+import com.example.jerry.ui.core.menu.BaseBottomNavigation;
 import com.example.jerry.ui.core.ui_state.UIState;
 import com.example.jerry.ui.core.ui_state.UIStateBrief;
 import com.example.jerry.ui.core.ui_state.UIStateManager;
-import com.example.jerry.ui.menu.CircleMenuLayout;
+import com.example.jerry.ui.core.menu.CircleMenuLayout;
 
 import java.util.List;
 
@@ -18,8 +21,6 @@ import java.util.List;
  * status bar and navigation/system bar) with user interaction.
  */
 public class HomeActivity extends AbstractBaseActivity {
-
-    private CircleMenuLayout mCircleMenuLayout;
     private static final int mItemTextResource [] ={
             R.string.title_home_1,
             R.string.title_home_2,
@@ -36,30 +37,31 @@ public class HomeActivity extends AbstractBaseActivity {
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class
     };
-
-    private String[] mItemTexts = new String[mItemTextResource.length];
-
-    private int[] mItemImgs = new int[] { R.mipmap.home_mbank_1_normal,
+    private static final int[] mItemImgs = new int[] { R.mipmap.home_mbank_1_normal,
             R.mipmap.home_mbank_2_normal, R.mipmap.home_mbank_3_normal,
             R.mipmap.home_mbank_4_normal, R.mipmap.home_mbank_5_normal,
             R.mipmap.home_mbank_6_normal };
 
+    private CircleMenuLayout mCircleMenuLayout;
+    private AHBottomNavigation bottomNavigation;
+    private String[] mItemTexts = new String[mItemTextResource.length];
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.home_activity);
 
         for (int i=0;i<mItemTextResource.length;i++){
             mItemTexts[i] = getResources().getString(mItemTextResource[i]);
         }
 
-        mCircleMenuLayout = (CircleMenuLayout) findViewById(R.id.id_menulayout);
-        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
 
+        mCircleMenuLayout =  (CircleMenuLayout) findViewById(R.id.id_menulayout);
+        mCircleMenuLayout.setMenuItemIconsAndTexts(mItemImgs, mItemTexts);
         mCircleMenuLayout.setOnMenuItemClickListener(new CircleMenuLayout.OnMenuItemClickListener()
         {
-
             @Override
             public void itemClick(View view, int pos)
             {
@@ -96,7 +98,6 @@ public class HomeActivity extends AbstractBaseActivity {
 
             }
         });
-
     }
 
 
@@ -104,4 +105,9 @@ public class HomeActivity extends AbstractBaseActivity {
     public String getShortName() {
         return "首页";
     }
+
+
+
+
+
 }
