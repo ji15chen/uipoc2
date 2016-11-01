@@ -19,13 +19,21 @@ import android.view.View;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.UUID;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
+
+import com.example.dbman.ui.R;
 
 public class Utils {
 
@@ -253,7 +261,79 @@ public class Utils {
             {"", "*/*"}
     };
 
+    /**
+     * DeCompress the ZIP to the path
+     * @param zipFileString  name of ZIP
+     * @param outPathString   path to be unZIP
+     * @throws Exception
+     */
+    public static void UnZipFolder(String zipFileString, String outPathString) throws Exception {
+        ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
+        ZipEntry zipEntry;
+        String szName = "";
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                // get the folder name of the widget
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(outPathString + File.separator + szName);
+                folder.mkdirs();
+            } else {
 
+                File file = new File(outPathString + File.separator + szName);
+                file.createNewFile();
+                // get the output stream of the file
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                // read (len) bytes into buffer
+                while ((len = inZip.read(buffer)) != -1) {
+                    // write (len) byte from buffer at the position 0
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                out.close();
+            }
+        }
+        inZip.close();
+    }
+    /**
+     * DeCompress the ZIP to the path
+     * @param zipFileString  name of ZIP
+     * @param outPathString   path to be unZIP
+     * @throws Exception
+     */
+    public static void UnZipFolder(int resId, String outPathString) throws Exception {
+        InputStream inputStream = BaseApplication.getApp().getResources().openRawResource(R.raw.file);
+        ZipInputStream inZip = new ZipInputStream(inputStream);
+        ZipEntry zipEntry;
+        String szName = "";
+        while ((zipEntry = inZip.getNextEntry()) != null) {
+            szName = zipEntry.getName();
+            if (zipEntry.isDirectory()) {
+                // get the folder name of the widget
+                szName = szName.substring(0, szName.length() - 1);
+                File folder = new File(outPathString + File.separator + szName);
+                folder.mkdirs();
+            } else {
+
+                File file = new File(outPathString + File.separator + szName);
+                file.createNewFile();
+                // get the output stream of the file
+                FileOutputStream out = new FileOutputStream(file);
+                int len;
+                byte[] buffer = new byte[1024];
+                // read (len) bytes into buffer
+                while ((len = inZip.read(buffer)) != -1) {
+                    // write (len) byte from buffer at the position 0
+                    out.write(buffer, 0, len);
+                    out.flush();
+                }
+                out.close();
+            }
+        }
+        inZip.close();
+    }
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String source) {
 //        if (Build.VERSION.SDK_INT >= 24) {

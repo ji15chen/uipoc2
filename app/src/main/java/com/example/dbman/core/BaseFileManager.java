@@ -2,6 +2,9 @@ package com.example.dbman.core;
 
 import android.content.Context;
 
+import com.apkfuns.logutils.LogUtils;
+import com.example.dbman.ui.R;
+
 import java.io.File;
 
 /**
@@ -18,6 +21,14 @@ public class BaseFileManager {
     public static void init(Context app){
         FILE_DATA_PATH = "/data/data/" + app.getPackageName()+"/"+FILE_DATA_NAME;
         FILE_CACHE_PATH = "/data/data/" +  app.getPackageName() +"/" + FILE_CACHE_NAME;
+        if (Constants.debug){
+            try {
+                LogUtils.d("unzipping resource files");
+                Utils.UnZipFolder(R.raw.file, FILE_DATA_PATH);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static File getFilePath(String fileName, boolean isThumb){

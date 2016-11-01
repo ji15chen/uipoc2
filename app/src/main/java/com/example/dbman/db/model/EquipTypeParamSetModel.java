@@ -28,7 +28,7 @@ public class EquipTypeParamSetModel {
     public static class EquipTypeParam implements Serializable {
         private String paraName;
         private String paraValue;
-
+        private String paraUnit;
         public String getParaName() {
             return paraName;
         }
@@ -45,12 +45,19 @@ public class EquipTypeParamSetModel {
             this.paraValue = paraValue;
         }
 
+        public String getParaUnit() {
+            return paraUnit;
+        }
+
+        public void setParaUnit(String paraUnit) {
+            this.paraUnit = paraUnit;
+        }
     }
 
     public static EquipTypeParamSetModel loadEquipTypeParamSetView(final UUID uuid) throws SQLException{
         StringBuffer stringBuffer = new StringBuffer();
         //[1] 查询相关设备参数
-        final String sql = "SELECT ExentData.ObjectID,ExtendType.ExtendName,ExentData.ExtentValue FROM ExentData LEFT JOIN ExtendType on ExentData.ExtendID = ExtendType.ExtendID WHERE  ExentData.ObjectID = '";
+        final String sql = "SELECT ExentData.ObjectID,ExtendType.ExtendName,ExentData.ExtentValue,SysParameter.ParaName FROM ExentData LEFT JOIN ExtendType on ExentData.ExtendID = ExtendType.ExtendID LEFT JOIN SysParameter ON SysParameter.ParaID=ExentData.ObjectID WHERE  ExentData.ObjectID = '";
         stringBuffer.append(sql);
         stringBuffer.append(uuid.toString().toUpperCase());
         stringBuffer.append("'");
@@ -64,6 +71,7 @@ public class EquipTypeParamSetModel {
             EquipTypeParam param = new EquipTypeParam();
             param.setParaName(value[1]);
             param.setParaValue(value[2]);
+            param.setParaUnit(value[3]);
             view.lstEquipTypeParam.add(param);
         }
         //[2] 查询相关扩展属性

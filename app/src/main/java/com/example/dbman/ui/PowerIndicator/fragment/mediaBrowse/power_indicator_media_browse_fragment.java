@@ -1,24 +1,29 @@
 package com.example.dbman.ui.PowerIndicator.fragment.mediaBrowse;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.dbman.ui.PowerIndicator.PowerIndicatorDetailActivity;
+import com.example.dbman.core.BaseDatabase;
+import com.example.dbman.db.genupdate.dao.SysFileInfoDao;
+import com.example.dbman.db.genupdate.schema.EquipTypeDetail;
+import com.example.dbman.db.genupdate.schema.SysFileInfo;
+import com.example.dbman.db.model.EquipTypeParamSetModel;
 import com.example.dbman.ui.PowerIndicator.bean.ActorBean;
+import com.example.dbman.ui.PowerIndicator.bean.T1EntryBean;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentBase;
+import com.example.dbman.ui.PowerIndicator.fragment.FragmentT1;
 import com.example.dbman.ui.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Use the {@link power_indicator_media_browse_fragment#newInstance} factory method to
@@ -26,16 +31,13 @@ import java.util.List;
  */
 public class power_indicator_media_browse_fragment extends FragmentBase {
     private static final String ARG_PARAM1="param1";
+    private static final SysFileInfoDao sysFileInfoDao  = (SysFileInfoDao)BaseDatabase.getInstance().getDaoImpl("SysFileInfo");
 
-    private String mUUID;
-    private RecyclerView mPhotoList;
-    private MyAdapter myAdapter;
-    private List<ActorBean> actors = new ArrayList<>();
-    private String[] names = { "朱茵", "张柏芝", "张敏", "如花" };
-    private String[] pics = { "test_001", "test_002", "test_003", "test_004"};
+    private String eqUUID="";
+    private RecyclerView mMediaList;
+    private BaseMediaAdapter mediaAdapter;
 
     public power_indicator_media_browse_fragment() {
-        // Required empty public constructor
     }
 
     /**
@@ -56,9 +58,12 @@ public class power_indicator_media_browse_fragment extends FragmentBase {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mUUID = getArguments().getString(ARG_PARAM1);
-        }
+
+    }
+
+    public void refreshData(String eqUUID){
+        if (this.eqUUID.equals(eqUUID)) return;
+        new LoadDataTask().execute(eqUUID);
     }
 
     @Override
@@ -66,26 +71,16 @@ public class power_indicator_media_browse_fragment extends FragmentBase {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_power_indicator_media_browse_fragment, container, false);
-        mPhotoList = (RecyclerView) root.findViewById(R.id.photoList);
+        mMediaList = (RecyclerView) root.findViewById(R.id.photoList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mPhotoList.setLayoutManager(linearLayoutManager);
-        mPhotoList.setItemAnimator(new DefaultItemAnimator());
-        mPhotoList.setHasFixedSize(true);
-        myAdapter = new MyAdapter(getActivity(), actors);
-        mPhotoList.setAdapter(myAdapter);
+        mMediaList.setLayoutManager(linearLayoutManager);
+        mMediaList.setItemAnimator(new DefaultItemAnimator());
+        mMediaList.setHasFixedSize(true);
+        mediaAdapter = new BaseMediaAdapter(getActivity()) {
+        };
+        mMediaList.setAdapter(mediaAdapter);
 
-
-        final int count = names.length;
-        for (int i = 0; i < count; i++) {
-            String name = names[i];
-            String pic = pics[i];
-
-            actors.add(new ActorBean(name, pic));
-            mPhotoList.scrollToPosition(myAdapter.getItemCount() - 1);
-            myAdapter.notifyDataSetChanged();
-
-        }
         return root;
     }
 
@@ -100,6 +95,34 @@ public class power_indicator_media_browse_fragment extends FragmentBase {
         super.onDetach();
     }
 
+    private  class LoadDataTask extends AsyncTask<String, Void, List<SysFileInfo>> {
+        /** The system calls this to perform work in a worker thread and
+         * delivers it the parameters given to AsyncTask.execute() */
+        protected List<SysFileInfo> doInBackground(String... uuids) {
+            String uuid = uuids[0];
+            List<SysFileInfo> sysFileInfos = new ArrayList<>();
+            List<SysFileInfo> fileList;
+            try {
+                fileList = sysFileInfoDao.findSysFile(UUID.fromString(uuid));
+                for (SysFileInfo file:fileList){
+                    SysFileInfoDao.SysFileType type = sysFileInfoDao.getFileType(file);
+                    if (type == SysFileInfoDao.SysFileType.FILE_TYPE_OTHER) continue;
+                    sysFileInfos.add(file);
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
 
+            return sysFileInfos;
+        }
+
+        /** The system calls this to perform work in the UI thread and delivers
+         * the result from doInBackground() */
+        protected void onPostExecute(List<SysFileInfo> result) {
+            if (result != null) {
+                mediaAdapter.refresh(result);
+            }
+        }
+    }
 
 }

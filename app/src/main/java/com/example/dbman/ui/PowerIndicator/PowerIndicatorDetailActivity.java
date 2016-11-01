@@ -1,29 +1,19 @@
 package com.example.dbman.ui.PowerIndicator;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.dbman.ui.PowerIndicator.bean.ActorBean;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT1;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT2;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT3;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT4;
 import com.example.dbman.ui.PowerIndicator.fragment.mediaBrowse.power_indicator_media_browse_fragment;
 import com.example.dbman.ui.R;
-import com.example.dbman.ui.core.AbstractBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +21,7 @@ import java.util.List;
 public class PowerIndicatorDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private List<Button> btnList = new ArrayList<>();
     private power_indicator_media_browse_fragment media_browse_fragment;
-    private Button btnHide;
-
     private int curId = -1;
-    private boolean isHide=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +89,13 @@ public class PowerIndicatorDetailActivity extends AppCompatActivity implements V
     @Override
     public void onClick(View v) {
         selectResButton(v.getId());
+        {
+            Fragment pageFragment;
+            pageFragment = getFragmentManager().findFragmentById(R.id.fragment_content);
+            if (pageFragment instanceof FragmentT1) {
+                ((FragmentT1) pageFragment).refreshData("5809D095-7F4D-4FAD-B3B9-762236EAC2EA");
+            }
+        }
     }
 
     private void setBackgroundColorById(int btnId) {
@@ -115,11 +109,6 @@ public class PowerIndicatorDetailActivity extends AppCompatActivity implements V
             }
         }
     }
-
-//    @Override
-//    public String getShortName() {
-//        return "性能指标";
-//    }
 
 
 

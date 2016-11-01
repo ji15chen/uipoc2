@@ -8,15 +8,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 public interface SysFileInfoDao extends Dao<SysFileInfo,java.util.UUID>{
     public static enum SysFileType{
-        FILE_TYPE_ANIMATION,
+        FILE_TYPE_VIDEO,
         FILE_TYPE_IMAGE,
+        FILE_TYPE_AUDIO,
         FILE_TYPE_OTHER,
     }
-    public Iterator<SysFileInfo> findSysFile(final UUID UuidType) throws SQLException;
+    public List<SysFileInfo> findSysFile(final UUID UuidType) throws SQLException;
     public SysFileType getFileType(SysFileInfo sfi);
     public InputStream openFileStream(SysFileInfo sfi) throws IOException;
     public InputStream openFileStream(SysFileInfo sfi, boolean bIsThumb) throws IOException;

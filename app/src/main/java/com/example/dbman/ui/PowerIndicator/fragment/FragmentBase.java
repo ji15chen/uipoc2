@@ -27,7 +27,7 @@ public class FragmentBase extends Fragment {
     }
 
     @SuppressWarnings("unchecked")
-    protected <T extends FragmentBase> T fragment(int id) {
+    public <T extends FragmentBase> T fragment(int id) {
         return (T) getActivity().getFragmentManager().findFragmentById(id);
     }
 

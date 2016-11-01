@@ -5,7 +5,7 @@ import com.j256.ormlite.dao.BaseDaoImpl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import com.j256.ormlite.support.ConnectionSource;
@@ -17,8 +17,8 @@ public SysFileInfoDaoImpl (ConnectionSource connectionSource) throws SQLExceptio
 		}
 
 	@Override
-	public Iterator<SysFileInfo> findSysFile(UUID uuid) throws SQLException{
-		return queryForEq("ObjectID", uuid).iterator();
+	public List<SysFileInfo> findSysFile(UUID uuid) throws SQLException{
+		return queryForEq("ObjectID", uuid);
 	}
 
 	@Override
@@ -26,14 +26,18 @@ public SysFileInfoDaoImpl (ConnectionSource connectionSource) throws SQLExceptio
 		String ext = sfi.getExtension();
 		String mimeType = Utils.getMIMEType(ext);
 
-		if (mimeType.contains("video")){
-			return SysFileType.FILE_TYPE_ANIMATION;
-		}else
 		if (mimeType.contains("image")){
 			return SysFileType.FILE_TYPE_IMAGE;
-		}else{
-			return SysFileType.FILE_TYPE_OTHER;
 		}
+
+		if (mimeType.contains("video")){
+			return SysFileType.FILE_TYPE_VIDEO;
+		}
+		if (mimeType.contains("audio")){
+			return SysFileType.FILE_TYPE_AUDIO;
+		}
+
+		return SysFileType.FILE_TYPE_OTHER;
 	}
 
 	@Override
