@@ -27,16 +27,12 @@
             android:label="@string/title_activity_power_indicator"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.WithActionBar"></activity>
-
         <activity
-            android:name=".core.NavActivity"
-            android:label="@string/title_activity_nav"
-            android:parentActivityName=".Home.HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dbman.ui.Home.HomeActivity" />
-
-        </activity>
+            android:name=".PowerIndicator.PowerIndicatorSearchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_power_indicator"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.WithActionBar"></activity>
     </application>
 
 </manifest>

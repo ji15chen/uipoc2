@@ -85,6 +85,24 @@ public class EquipTypeBriefModel implements  Serializable{
     }
 
 
+    public static List<UUID> lookupEquipTypeByExtAttributes(String extSql) throws SQLException{
+        StringBuffer stringBuffer = new StringBuffer();
+        final String sql = "SELECT " +
+                                    "DISTINCT(EquipType.PkTypeID)," +
+                                    "CAST ( ExentData.ExtentValue as double) AS current_extend_value " +
+                "FROM EquipType INNER JOIN ExentData ON EquipType.PkTypeID = ExentData.ObjectID ";
+        stringBuffer.append(sql);
+        stringBuffer.append(" WHERE ");
+        stringBuffer.append(extSql);
+
+        GenericRawResults<UUID> uuids = equipTypeDao.queryRaw(stringBuffer.toString(), new RawRowMapper<UUID>() {
+            @Override
+            public UUID mapRow(String[] col, String[] result) throws SQLException {
+                return UUID.fromString(result[0]);
+            }
+        });
+        return uuids.getResults();
+    }
     /*
 * @show 查找某个装备概要信息
 * */
@@ -94,6 +112,33 @@ public class EquipTypeBriefModel implements  Serializable{
         stringBuffer.append(sql);
         stringBuffer.append(" WHERE ");
         stringBuffer.append(query.getStatement());
+        GenericRawResults<EquipTypeBriefModel> view = equipTypeDao.queryRaw(stringBuffer.toString(), new RawRowMapper<EquipTypeBriefModel>() {
+            @Override
+            public EquipTypeBriefModel mapRow(String[] col, String[] result) throws SQLException {
+                EquipTypeBriefModel view = new EquipTypeBriefModel();
+                view.setId(UUID.fromString(result[0]));
+                view.setTypeName(DBUtil.translateString(result[1]));
+                view.setUnit(DBUtil.translateString(result[2]));
+                view.setLimitedyear(DBUtil.translateString(result[3]));
+                view.setScale(DBUtil.translateString(result[4]));
+                view.setCategoryid("单品");
+                view.setWarrantyperiod(DBUtil.translateString(result[5]));
+                return view;
+            }
+        });
+        return view.getResults();
+    }
+
+
+    /*
+* @show 查找某个装备概要信息
+* */
+    public static List<EquipTypeBriefModel> lookupBriefEquipTypeInfo(String query)  throws SQLException {
+        StringBuffer stringBuffer = new StringBuffer();
+        final String sql = "SELECT EquipType.PkTypeID,EquipType.TypeName, SysParameter.ParaName,EquipType.LimitedYear,EquipType.Scale,EquipType.WarrantyPeriod FROM EquipType LEFT OUTER  JOIN SysParameter ON EquipType.Unit= SysParameter.ParaID ";
+        stringBuffer.append(sql);
+        stringBuffer.append(" WHERE ");
+        stringBuffer.append(query);
         GenericRawResults<EquipTypeBriefModel> view = equipTypeDao.queryRaw(stringBuffer.toString(), new RawRowMapper<EquipTypeBriefModel>() {
             @Override
             public EquipTypeBriefModel mapRow(String[] col, String[] result) throws SQLException {

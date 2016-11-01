@@ -33,10 +33,10 @@ public class SelectableTreeFragment extends Fragment {
 
         setupNode(null,treeRootNode);
         tView = new AndroidTreeView(getActivity(), treeRootNode);
-        tView.setDefaultAnimation(true);
+        tView.setDefaultAnimation(false);
         containerView.addView(tView.getView());
         tView.setSelectionModeEnabled(true);
-        tView.expandAll();
+        //tView.expandAll();
 
         if (savedInstanceState != null) {
             String state = savedInstanceState.getString("tState");

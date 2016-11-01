@@ -3,8 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_actionbar_margin">56dp</dimen>
+    <dimen name="headerTextSize">24dp</dimen>
     <dimen name="table_width">100dp</dimen>
     <dimen name="table_height">40dp</dimen>
+    <dimen name="option_height">40dp</dimen>
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>

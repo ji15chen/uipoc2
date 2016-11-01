@@ -44,7 +44,6 @@ import java.util.UUID;
  */
 public class HomeActivity extends AbstractUIStateBindingActivityWithNavMenu {
     private HomeActivityBinding binding;
-    private PowerIndicatorBriefTableAdapter adapter ;
     @Override
     public boolean isSupportSaveState() {
         return false;
@@ -64,17 +63,6 @@ public class HomeActivity extends AbstractUIStateBindingActivityWithNavMenu {
     protected void onFinishUIBinding(ViewDataBinding viewDataBinding) {
         binding = (HomeActivityBinding) viewDataBinding;
 
-        adapter = new PowerIndicatorBriefTableAdapter(this);
-        binding.table.setAdapter(adapter);
-
-        try{
-            EquipTypeDao dao = (EquipTypeDao)BaseDatabase.getInstance().getDaoImpl("EquipType");
-            Where<EquipType,UUID>  query = dao.findBySimilarTypeNameQuery("车");
-            List<EquipTypeBriefModel>  model = EquipTypeBriefModel.lookupBriefEquipTypeInfo(query);
-            adapter.setData(model);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     @Override

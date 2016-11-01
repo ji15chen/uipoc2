@@ -1,4 +1,7 @@
 <resources>
+    <string name="search_advanced">高级查询</string>
+    <string name="search_simple">查询</string>
+
     <string name="app_name">武警装备智能管理系统</string>
     <string name="ic_access_alarms">&#xe000;</string>
     <string name="ic_access_time">&#xe001;</string>
@@ -434,6 +437,8 @@
     <string name="ic_wifi_tethering">&#xe1af;</string>
     <string name="ic_work">&#xe1b0;</string>
 
+    <string name="search_apply">应用</string>
+    <string name="ext_attrbutes">特征参数:</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 

@@ -26,4 +26,9 @@ public abstract class AbstractBaseActivity extends Activity {
         Intent saveIntent = new Intent(this, activityClass);
         startActivity(saveIntent);
     }
+
+    public void startActivityForResult(Class<? extends AbstractBaseActivity> activityClass, int requestCode) {
+        Intent saveIntent = new Intent(this, activityClass);
+        startActivityForResult(saveIntent, requestCode);
+    }
 }

@@ -7,4 +7,5 @@
     <item name="node_header" type="id" />
     <item name="node_items" type="id" />
     <item name="tree_items" type="id" />
+    <item name="OptionListName" type="id" />
 </resources>

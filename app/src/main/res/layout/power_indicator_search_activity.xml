@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sliding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.PowerIndicator.PowerIndicatorModel"/>
+    </data>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_actionbar_margin"
+        android:background="@mipmap/bg">
+        <fragment class ="com.example.dbman.ui.PowerIndicator.FolderStructureFragment"
+            android:layout_width="500dp"
+            android:layout_height="match_parent"
+            android:id = "@+id/PowerIndicatorSearch_deptTree"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ext_attrbutes"
+                android:textSize="@dimen/headerTextSize"
+                />
+                <View
+                    android:layout_width="fill_parent"
+                    android:background="@color/white"
+                    android:layout_height="1dip" />
+            <ListView
+                android:id="@+id/EquipTypeOptionList"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp">
+            </ListView>
+            <View
+                android:layout_width="fill_parent"
+                android:background="@color/white"
+                android:layout_height="1dip" />
+            <info.hoang8f.widget.FButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/buttonSearchApply"
+                android:text="@string/search_apply"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

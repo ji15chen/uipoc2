@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.Home.HomeModel"/>
+    </data>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PowerIndicator.PowerIndicatorBriefViewFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="50dp">-->
+
+                <!--&lt;!&ndash;<ListView&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:id="@+id/PowerIndicatorBrief_SearchViewList"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="0dp"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_weight="1" />&ndash;&gt;-->
+            <!--</LinearLayout>-->
+            <SearchView
+                android:id="@+id/PowerIndicatorBrief_SearchView"
+                android:iconifiedByDefault="false"
+                android:queryHint="名称模糊搜索"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+             />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/PowerIndicatorBrief_SimlSearch"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/search_simple"
+                fbutton:buttonColor="@color/fbutton_color_peter_river"
+                fbutton:shadowColor="@color/text_lgray"
+                fbutton:shadowEnabled="true"
+                fbutton:shadowHeight="5dp"
+                fbutton:cornerRadius="5dp"
+            />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/PowerIndicatorBrief_AdvSearch"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/search_advanced"
+                fbutton:buttonColor="@color/fbutton_color_peter_river"
+                fbutton:shadowColor="@color/text_lgray"
+                fbutton:shadowEnabled="true"
+                fbutton:shadowHeight="5dp"
+                fbutton:cornerRadius="5dp"
+                />
+        </LinearLayout>
+
+        <!---->
+        <com.inqbarna.tablefixheaders.TableFixHeaders
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#FF909090"
+            android:scrollbars="horizontal|vertical" />
+    </LinearLayout>
+
+
+</FrameLayout>
+</layout>
