@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.core.BaseDatabase;
+import com.example.dbman.core.scanner.ScanneDevice;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.example.dbman.db.model.DeptHirarchyModel;
@@ -22,6 +23,7 @@ import org.junit.runner.RunWith;
 
 import java.util.UUID;
 
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
 
 /**
@@ -140,5 +142,15 @@ public class ExampleInstrumentedTest {
         } catch (Exception e) {
             assertFalse(true);
         }
+    }
+    @Test
+    public void testScannerDevice() throws InterruptedException {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        ScanneDevice scanneDevice = new ScanneDevice(appContext);
+        scanneDevice.start();
+        do
+        {
+            Thread.sleep(1000);
+        }while (true);
     }
 }

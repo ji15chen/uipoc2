@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dbman.ui">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:name="com.example.dbman.core.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.WithActionBar"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         >
         <activity
             android:name=".Home.HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.WithActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            >
+
         </activity>
         <activity
             android:name=".PowerIndicator.PowerIndicatorActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.WithActionBar"></activity>
+            >
+
+        </activity>
         <activity
             android:name=".PowerIndicator.PowerIndicatorSearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.WithActionBar"></activity>
+            ></activity>
         <activity
             android:name=".PowerIndicator.PowerIndicatorDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             >
         </activity>
 
@@ -43,13 +47,25 @@
             android:name=".StoreDetail.StoreDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.WithActionBar"></activity>
+            ></activity>
         <activity
             android:name=".StoreDetail.StoreDetailSearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.WithActionBar"></activity>
 
+            ></activity>
+        <activity
+            android:name="com.example.dbman.ui.ScanStoreDetail.scanner.DeviceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 

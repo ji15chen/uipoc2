@@ -7,22 +7,23 @@ import android.view.ViewGroup;
 
 import com.example.dbman.db.model.EquipTypeBriefModel;
 import com.example.dbman.ui.R;
+import com.example.dbman.ui.ScanStoreDetail.ScanStoreDetailBasicTableAdapter;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
+public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter  {
     private  int width;
     private  int height;
     List<EquipTypeBriefModel> model = null;
     private static final String [] headers = new String[]{"序号", "装备型号", "计量单位", "管理类别", "使用年限", "退保比例", "保修期", "详情"};
-    View.OnClickListener onClickListener;
+    private View.OnClickListener onClickListener;
+    private Resources resources;
 
     public PowerIndicatorBriefTableAdapter(Context context, View.OnClickListener onClickListener) {
         super(context);
         this.onClickListener = onClickListener;
-        Resources resources = context.getResources();
-
+        this.resources = context.getResources();
         width = resources.getDimensionPixelSize(R.dimen.table_width);
         height = resources.getDimensionPixelSize(R.dimen.table_height);
     }
@@ -143,4 +144,6 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
     public int getViewTypeCount() {
         return 3;
     }
+
+
 }

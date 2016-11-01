@@ -10,66 +10,42 @@
     android:layout_gravity="center|center_vertical"
     tools:context=".Home.HomeActivity">
 
+    <TextView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_gravity="center|top"
+            android:background="@mipmap/biaoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     <TableLayout
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TableRow>
-            <TextView
-                android:text="@string/title_home_1"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_1_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home1_sel"
                 android:id="@+id/home_fun_1" />
-            <TextView
-                android:text="@string/title_home_2"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_2_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home2_sel"
                 android:id="@+id/home_fun_2" />
-            <TextView
-                android:text="@string/title_home_3"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_3_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home3_sel"
                 android:id="@+id/home_fun_3" />
         </TableRow>
         <TableRow>
-            <TextView
-                android:text="@string/title_home_4"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_4_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home4_sel"
                 android:id="@+id/home_fun_4" />
-            <TextView
-                android:text="@string/title_home_5"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_5_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home5_sel"
                 android:id="@+id/home_fun_5" />
-            <TextView
-                android:text="@string/title_home_6"
-                android:textSize="@dimen/headerTextSize"
-                android:textColor="@color/fbutton_color_clouds"
-                android:drawableTop="@mipmap/home_mbank_6_normal"
-                android:layout_width="@dimen/home_img_width"
-                android:layout_height="@dimen/home_img_width"
-                android:padding="@dimen/home_pad_width"
+            <ImageButton
+                style="@style/home_button_style"
+                android:src="@drawable/home6_sel"
                 android:id="@+id/home_fun_6" />
         </TableRow>
     </TableLayout>

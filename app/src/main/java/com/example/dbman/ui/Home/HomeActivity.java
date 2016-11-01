@@ -31,7 +31,6 @@ import com.example.dbman.ui.core.ui_state.UIStateManager;
 import com.example.dbman.ui.core.menu.CircleMenuLayout;
 import com.example.dbman.ui.databinding.HomeActivityBinding;
 import com.j256.ormlite.stmt.Where;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

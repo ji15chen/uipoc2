@@ -1,1 +1,1 @@
-include ':app' ,':libraries:SlidingMenu/library',':libraries:TableFixHeaders/library',":libraries:Android-HorizontalListView/AndroidHorizontalListView"
+include ':app' ,':libraries:TableFixHeaders/library',":libraries:Android-HorizontalListView/AndroidHorizontalListView"

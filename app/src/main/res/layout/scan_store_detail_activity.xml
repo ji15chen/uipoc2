@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sliding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.ScanStoreDetail.ScanStoreDetailModel"/>
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg">
+<LinearLayout
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</LinearLayout>
+        <com.inqbarna.tablefixheaders.TableFixHeaders
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#FF909090"
+            android:scrollbars="horizontal|vertical" />
+
+</LinearLayout>
+</layout>
