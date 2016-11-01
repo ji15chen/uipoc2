@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PowerIndicator.fragment.mediaBrowse.power_indicator_media_browse_fragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/photoList"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scrollbars="horizontal"
+        android:layout_alignParentStart="true"
+        tools:background="#FF0000" />
+
+</FrameLayout>

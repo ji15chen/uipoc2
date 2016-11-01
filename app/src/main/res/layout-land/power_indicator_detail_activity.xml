@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dbman.ui.PowerIndicator.PowerIndicatorDetailActivity">
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         android:layout_gravity="start|top"
         android:gravity="start|center_horizontal"
         android:text="TextView > test > hello > aa" />
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,10 +27,30 @@
         tools:background="#ff00ff">
 
         <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/power_indicator_detail_media_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <fragment class="com.example.dbman.ui.PowerIndicator.fragment.mediaBrowse.power_indicator_media_browse_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/power_indicator_detail_media_fragment"
+                >
+            </fragment>
+            <Button
+                android:id="@+id/power_indicator_detail_showhide"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="@string/text_hide"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/button_view_include"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentStart="true"
+            android:layout_below="@id/power_indicator_detail_media_container"
             android:background="@color/fbutton_color_peter_river">
             <include layout="@layout/button_bar" />
         </LinearLayout>
@@ -36,11 +58,10 @@
         <FrameLayout
             android:id="@+id/fragment_content"
             android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingTop="60dp"
-            android:layout_toStartOf="@+id/button_view_include"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/button_view_include"
             tools:background="#0000ff">
 
         </FrameLayout>

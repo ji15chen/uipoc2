@@ -31,11 +31,11 @@ public class FragmentBase extends Fragment {
         return (T) getActivity().getFragmentManager().findFragmentById(id);
     }
 
-    protected void setFragmentShow(FragmentBase fragment) {
+    public void setFragmentShow(FragmentBase fragment) {
         fragment.getActivity().getFragmentManager().beginTransaction().show(fragment).commit();
     }
 
-    protected void setFragmentHide(FragmentBase fragment) {
+    public void setFragmentHide(FragmentBase fragment) {
         fragment.getActivity().getFragmentManager().beginTransaction().hide(fragment).commit();
     }
 }

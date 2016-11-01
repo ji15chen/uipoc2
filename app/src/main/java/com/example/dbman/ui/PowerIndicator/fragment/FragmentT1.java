@@ -25,13 +25,11 @@ import java.util.List;
 
 
 public class FragmentT1 extends FragmentBase {
-    private TextView mTextView;
-    private RecyclerView mPhotoList;
+    private String eqUUID;
 
-    private MyAdapter myAdapter;
-    private List<ActorBean> actors = new ArrayList<>();
-    private String[] names = { "朱茵", "张柏芝", "张敏", "如花" };
-    private String[] pics = { "test_001", "test_002", "test_003", "test_004"};
+    private TextView mTextView;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,7 @@ public class FragmentT1 extends FragmentBase {
         mTextView = (TextView) view.findViewById(R.id.textView1);
         mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
-        mPhotoList = (RecyclerView) view.findViewById(R.id.photoList);
-        mPhotoList.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        mPhotoList.setItemAnimator(new DefaultItemAnimator());
-        mPhotoList.setHasFixedSize(true);
+
         String htmlText = "<h1><mxgsa>昌河武直-10</mxgsa></h1>" +
                 "英文：<i><b>CAIC Z-10</b></i><b>，</b>中方代号：<b>霹雳火 <i>Fiery Thunderbolt</i><sup>[1]</sup><a class=\"sup-anchor\" name=\"ref_[1]_1029834\">&nbsp;</a>\n" +
                 "</b>，亦有直接称之为<b>直-10</b>的叫法）<br>是由<a target=\"_blank\" href=\"/view/669244.htm\">昌河飞机工业（集团）有限责任公司</a><a target=\"_blank\" href=\"/view/3603868.htm\">中国直升机设计研究所</a>（<i>China Helicopter Research and Development Institute CHRDI</i>，又称602所）进行研发，并由<a target=\"_blank\" href=\"/view/1613639.htm\">哈尔滨飞机公司</a>负责设计规划的中国人民解放军新一代专业<a target=\"_blank\" href=\"/subview/115674/5925788.htm\" data-lemmaid=\"10718\">武装直升机</a>。" +
@@ -78,20 +73,6 @@ public class FragmentT1 extends FragmentBase {
         Spanned htmlAsSpanned = Utils.fromHtml(htmlText);
         mTextView.setText(htmlAsSpanned);
 
-        myAdapter = new MyAdapter(this.getActivity(), actors);
-        mPhotoList.setAdapter(myAdapter);
-
-
-        final int count = names.length;
-        for (int i = 0; i < count; i++) {
-            String name = names[i];
-            String pic = pics[i];
-
-            actors.add(new ActorBean(name, pic));
-            mPhotoList.scrollToPosition(myAdapter.getItemCount() - 1);
-            myAdapter.notifyDataSetChanged();
-
-        }
     }
 
     @Override
@@ -100,46 +81,4 @@ public class FragmentT1 extends FragmentBase {
     }
 
 
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-        private List<ActorBean> actors;
-
-        private Context mContext;
-
-        MyAdapter(Context context, List<ActorBean> actors) {
-            this.mContext = context;
-            this.actors = actors;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view, viewGroup, false);
-            return new ViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            ActorBean p = actors.get(i);
-            viewHolder.mTextView.setText(p.name);
-            viewHolder.mImageView.setImageDrawable(mContext.getDrawable(p.getImageResourceId(mContext)));
-        }
-
-        @Override
-        public int getItemCount() {
-            // 返回数据总数
-            return actors == null ? 0 : actors.size();
-        }
-
-        // 重写的自定义ViewHolder
-        class ViewHolder extends RecyclerView.ViewHolder {
-            TextView mTextView;
-
-            ImageView mImageView;
-
-            ViewHolder(View v) {
-                super(v);
-                mTextView = (TextView) v.findViewById(R.id.name);
-                mImageView = (ImageView) v.findViewById(R.id.pic);
-            }
-        }
-    }
 }
