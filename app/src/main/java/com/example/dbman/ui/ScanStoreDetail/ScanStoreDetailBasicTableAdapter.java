@@ -30,6 +30,18 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
         return model.get(row);
     }
 
+    public int find(Object obj){
+        for (int i=0;i<model.size();i++){
+            if (obj == model.get(i)){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void delData(StoreInfoModelEntry entry){
+        model.remove(entry);
+        this.notifyDataSetChanged();
+    }
     public void setData(List<StoreInfoModelEntry> model) {
         this.model = model;
         this.notifyDataSetChanged();

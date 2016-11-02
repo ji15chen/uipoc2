@@ -41,7 +41,7 @@ public class StoreInfoModel {
                 "paramStatus.ParaName, paramQuality.ParaName,\n" +
                 "StoreDetail.ProduceDate,StoreDetail.PurchaseDate,StoreDetail.UseDate,\n" +
                 "paramAddType.ParaName,StoreDetail.OtherDate,PersonInfo.PersonName,\n" +
-                "DepotInfo.RoomName,FactoryInfo.FactoryName\n" +
+                "DepotInfo.RoomName,FactoryInfo.FactoryName,StoreDetail.StoreID\n" +
                 "FROM StoreDetail\n" +
                 "LEFT JOIN Department ON Department.DeptID=StoreDetail.DeptID\n" +
                 "LEFT JOIN EquipType  ON EquipType.PkTypeID=StoreDetail.PkTypeID\n" +
@@ -64,6 +64,10 @@ public class StoreInfoModel {
         while(iter.hasNext()){
             StoreInfoModelEntry entry = new StoreInfoModelEntry();
             entry.setColumnValues(iter.next());
+            {
+                String [] arr = entry.getColumnValues();
+                entry.setUuid(arr[arr.length - 1]);
+            }
             view.lstEquipStoreInfo.add(entry);
         }
         return view;

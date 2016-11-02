@@ -8,7 +8,9 @@ import android.view.Menu;
 import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.dbman.db.model.StoreInfoModel;
 import com.example.dbman.db.model.StoreInfoModelEntry;
+import com.example.dbman.ui.PowerIndicator.PowerIndicatorDetailActivity;
 import com.example.dbman.ui.PowerIndicator.fragment.PowerIndicatorBriefViewFragment;
 import com.example.dbman.ui.R;
 import com.example.dbman.ui.ScanStoreDetail.scanner.DeviceActivity;
@@ -69,9 +71,41 @@ public class ScanStoreDetailActivity extends DeviceActivity implements View.OnCl
         super.onStop();
     }
 
+    private void handleRemove(StoreInfoModelEntry entry){
+        scanStoreDetailBasicTableAdapter.delData(entry);
+    }
+
+    private void handlePowerIndicator(StoreInfoModelEntry entry){
+        Intent intent = new Intent(this, PowerIndicatorDetailActivity.class);
+        intent.putExtra("id", entry.getUuid());
+        intent.putExtra("name", entry.getColumnValues()[1]);
+        startActivity(intent);
+    }
+
+    private void handleStoreInfoDetail(StoreInfoModelEntry entry){
+        ScanStoreDetailDialog dialog = new ScanStoreDetailDialog(this, entry);
+        dialog.show();
+    }
     @Override
     public void onClick(View v) {
-        LogUtils.d(v);
+        switch (v.getId())
+        {
+            case R.layout.table_cell_remove:
+            {
+                handleRemove((StoreInfoModelEntry)v.getTag());
+            }
+            break;
+            case R.layout.scan_store_detail_cell_detail:
+            {
+                handlePowerIndicator((StoreInfoModelEntry)v.getTag());
+            }
+            break;
+            default:
+            {
+                handleStoreInfoDetail((StoreInfoModelEntry)v.getTag());
+            }
+            break;
+        }
     }
 
 

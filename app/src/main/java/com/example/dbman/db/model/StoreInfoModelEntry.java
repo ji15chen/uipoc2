@@ -9,9 +9,17 @@ import java.text.SimpleDateFormat;
 public class StoreInfoModelEntry {
     private String time;
     private String epc;
-
+    private String uuid;
     public String getEpc() {
         return epc;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public void setEpc(String epc) {
