@@ -55,7 +55,7 @@
 
             ></activity>
         <activity
-            android:name="com.example.dbman.ui.ScanStoreDetail.scanner.DeviceActivity"
+            android:name="com.example.dbman.ui.ScanStoreDetail.ScanStoreDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.NoActionBar"

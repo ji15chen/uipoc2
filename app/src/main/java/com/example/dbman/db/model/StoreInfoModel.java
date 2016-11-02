@@ -78,7 +78,7 @@ public class StoreInfoModel {
         if (lst.size()>0){
             return "WHERE StoreDetail.StoreID = '"+ lst.get(0).getStoreid()+"'";
         }else{
-            return "";
+            return null;
         }
     }
 }

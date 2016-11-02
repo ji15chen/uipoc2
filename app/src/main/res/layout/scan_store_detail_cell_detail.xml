@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@android:id/text1"
+        android:text="@string/title_home_1"
         android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

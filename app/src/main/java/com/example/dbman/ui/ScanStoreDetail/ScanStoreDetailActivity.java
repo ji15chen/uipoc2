@@ -1,13 +1,19 @@
 package com.example.dbman.ui.ScanStoreDetail;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.dbman.core.BaseFileManager;
+import com.example.dbman.db.genupdate.schema.SysFileInfo;
 import com.example.dbman.db.model.StoreInfoModel;
 import com.example.dbman.db.model.StoreInfoModelEntry;
 import com.example.dbman.ui.PowerIndicator.PowerIndicatorDetailActivity;
@@ -18,6 +24,9 @@ import com.example.dbman.ui.core.AbstractUIStateBindingActivity;
 import com.example.dbman.ui.core.AbstractUIStateBindingActivityWithNavMenu;
 import com.example.dbman.ui.databinding.PowerIndicatorActivityBinding;
 import com.example.dbman.ui.databinding.ScanStoreDetailActivityBinding;
+import com.example.dbman.ui.databinding.ScanStoreDetailDialogBinding;
+
+import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -35,7 +44,13 @@ public class ScanStoreDetailActivity extends DeviceActivity implements View.OnCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        try {
+            StoreInfoModel model =  StoreInfoModel.loadEquipStoreDetail("");
+            List<StoreInfoModelEntry> data = model.getLstEquipStoreInfo();
+            scanStoreDetailBasicTableAdapter.setData(data);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -72,37 +87,60 @@ public class ScanStoreDetailActivity extends DeviceActivity implements View.OnCl
     }
 
     private void handleRemove(StoreInfoModelEntry entry){
+        if (entry == null) return;
         scanStoreDetailBasicTableAdapter.delData(entry);
     }
 
     private void handlePowerIndicator(StoreInfoModelEntry entry){
+        if (entry == null) return;
         Intent intent = new Intent(this, PowerIndicatorDetailActivity.class);
         intent.putExtra("id", entry.getUuid());
         intent.putExtra("name", entry.getColumnValues()[1]);
         startActivity(intent);
     }
 
+
     private void handleStoreInfoDetail(StoreInfoModelEntry entry){
-        ScanStoreDetailDialog dialog = new ScanStoreDetailDialog(this, entry);
-        dialog.show();
+        if (entry == null) return;
+
+        View view = ScanStoreDetailDialog.createView(this,entry);
+        new ScanStoreDetailDialog.Builder(this).setTitle(entry.getColumnValues()[1]).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
     @Override
     public void onClick(View v) {
-        switch (v.getId())
+        Pair<Integer,Integer> tag = (Pair<Integer,Integer>) v.getTag();
+        Integer action = tag.first;
+        Integer index = tag.second;
+
+        StoreInfoModelEntry entry = null;
+        try{
+            entry = (StoreInfoModelEntry)scanStoreDetailBasicTableAdapter.getItem(index,0);
+        }catch (Exception e){
+            entry = null;
+        }
+
+        LogUtils.d("clicked:"+action);
+
+        switch (action)
         {
-            case R.layout.table_cell_remove:
+            case 2:
             {
-                handleRemove((StoreInfoModelEntry)v.getTag());
+                handleRemove(entry);
             }
             break;
-            case R.layout.scan_store_detail_cell_detail:
+            case 1:
             {
-                handlePowerIndicator((StoreInfoModelEntry)v.getTag());
+                handlePowerIndicator(entry);
             }
             break;
             default:
             {
-                handleStoreInfoDetail((StoreInfoModelEntry)v.getTag());
+                handleStoreInfoDetail(entry);
             }
             break;
         }

@@ -2,18 +2,23 @@ package com.example.dbman.ui.ScanStoreDetail;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.db.model.StoreInfoModelEntry;
 import com.example.dbman.ui.PowerIndicator.adapter.SampleTableAdapter;
 import com.example.dbman.ui.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
     private  int width;
     private  int height;
-    List<StoreInfoModelEntry> model = null;
+    List<StoreInfoModelEntry> model = new ArrayList<>();
     private static final String [] headers = new String[]{"序号", "装备名称","现有数量","扫描时间", "装备型号", "编号", "数量", "性能指标", "移除"};
     View.OnClickListener onClickListener;
     private Resources resources;
@@ -106,30 +111,61 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
                 return "移除";
         }
     }
+    @Override
+    protected void setText(View v, String text) {
+        switch (v.getId())
+        {
+            case R.layout.table_cell_remove:
+            {
 
+            }
+            break;
+            case R.layout.scan_store_detail_cell_detail:
+            {
+
+            }
+            break;
+            default:
+            {
+                super.setText(v,text);
+            }
+            break;
+        }
+    }
     @Override
     public View getView(int row, int column, View converView, ViewGroup parent) {
+        int resId = getLayoutResource(row, column);
         if (converView == null) {
-            int resId = getLayoutResource(row, column);
+
             converView = getInflater().inflate(getLayoutResource(row, column), parent, false);
-            if (
-                    (resId == R.layout.scan_store_detail_cell_detail)
-                    ||
-                    (resId == R.layout.table_cell_remove)
-                )
-            {
-                converView.setTag(getItem(row,column));
-                converView.setOnClickListener(onClickListener);
+
+            if (resId == R.layout.scan_store_detail_cell_detail){
+                converView.setTag(new Pair<Integer,Integer>(1,row));
+            }else
+            if (resId == R.layout.table_cell_remove){
+                converView.setTag(new Pair<Integer,Integer>(2,row));
+            }else{
+                converView.setTag(new Pair<Integer,Integer>(0,row));
             }
+            converView.setOnClickListener(onClickListener);
         }
-        setText(converView, getCellString(row, column));
+        if (
+                (resId != R.layout.scan_store_detail_cell_detail)
+                        &&
+                        (resId != R.layout.table_cell_remove)
+                ) {
+            setText(converView, getCellString(row, column));
+        }
+
         return converView;
     }
 
     @Override
     public int getLayoutResource(int row, int column) {
         final int layoutResource;
-        switch (getItemViewType(row, column)) {
+        int type = getItemViewType(row, column);
+        //LogUtils.d(row+","+column+"="+type);
+        switch (type) {
             case 0:
                 layoutResource = R.layout.powerindicator_table_header;
                 break;
@@ -154,15 +190,15 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
             return 0;
         } else
         {
-            if (column < headers.length -3){
+            if (column < (headers.length -3) ){
                 return 1;
             }
-            else
-            if (column == headers.length -2)
-            {
-                return 2;
-            }else{
-                return 3;
+            else {
+                if (column == headers.length - 3) {
+                    return 2;
+                } else {
+                    return 3;
+                }
             }
         }
     }

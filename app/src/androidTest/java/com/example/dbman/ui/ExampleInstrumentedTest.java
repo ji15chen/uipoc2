@@ -6,7 +6,6 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.core.BaseDatabase;
-import com.example.dbman.core.scanner.ScanneDevice;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.example.dbman.db.model.DeptHirarchyModel;
@@ -146,8 +145,6 @@ public class ExampleInstrumentedTest {
     @Test
     public void testScannerDevice() throws InterruptedException {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        ScanneDevice scanneDevice = new ScanneDevice(appContext);
-        scanneDevice.start();
         do
         {
             Thread.sleep(1000);

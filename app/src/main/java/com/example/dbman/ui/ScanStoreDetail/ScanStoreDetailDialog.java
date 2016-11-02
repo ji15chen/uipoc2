@@ -5,6 +5,7 @@ import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -27,7 +28,7 @@ import java.util.UUID;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class ScanStoreDetailDialog extends Dialog{
+public class ScanStoreDetailDialog extends AlertDialog implements View.OnClickListener{
     private static final SysFileInfoDao sysFileInfoDao  = (SysFileInfoDao) BaseDatabase.getInstance().getDaoImpl("SysFileInfo");
     private ScanStoreDetailDialogBinding binding;
     private StoreInfoModelEntry entry;
@@ -39,18 +40,21 @@ public class ScanStoreDetailDialog extends Dialog{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ScanStoreDetailDialogBinding.inflate(LayoutInflater.from(this.getContext()));
-        binding.setModelData(entry);
+    }
+
+    public static View createView(Context context, StoreInfoModelEntry entry){
+        ScanStoreDetailDialogBinding scanStoreDetailDialogBinding  = ScanStoreDetailDialogBinding.inflate(LayoutInflater.from(context));
+        scanStoreDetailDialogBinding.setModelData(entry);
         String uuid = entry.getUuid();
         List<SysFileInfo> sfi = getImages(uuid);
         if (sfi.size() > 0) {
-            binding.image.setImageURI(
+            scanStoreDetailDialogBinding.image.setImageURI(
                     Uri.fromFile(BaseFileManager.getFilePath(sfi.get(0),false))
             );
         }
+        return scanStoreDetailDialogBinding.getRoot();
     }
-
-    protected List<SysFileInfo> getImages(String  uuid) {
+    protected static List<SysFileInfo> getImages(String  uuid) {
         List<SysFileInfo> sysFileInfos = new ArrayList<>();
         List<SysFileInfo> fileList;
         try {
@@ -66,5 +70,10 @@ public class ScanStoreDetailDialog extends Dialog{
         }
 
         return sysFileInfos;
+    }
+
+    @Override
+    public void onClick(View v) {
+        this.dismiss();
     }
 }

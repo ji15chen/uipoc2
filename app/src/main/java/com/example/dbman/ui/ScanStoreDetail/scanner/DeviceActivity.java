@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.apkfuns.logutils.LogUtils;
-import com.example.dbman.core.scanner.BluetoothService;
 import com.example.dbman.db.model.StoreInfoModel;
 import com.example.dbman.db.model.StoreInfoModelEntry;
 import com.example.dbman.ui.R;
@@ -237,7 +236,8 @@ public abstract class DeviceActivity extends AbstractUIStateBindingActivity {
 	    */
 	    private void addItemepc(String msg) 
 	    {
-			if (hashMapEPC.containsKey(msg)){
+			if (!hashMapEPC.containsKey(msg)){
+				LogUtils.d("EPC:"+msg);
 				try {
 					String query = StoreInfoModel.buildEquipCardQuery(msg);
 					StoreInfoModel model =  StoreInfoModel.loadEquipStoreDetail(query);
