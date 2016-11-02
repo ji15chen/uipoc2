@@ -35,7 +35,7 @@ import com.example.dbman.db.genupdate.daoimpl.SysFileInfoDaoImpl;
 @DatabaseField( columnName ="Descn")
 	private String descn;
 @DatabaseField( columnName ="CreateDate")
-	private Date createdate;
+	private String createdate;
 @DatabaseField( columnName ="UserID")
 	private UUID userid;
 
@@ -100,12 +100,15 @@ import com.example.dbman.db.genupdate.daoimpl.SysFileInfoDaoImpl;
 	public void setDescn(String Descn){
 		this.descn=Descn;
 	}
-	public Date getCreateDate(){
-		return this.createdate;
+
+	public String getCreatedate() {
+		return createdate;
 	}
-	public void setCreateDate(Date CreateDate){
-		this.createdate=CreateDate;
+
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
 	}
+
 	public UUID getUserID(){
 		return this.userid;
 	}

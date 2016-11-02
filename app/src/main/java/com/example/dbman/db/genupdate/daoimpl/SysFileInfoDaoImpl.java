@@ -24,6 +24,9 @@ public SysFileInfoDaoImpl (ConnectionSource connectionSource) throws SQLExceptio
 	@Override
 	public SysFileType getFileType(SysFileInfo sfi) {
 		String ext = sfi.getExtension();
+		if (!ext.startsWith(".")){
+			ext="."+ext;
+		}
 		String mimeType = Utils.getMIMEType(ext);
 
 		if (mimeType.contains("image")){

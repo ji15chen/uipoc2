@@ -39,7 +39,7 @@ public class AudioMediaAdapter implements IMediaAdapterIntf , View.OnClickListen
         holder.mTextView.setText(sysFileInfo.getTitle());
         holder.mImageView.setImageResource(R.drawable.music);
         try {
-            holder.mp.setDataSource(context, Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo.getFileName(), false)));
+            holder.mp.setDataSource(context, Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo, false)));
         }catch (Exception e){
             e.printStackTrace();
         }

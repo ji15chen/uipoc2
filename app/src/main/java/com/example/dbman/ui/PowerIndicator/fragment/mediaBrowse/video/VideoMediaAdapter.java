@@ -38,7 +38,7 @@ public class VideoMediaAdapter  implements IMediaAdapterIntf, View.OnClickListen
     public void bindViewHolder(Context context, BaseViewHolder viewHolder, SysFileInfo sysFileInfo) {
         VideoViewHolder holder = (VideoViewHolder) viewHolder;
         holder.mTextView.setText(sysFileInfo.getTitle());
-        holder.mVideoView.setVideoURI(Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo.getFileName(),false)));
+        holder.mVideoView.setVideoURI(Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo,false)));
         holder.mVideoView.setOnClickListener(this);
     }
 

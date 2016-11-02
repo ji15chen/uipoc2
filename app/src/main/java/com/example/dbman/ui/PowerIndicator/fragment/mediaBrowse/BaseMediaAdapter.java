@@ -23,16 +23,22 @@ import static com.example.dbman.core.Utils.getMIMEType;
  * Created by ChenJi on 2016/11/1.
  */
 
-public abstract class BaseMediaAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public  class BaseMediaAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final SysFileInfoDao sysFileInfoDao  = (SysFileInfoDao) BaseDatabase.getInstance().getDaoImpl("SysFileInfo");
 
     private List<SysFileInfo> fileInfo = new ArrayList<>();
     private Context mContext;
 
-    private VideoMediaAdapter videoMediaAdapter = new VideoMediaAdapter();
-    private AudioMediaAdapter audioMediaAdapter = new AudioMediaAdapter();
-    private ImageMediaAdapter imageMediaAdapter = new ImageMediaAdapter();
-    private DummyMediaAdapter dummyMediaAdapter = new DummyMediaAdapter();
+    private static final    VideoMediaAdapter videoMediaAdapter = new VideoMediaAdapter();
+    private static final    AudioMediaAdapter audioMediaAdapter = new AudioMediaAdapter();
+    private static final    ImageMediaAdapter imageMediaAdapter = new ImageMediaAdapter();
+    private static final    DummyMediaAdapter dummyMediaAdapter = new DummyMediaAdapter();
+    private static final    IMediaAdapterIntf mediaAdapterIntfs[] = new IMediaAdapterIntf[]{
+            imageMediaAdapter,
+            videoMediaAdapter,
+            audioMediaAdapter,
+            dummyMediaAdapter
+    };
 
     public BaseMediaAdapter(Context context) {
         this.mContext = context;
@@ -53,12 +59,31 @@ public abstract class BaseMediaAdapter extends RecyclerView.Adapter<BaseViewHold
     }
 
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        SysFileInfo sysFileInfo = getItem(i);
-        IMediaAdapterIntf impl = getImpl(sysFileInfo);
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(impl.getLayoutId(i), viewGroup, false);
+    public BaseViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        IMediaAdapterIntf impl = mediaAdapterIntfs[viewType];
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(impl.getLayoutId(viewType), viewGroup, false);
         return impl.createViewHolder(v);
     }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        SysFileInfo sysFileInfo = getItem(position);
+        SysFileInfoDao.SysFileType fileType = sysFileInfoDao.getFileType(sysFileInfo);
+        if (fileType == SysFileInfoDao.SysFileType.FILE_TYPE_IMAGE){
+            return 0;
+        }
+        if (fileType == SysFileInfoDao.SysFileType.FILE_TYPE_VIDEO){
+            return 1;
+        }
+
+        if (fileType == SysFileInfoDao.SysFileType.FILE_TYPE_AUDIO){
+            return 2;
+        }
+
+        return  3;
+    }
+
 
     @Override
     public void onBindViewHolder(BaseViewHolder viewHolder, int i) {
@@ -66,12 +91,6 @@ public abstract class BaseMediaAdapter extends RecyclerView.Adapter<BaseViewHold
         IMediaAdapterIntf impl = getImpl(sysFileInfo);
         SysFileInfo p = fileInfo.get(i);
         impl.bindViewHolder(mContext, viewHolder, p);
-    }
-
-    @Override
-    public int getItemCount() {
-        // 返回数据总数
-        return fileInfo == null ? 0 : fileInfo.size();
     }
 
     private IMediaAdapterIntf getImpl(SysFileInfo sysFileInfo){
@@ -89,4 +108,10 @@ public abstract class BaseMediaAdapter extends RecyclerView.Adapter<BaseViewHold
 
         return  dummyMediaAdapter;
     }
+    @Override
+    public int getItemCount() {
+        // 返回数据总数
+        return fileInfo == null ? 0 : fileInfo.size();
+    }
+
 }

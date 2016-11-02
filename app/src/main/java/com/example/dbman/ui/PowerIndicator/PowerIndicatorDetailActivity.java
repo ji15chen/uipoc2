@@ -94,6 +94,7 @@ public class PowerIndicatorDetailActivity extends AppCompatActivity implements V
             pageFragment = getFragmentManager().findFragmentById(R.id.fragment_content);
             if (pageFragment instanceof FragmentT1) {
                 ((FragmentT1) pageFragment).refreshData("5809D095-7F4D-4FAD-B3B9-762236EAC2EA");
+                media_browse_fragment.refreshData("5809D095-7F4D-4FAD-B3B9-762236EAC2EA");
             }
         }
     }

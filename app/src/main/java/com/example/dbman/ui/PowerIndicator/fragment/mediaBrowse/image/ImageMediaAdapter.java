@@ -35,7 +35,7 @@ public class ImageMediaAdapter implements IMediaAdapterIntf {
     public void bindViewHolder(Context context, BaseViewHolder viewHolder, SysFileInfo sysFileInfo) {
         ImageViewHolder holder = (ImageViewHolder) viewHolder;
         holder.mTextView.setText(sysFileInfo.getTitle());
-        holder.mImageView.setImageURI(Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo.getFileName(),false)));
+        holder.mImageView.setImageURI(Uri.fromFile(BaseFileManager.getFilePath(sysFileInfo,false)));
     }
 
 

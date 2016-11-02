@@ -76,9 +76,8 @@ public class power_indicator_media_browse_fragment extends FragmentBase {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mMediaList.setLayoutManager(linearLayoutManager);
         mMediaList.setItemAnimator(new DefaultItemAnimator());
-        mMediaList.setHasFixedSize(true);
-        mediaAdapter = new BaseMediaAdapter(getActivity()) {
-        };
+        mMediaList.setHasFixedSize(false);
+        mediaAdapter = new BaseMediaAdapter(getActivity());
         mMediaList.setAdapter(mediaAdapter);
 
         return root;

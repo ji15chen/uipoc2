@@ -3,6 +3,7 @@ package com.example.dbman.core;
 import android.content.Context;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.dbman.db.genupdate.schema.SysFileInfo;
 import com.example.dbman.ui.R;
 
 import java.io.File;
@@ -34,5 +35,9 @@ public class BaseFileManager {
     public static File getFilePath(String fileName, boolean isThumb){
         String rootPath = isThumb?FILE_CACHE_PATH:FILE_DATA_PATH;
         return new File(rootPath, fileName);
+    }
+    public static File getFilePath(final SysFileInfo fi, boolean isThumb){
+        String rootPath = isThumb?FILE_CACHE_PATH:FILE_DATA_PATH;
+        return new File(rootPath, fi.getFileName()+"."+fi.getExtension());
     }
 }
