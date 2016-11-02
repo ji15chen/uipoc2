@@ -1,4 +1,4 @@
-package com.example.dbman.ui.PowerIndicator;
+package com.example.dbman.ui.PowerIndicator.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.dbman.core.BaseDatabase;
@@ -17,18 +16,16 @@ import com.example.dbman.core.Constants;
 import com.example.dbman.db.genupdate.dao.EquipTypeDao;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.example.dbman.db.model.EquipTypeBriefModel;
+import com.example.dbman.ui.PowerIndicator.PowerIndicatorDetailActivity;
+import com.example.dbman.ui.PowerIndicator.PowerIndicatorSearchActivity;
 import com.example.dbman.ui.PowerIndicator.adapter.PowerIndicatorBriefTableAdapter;
 import com.example.dbman.ui.core.AbstractBaseActivity;
 import com.example.dbman.ui.databinding.PowerindicatorBriefViewFragmentBinding;
-import com.j256.ormlite.dao.CloseableIterator;
-import com.j256.ormlite.stmt.PreparedUpdate;
 import com.j256.ormlite.stmt.Where;
-import info.hoang8f.widget.*;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 
-import static android.app.Activity.RESULT_OK;
 import static com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity.REQUEST_QUERY;
 
 /**
@@ -169,6 +166,7 @@ public class PowerIndicatorBriefViewFragment extends Fragment implements SearchV
         EquipTypeBriefModel model = (EquipTypeBriefModel) v.getTag();
         Intent intent = new Intent(getActivity(), PowerIndicatorDetailActivity.class);
         intent.putExtra("id", model.getId().toString());
+        intent.putExtra("name",model.getTypeName());
         getActivity().startActivity(intent);
     }
 

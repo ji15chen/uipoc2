@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT1;
 import com.example.dbman.ui.PowerIndicator.fragment.FragmentT2;
@@ -21,8 +22,8 @@ import java.util.List;
 public class PowerIndicatorDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private List<Button> btnList = new ArrayList<>();
     private power_indicator_media_browse_fragment media_browse_fragment;
-    private int curId = -1;
-
+    private String eqUUID = "5809D095-7F4D-4FAD-B3B9-762236EAC2EA";
+    private TextView titleView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class PowerIndicatorDetailActivity extends AppCompatActivity implements V
         buttonT4.setOnClickListener(this);
 
         media_browse_fragment = (power_indicator_media_browse_fragment)getFragmentManager().findFragmentById(R.id.power_indicator_detail_media_fragment);
+        titleView = (TextView) findViewById(R.id.textView1);
 
         btnList.add(buttonT1);
         btnList.add(buttonT2);
@@ -56,47 +58,73 @@ public class PowerIndicatorDetailActivity extends AppCompatActivity implements V
                 }
             }
         });
+
+        {
+            String uuid = getIntent().getStringExtra("id");
+            if (uuid != null) {
+                eqUUID = uuid;
+            }
+        }
+        {
+            String name = getIntent().getStringExtra("name");
+            if (name != null){
+                titleView.setText(name);
+            }
+        }
+
+        media_browse_fragment.refreshData(eqUUID);
     }
 
     private void selectResButton(int id){
-        if (id == curId) return;
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-
+        Fragment fragment = null;
         switch (id) {
             case R.id.btn_t1:
                 setBackgroundColorById(R.id.btn_t1);
-                ft.replace(R.id.fragment_content, new FragmentT1());
+                fragment = new FragmentT1();
+                ft.replace(R.id.fragment_content, fragment);
                 break;
             case R.id.btn_t2:
                 setBackgroundColorById(R.id.btn_t2);
-                ft.replace(R.id.fragment_content, new FragmentT2());
+                fragment = new FragmentT2();
+                ft.replace(R.id.fragment_content, fragment);
                 break;
             case R.id.btn_t3:
                 setBackgroundColorById(R.id.btn_t3);
-                ft.replace(R.id.fragment_content, new FragmentT3());
+                fragment = new FragmentT3();
+                ft.replace(R.id.fragment_content, fragment);
                 break;
             case R.id.btn_t4:
                 setBackgroundColorById(R.id.btn_t4);
-                ft.replace(R.id.fragment_content, new FragmentT4());
+                fragment = new FragmentT4();
+                ft.replace(R.id.fragment_content, fragment);
                 break;
         }
         ft.commit();
-        curId = id;
+
+        {
+            Fragment pageFragment = fragment;
+            //pageFragment = getFragmentManager().findFragmentById(R.id.fragment_content);
+            if (pageFragment instanceof FragmentT1){
+                ((FragmentT1) pageFragment).refreshData(eqUUID);
+            }
+            if (pageFragment instanceof FragmentT2){
+                ((FragmentT2) pageFragment).refreshData(eqUUID);
+            }
+            if (pageFragment instanceof FragmentT3) {
+                ((FragmentT3) pageFragment).refreshData(eqUUID);
+            }
+            if (pageFragment instanceof FragmentT4) {
+                ((FragmentT4) pageFragment).refreshData(eqUUID);
+            }
+        }
     }
 
     @Override
     public void onClick(View v) {
         selectResButton(v.getId());
-        {
-            Fragment pageFragment;
-            pageFragment = getFragmentManager().findFragmentById(R.id.fragment_content);
-            if (pageFragment instanceof FragmentT1) {
-                ((FragmentT1) pageFragment).refreshData("5809D095-7F4D-4FAD-B3B9-762236EAC2EA");
-                media_browse_fragment.refreshData("5809D095-7F4D-4FAD-B3B9-762236EAC2EA");
-            }
-        }
     }
 
     private void setBackgroundColorById(int btnId) {

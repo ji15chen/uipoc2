@@ -1,32 +1,15 @@
 package com.example.dbman.ui.PowerIndicator;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 
-import com.example.dbman.core.BaseDatabase;
-import com.example.dbman.db.genupdate.dao.EquipTypeDao;
-import com.example.dbman.db.genupdate.schema.EquipType;
-import com.example.dbman.db.model.EquipHirarchyModel;
-import com.example.dbman.db.model.EquipTypeBriefModel;
-import com.example.dbman.ui.PowerIndicator.adapter.PowerIndicatorBriefTableAdapter;
+import com.example.dbman.ui.PowerIndicator.fragment.PowerIndicatorBriefViewFragment;
 import com.example.dbman.ui.R;
-import com.example.dbman.ui.core.AbstractBaseUIActivity;
-import com.example.dbman.ui.core.AbstractUIStateBindingActivity;
 import com.example.dbman.ui.core.AbstractUIStateBindingActivityWithNavMenu;
 import com.example.dbman.ui.databinding.PowerIndicatorActivityBinding;
-import com.j256.ormlite.stmt.Where;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.unnamed.b.atv.model.TreeNode;
-import com.unnamed.b.atv.view.AndroidTreeView;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class CpntDesc implements Serializable {
     private CpntTypes cpntTypes;
     private int count;
+    private boolean isMaster;
 
     public CpntTypes getCpntTypes() {
         return cpntTypes;
@@ -26,5 +27,13 @@ public class CpntDesc implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isMaster() {
+        return isMaster;
+    }
+
+    public void setMaster(boolean master) {
+        isMaster = master;
     }
 }

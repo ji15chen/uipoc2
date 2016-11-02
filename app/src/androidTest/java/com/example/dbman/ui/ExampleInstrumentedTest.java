@@ -103,7 +103,7 @@ public class ExampleInstrumentedTest {
             }
             //装备类型，组件信息
             {
-                EquipTypeCpntSetModel cpntView = EquipTypeCpntSetModel.loadEquipCpntSet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                EquipTypeCpntSetModel cpntView = EquipTypeCpntSetModel.loadEquipCpntSet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"), true);
                 assertTrue(cpntView != null);
                 assertTrue(cpntView.getLstEquipCpnts().size() == 1);
                 LogUtils.i(cpntView.getLstEquipCpnts());

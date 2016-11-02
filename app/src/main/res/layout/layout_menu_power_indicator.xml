@@ -5,6 +5,6 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.example.dbman.ui.PowerIndicator.SelectableTreeFragment"
+        android:name="com.example.dbman.ui.PowerIndicator.fragment.SelectableTreeFragment"
         android:id="@+id/fragment_weapon_menu" />
 </LinearLayout>

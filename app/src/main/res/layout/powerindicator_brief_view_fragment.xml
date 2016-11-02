@@ -8,7 +8,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PowerIndicator.PowerIndicatorBriefViewFragment">
+    tools:context=".PowerIndicator.fragment.PowerIndicatorBriefViewFragment">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

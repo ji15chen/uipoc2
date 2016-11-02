@@ -1,4 +1,4 @@
-package com.example.dbman.ui.PowerIndicator;
+package com.example.dbman.ui.PowerIndicator.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;

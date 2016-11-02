@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PowerIndicator.fragment.mediaBrowse.power_indicator_media_browse_fragment">
+    tools:context="com.example.dbman.ui.PowerIndicator.fragment.mediaBrowse.power_indicator_media_browse_fragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/photoList"

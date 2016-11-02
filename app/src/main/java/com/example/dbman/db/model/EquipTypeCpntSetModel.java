@@ -33,18 +33,19 @@ public class EquipTypeCpntSetModel {
         this.lstEquipCpnts = lstEquipCpnts;
     }
 
-    public static EquipTypeCpntSetModel loadEquipCpntSet(final UUID uuid) throws SQLException {
+    public static EquipTypeCpntSetModel loadEquipCpntSet(final UUID uuid, boolean isMaster) throws SQLException {
         StringBuffer stringBuffer = new StringBuffer();
         EquipTypeCpntSetModel view = new EquipTypeCpntSetModel();
 
         //[1] 查询相关设备类型相关的工厂信息
-        final String sql = "SELECT CpntTypes.*,EqmtCpntInfo.CpntCount FROM EqmtCpntInfo\n" +
+        final String sql = "SELECT CpntTypes.*,EqmtCpntInfo.CpntCount, EqmtCpntInfo.IsMaster FROM EqmtCpntInfo\n" +
                 "  LEFT OUTER JOIN CpntTypes ON CpntTypes.CpntID=EqmtCpntInfo.CpntID\n" +
                 "  WHERE EqmtCpntInfo.PkTypeID='";
 
         stringBuffer.append(sql);
         stringBuffer.append(uuid.toString().toUpperCase());
-        stringBuffer.append("'\n" );
+        stringBuffer.append("' AND EqmtCpntInfo.IsMaster = '" +String.valueOf(isMaster));
+        stringBuffer.append("' \n" );
 
         GenericRawResults<String []> v = cpntDao.queryRaw(stringBuffer.toString(), DBUtil.stringArrayMapper);
         Iterator<String []> iter = v.iterator();
@@ -63,6 +64,7 @@ public class EquipTypeCpntSetModel {
             ct.setCpntDesc(value[7]);
             fd.setCount(Integer.parseInt(value[8]));
             fd.setCpntTypes(ct);
+            fd.setMaster(Boolean.parseBoolean(value[9]));
             view.lstEquipCpnts.add(fd);
         }
         return view;

@@ -26,10 +26,10 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-            <fragment class="com.example.dbman.ui.PowerIndicator.PowerIndicatorBriefViewFragment"
+            <fragment class="com.example.dbman.ui.PowerIndicator.fragment.PowerIndicatorBriefViewFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:name="com.example.dbman.ui.PowerIndicator.PowerIndicatorBriefViewFragment"
+                android:name="com.example.dbman.ui.PowerIndicator.fragment.PowerIndicatorBriefViewFragment"
                 android:id="@+id/PowerIndicatorBriefViewFragment_Content"
                 />
         </LinearLayout>
