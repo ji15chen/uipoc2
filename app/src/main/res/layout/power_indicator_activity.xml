@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-        <variable name="modelData" type="com.example.jerry.ui.PowerIndicator.PowerIndicatorModel"/>
+        <variable name="modelData" type="com.example.dbman.ui.PowerIndicator.PowerIndicatorModel"/>
     </data>
 
     <FrameLayout
@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity">
+    tools:context="com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,

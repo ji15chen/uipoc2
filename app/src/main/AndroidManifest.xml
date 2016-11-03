@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jerry.ui">
+    package="com.example.dbman.ui">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.example.jerry.core.BaseApplication"
+        android:name="com.example.dbman.core.BaseApplication"
         android:theme="@android:style/Theme.Holo.Light">
         <activity
-            android:name=".Home.HomeActivity"
+            android:name="com.example.dbman.ui.Home.HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity"
+            android:name="com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_power_indicator"
             android:screenOrientation="landscape"

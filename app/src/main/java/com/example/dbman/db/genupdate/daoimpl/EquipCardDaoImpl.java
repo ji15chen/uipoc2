@@ -1,0 +1,12 @@
+package db.genupdate.daoimpl;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.BaseDaoImpl;
+import java.sql.SQLException;
+import com.j256.ormlite.support.ConnectionSource;
+import db.genupdate.dao.EquipCardDao;
+import db.genupdate.schema.EquipCard;
+public class EquipCardDaoImpl extends BaseDaoImpl<EquipCard,java.util.UUID>{
+public EquipCardDaoImpl (ConnectionSource connectionSource) throws SQLException {
+		super(connectionSource, EquipCard.class );
+		}
+}

@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <com.example.jerry.ui.core.menu.CircleMenuLayout
+    <com.example.dbman.ui.core.menu.CircleMenuLayout
         android:id="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,5 +30,5 @@
                 android:layout_centerInParent="true"
                 android:background="@mipmap/turnplate_mask_unlogin_normal" />
         </RelativeLayout>
-    </com.example.jerry.ui.core.menu.CircleMenuLayout>
+    </com.example.dbman.ui.core.menu.CircleMenuLayout>
 </LinearLayout>

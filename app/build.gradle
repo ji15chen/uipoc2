@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'android-native-dependencies'
 android {
     compileSdkVersion 23
@@ -21,10 +20,7 @@ android {
     dataBinding {
         enabled = true
     }
-    greendao {
-        schemaVersion 1
-        targetGenDir 'src/main/java'
-    }
+
     productFlavors {
     }
 }
@@ -44,10 +40,13 @@ dependencies {
     compile project(':libraries:Android-Bootstrap:AndroidBootstrap')
     compile project(':libraries:SlidingMenu/library')
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'org.greenrobot:greendao:3.2.0'
-    compile 'com.aurelhubert:ahbottomnavigation:0.1.1'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
-    compile 'com.github.shell-software:fab:1.1.2'
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-lang:commons-lang:2.4'
+    compile 'com.alibaba:fastjson:1.2.20'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.sqldroid:sqldroid:1.0.3'
+    compile 'com.github.bmelnychuk:atv:1.2.9'
     testCompile 'junit:junit:4.12'
 }
