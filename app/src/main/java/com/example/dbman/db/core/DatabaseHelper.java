@@ -1,11 +1,16 @@
 package com.example.dbman.db.core;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.SQLException;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.dbman.core.BaseApplication;
+import com.example.dbman.ui.R;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -15,20 +20,49 @@ import com.j256.ormlite.table.TableUtils;
  * Database helper class used to manage the creation and upgrading of your database. This class also usually provides
  * the DAOs used by the other classes.
  */
+@Deprecated
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-	// name of the database file for your application -- change to something appropriate for your app
-	private static final String DATABASE_NAME = "helloNoBase.db";
+	public static final String DATABASE_NAME="dbman.db";
 	// any time you make changes to your database objects, you may have to increase the database version
 	private static final int DATABASE_VERSION = 1;
 
-	// the DAO object we use to access the SimpleData table
-	private Dao<SimpleData, Integer> simpleDao = null;
+	private static String DATABASE_PATH;
+	private static String DATABASE_URL;
+	private static String DATABASE_DIR;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		DATABASE_DIR = "/data/data/" + context.getPackageName();
+		DATABASE_PATH = DATABASE_DIR + "/" + DATABASE_NAME;
+		DATABASE_URL = "jdbc:sqlite:/"+ DATABASE_PATH;
 	}
 
+	private void createDBIfNotExist(){
+		File dir = new File(DATABASE_DIR);
+		if (!dir.exists()) {
+			dir.mkdir();
+		}//如果该目录不存在，创建该目录
+
+		File filepath = new File(DATABASE_PATH);
+		if (!filepath.exists()) {//如果文件不存在
+			try {
+				InputStream inputStream = BaseApplication.getApp().getResources().openRawResource(R.raw.dbman);//将raw中的test.db放入输入流中
+				FileOutputStream fileOutputStream = new FileOutputStream(DATABASE_PATH);//将新的文件放入输出流中
+				byte[] buff = new byte[8192];
+				int len = 0;
+				while ((len = inputStream.read(buff)) > 0) {
+					fileOutputStream.write(buff, 0, len);
+				}
+				fileOutputStream.close();
+				inputStream.close();
+			} catch (Exception e) {
+				Log.i("info","无法复制");
+				e.printStackTrace();
+			}
+		}//写入文件结束
+		Log.i("filepath"," "+filepath);
+	}
 	/**
 	 * This is called when the database is first created. Usually you should call createTable statements here to create
 	 * the tables that will store your data.
@@ -37,18 +71,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
 			Log.i(DatabaseHelper.class.getName(), "onCreate");
-			TableUtils.createTable(connectionSource, SimpleData.class);
-
-			// here we try inserting data in the on-create as a test
-			Dao<SimpleData, Integer> dao = getSimpleDataDao();
-			long millis = System.currentTimeMillis();
-			// create some entries in the onCreate
-			SimpleData simple = new SimpleData(millis);
-			dao.create(simple);
-			simple = new SimpleData(millis + 1);
-			dao.create(simple);
-			Log.i(DatabaseHelper.class.getName(), "created new entries in onCreate: " + millis);
-		} catch (SQLException e) {
+			createDBIfNotExist();
+		} catch (Exception e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
 		}
@@ -62,32 +86,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
 		try {
 			Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-			TableUtils.dropTable(connectionSource, SimpleData.class, true);
 			// after we drop the old databases, we create the new ones
+			File filepath = new File(DATABASE_PATH);
+			if (filepath.exists()){
+				filepath.delete();
+			}
 			onCreate(db, connectionSource);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
 			throw new RuntimeException(e);
 		}
 	}
 
-	/**
-	 * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
-	 * value.
-	 */
-	public Dao<SimpleData, Integer> getSimpleDataDao() throws SQLException {
-		if (simpleDao == null) {
-			simpleDao = getDao(SimpleData.class);
-		}
-		return simpleDao;
-	}
-
-	/**
-	 * Close the database connections and clear any cached DAOs.
-	 */
-	@Override
-	public void close() {
-		super.close();
-		simpleDao = null;
-	}
 }

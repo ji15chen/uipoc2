@@ -9,6 +9,7 @@ import java.io.IOException;
 /**
  * Created by jerry on 2016/10/30.
  */
+@Deprecated
 public class ConnectionSources {
     private static ConnectionSources connectionSources = null;
     public static  ConnectionSources getInstance(){

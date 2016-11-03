@@ -31,7 +31,5 @@ public class ExampleInstrumentedTest {
     public void useApp() throws Exception {
         // Context of the app under test.
         //Context appContext = InstrumentationRegistry.getTargetContext();
-        BaseApplication application = new BaseApplication();
-        Database.main(new String[]{"",""});
     }
 }

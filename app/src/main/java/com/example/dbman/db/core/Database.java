@@ -17,115 +17,12 @@ import java.sql.Statement;
  * Created by jerry on 2016/10/31.
  */
 public class Database {
-    // we are using the in-memory H2 database
-    private static final Class schemaClasses [] ={
-            CheckMntcDetail.class,
-            CheckMntcInfo.class,
-            CpntTypes.class,
-            Department.class,
-            DepotInfo.class,
-            DeptExent.class,
-            ECFactory.class,
-            EqmtCpntInfo.class,
-            EqmtInOut.class,
-            EquipLog.class,
-            EquipType.class,
-            EquipTypeDetail.class,
-            ExentData.class,
-            ExtendType.class,
-            FactoryInfo.class,
-            FaultInfor.class,
-            PersonInfo.class,
-            PersonInOut.class,
-            RoleKey.class,
-            RoleMenu.class,
-            RoomAdminUser.class,
-            ScanStore.class,
-            ScanStoreDetail.class,
-            ScanStoreEquipType.class,
-            StoreDetail.class,
-            StoreExtendChange.class,
-            Sysdiagrams.class,
-            SysFileInfo.class,
-            SysKey.class,
-            SysLog.class,
-            SysMenu.class,
-            SysParameter.class,
-            SysRole.class,
-            SysUser.class,
-            TmpHmdData.class,
-            UserCard.class,
-            UserDataPermission.class,
-            Workers.class
-    };
-
-    private static final Class [] daoImplClasses = {
-            CheckMntcDetailDaoImpl.class,
-            CheckMntcInfoDaoImpl.class,
-            CpntTypesDaoImpl.class,
-            DepartmentDaoImpl.class,
-            DepotInfoDaoImpl.class,
-            DeptExentDaoImpl.class,
-            ECFactoryDaoImpl.class,
-            EqmtCpntInfoDaoImpl.class,
-            EqmtInOutDaoImpl.class,
-            EquipLogDaoImpl.class,
-            EquipTypeDaoImpl.class,
-            EquipTypeDetailDaoImpl.class,
-            ExentDataDaoImpl.class,
-            ExtendTypeDaoImpl.class,
-            FactoryInfoDaoImpl.class,
-            FaultInforDaoImpl.class,
-            PersonInfoDaoImpl.class,
-            PersonInOutDaoImpl.class,
-            RoleKeyDaoImpl.class,
-            RoleMenuDaoImpl.class,
-            RoomAdminUserDaoImpl.class,
-            ScanStoreDaoImpl.class,
-            ScanStoreDetailDaoImpl.class,
-            ScanStoreEquipTypeDaoImpl.class,
-            StoreDetailDaoImpl.class,
-            StoreExtendChangeDaoImpl.class,
-            SysdiagramsDaoImpl.class,
-            SysFileInfoDaoImpl.class,
-            SysKeyDaoImpl.class,
-            SysLogDaoImpl.class,
-            SysMenuDaoImpl.class,
-            SysParameterDaoImpl.class,
-            SysRoleDaoImpl.class,
-            SysUserDaoImpl.class,
-            TmpHmdDataDaoImpl.class,
-            UserCardDaoImpl.class,
-            UserDataPermissionDaoImpl.class,
-            WorkersDaoImpl.class
-    };
-
-    private StoreDetailDaoImpl storeDetailDao;
-
-
-    public static void main(String[] args) throws Exception {
-        // turn our static method into an instance of Main
-        Database db = new Database();
-        db.doMain(args);
-    }
 
     private void doMain(String[] args) throws Exception {
         ConnectionSource connectionSource = null;
         try {
-            // create our data-source for the database
-            connectionSource = new JdbcConnectionSource(BaseApplication.getDatabaseUrl());
-            // setup our database and DAOs
             setupDatabase(connectionSource);
-//            // read and write some data
-//            readWriteData();
-//            // do a bunch of bulk operations
-//            readWriteBunch();
-//            // show how to use the SelectArg object
-//            useSelectArgFeature();
-//            // show how to use the SelectArg object
-//            useTransactions(connectionSource);
             System.out.println("\n\nIt seems to have worked\n\n");
-
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -154,22 +51,22 @@ public class Database {
      * Setup our database and DAOs
      */
     private void setupDatabase(ConnectionSource connectionSource) throws Exception {
-        for (Class schemaClass:schemaClasses){
-            TableUtils.createTableIfNotExists(connectionSource, schemaClass);
-        }
-        storeDetailDao = new StoreDetailDaoImpl(connectionSource);
-        for (StoreDetail storeDetail:storeDetailDao){
-            System.out.println(storeDetail);
-        }
-        DatabaseConnection databaseConnection = connectionSource.getReadOnlyConnection("");
-        JdbcDatabaseConnection jdbcDatabaseConnection = (JdbcDatabaseConnection) databaseConnection;
-
-        Connection connection = jdbcDatabaseConnection.getInternalConnection();
-        Statement stmt = connection.createStatement();
-        ResultSet set = stmt.executeQuery("select * from CheckMntcDetail;");
-        while (set.next()){
-            System.out.println("");
-        }
+//        for (Class schemaClass:schemaClasses){
+//            TableUtils.createTableIfNotExists(connectionSource, schemaClass);
+//        }
+        //storeDetailDao = new StoreDetailDaoImpl(connectionSource);
+//        for (StoreDetail storeDetail:storeDetailDao){
+//            System.out.println(storeDetail);
+//        }
+//        DatabaseConnection databaseConnection = connectionSource.getReadOnlyConnection("");
+//        JdbcDatabaseConnection jdbcDatabaseConnection = (JdbcDatabaseConnection) databaseConnection;
+//
+//        Connection connection = jdbcDatabaseConnection.getInternalConnection();
+//        Statement stmt = connection.createStatement();
+//        ResultSet set = stmt.executeQuery("select * from CheckMntcDetail;");
+//        while (set.next()){
+//            System.out.println("");
+//        }
 
     }
 
