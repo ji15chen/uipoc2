@@ -48,5 +48,6 @@ dependencies {
     compile 'com.aurelhubert:ahbottomnavigation:0.1.1'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.esotericsoftware.kryo:kryo:2.24.0'
+    compile 'com.github.shell-software:fab:1.1.2'
     testCompile 'junit:junit:4.12'
 }

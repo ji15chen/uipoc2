@@ -23,7 +23,7 @@ import java.util.Objects;
  * Created by ChenJi on 2016/10/25.
  */
 
-public abstract class AbstractUIStateBindingActivity extends AbstractBaseActivity {
+public abstract class AbstractUIStateBindingActivity extends AbstractBaseUIActivity {
 
     private ViewDataBinding binding;
     private Object modelData;

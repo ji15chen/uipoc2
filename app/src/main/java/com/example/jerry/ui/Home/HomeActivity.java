@@ -1,26 +1,38 @@
 package com.example.jerry.ui.Home;
 
+import android.app.ActionBar;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.Window;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.example.jerry.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.jerry.ui.R;
 import com.example.jerry.ui.core.AbstractBaseActivity;
+import com.example.jerry.ui.core.AbstractBaseUIActivity;
 import com.example.jerry.ui.core.menu.BaseBottomNavigation;
 import com.example.jerry.ui.core.ui_state.UIState;
 import com.example.jerry.ui.core.ui_state.UIStateBrief;
 import com.example.jerry.ui.core.ui_state.UIStateManager;
 import com.example.jerry.ui.core.menu.CircleMenuLayout;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class HomeActivity extends AbstractBaseActivity {
+public class HomeActivity extends AbstractBaseUIActivity {
     private static final int mItemTextResource [] ={
             R.string.title_home_1,
             R.string.title_home_2,
@@ -92,9 +104,11 @@ public class HomeActivity extends AbstractBaseActivity {
             @Override
             public void itemCenterClick(View view)
             {
-//                Toast.makeText(HomeActivity.this,
-//                        "you can do something just like ccb  ",
-//                        Toast.LENGTH_SHORT).show();
+                if (getActionBar().isShowing()){
+                    getActionBar().hide();
+                }else {
+                    getActionBar().show();
+                }
 
             }
         });
@@ -105,9 +119,6 @@ public class HomeActivity extends AbstractBaseActivity {
     public String getShortName() {
         return "首页";
     }
-
-
-
 
 
 }

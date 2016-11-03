@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/id_menu_item_home"
+        android:icon="@mipmap/ic_menu_home"
+        android:showAsAction="always"
+        android:title="返回"/>
+    <item
+        android:id="@+id/id_menu_item_scan"
+        android:icon="@mipmap/ic_menu_scan"
+        android:showAsAction="always"
+        android:title="扫描">
+    </item>
+    <item
+        android:id="@+id/id_menu_item_addfav"
+        android:icon="@mipmap/ic_menu_add_fav"
+        android:showAsAction="always"
+        android:title="收藏"/>
+    <item
+        android:id="@+id/share"
+        android:icon="@mipmap/ic_menu_view_fav"
+        android:showAsAction="always"
+        android:title="历史"/>
+    <item
+        android:id="@+id/call"
+        android:icon="@mipmap/ic_menu_config"
+        android:showAsAction="always"
+        android:title="配置"/>
+</menu>
