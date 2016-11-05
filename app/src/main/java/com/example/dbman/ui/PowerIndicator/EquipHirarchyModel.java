@@ -3,6 +3,7 @@ package com.example.dbman.ui.PowerIndicator;
 import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.core.BaseDatabase;
 import com.example.dbman.core.Constants;
+import com.example.dbman.core.Utils;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.unnamed.b.atv.model.TreeNode;
@@ -32,7 +33,6 @@ public class EquipHirarchyModel implements Serializable {
 
     public  EquipHirarchyModel(){
         HashMap<UUID, TreeNode> treeNodeHashMap = new HashMap<UUID,TreeNode>();
-        List<TreeNode> unmatchedList = new LinkedList<TreeNode>();
 
         EquipTypeDaoImpl equipTypeDao = (EquipTypeDaoImpl)BaseDatabase.getInstance().getDaoImpl(THIS_TABLE);
         for (EquipType equipType:equipTypeDao){
@@ -44,13 +44,16 @@ public class EquipHirarchyModel implements Serializable {
 
     private boolean tryAdd(final EquipTypeDaoImpl equipTypeDao,HashMap<UUID, TreeNode> treeNodeHashMap, TreeNode curNode){
         EquipHirarchyModelEntry entry = (EquipHirarchyModelEntry)curNode.getValue();
-        if (entry.getId().equals(Constants.NULL_UUID)) return true;
+        LogUtils.i(entry);
+        if (Utils.isNullUUID(entry.getId())) {
+            return true;
+        }
 
         if (treeNodeHashMap.containsKey(curNode.getId())){
             return true;
         }
 
-        if (entry.getPid().equals(Constants.NULL_UUID)){
+        if (Utils.isNullUUID(entry.getPid())){
             rootNode.addChild(curNode);
             treeNodeHashMap.put(entry.getId(), curNode);
             return true;

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.core.Utils;
 import com.example.dbman.ui.BR;
+import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.ui_state.UIState;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
 
@@ -23,6 +24,7 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseUIActiv
     private ViewDataBinding binding;
     private Object modelData;
 
+    abstract protected int getActivityId();
 
     //get current UIState
     private UIState getActivityUIState(){
@@ -81,9 +83,10 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseUIActiv
         }
     }
 
-    protected final void onCreate(Bundle savedInstanceState, int activityId){
+    @Override
+    public  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        ViewDataBinding binding = DataBindingUtil.setContentView(this, activityId);
+        ViewDataBinding binding = DataBindingUtil.setContentView(this, getActivityId());
         modelData = UIStateManager.getInstance().loadModelData(getIntent());
         if (modelData == null){
             LogUtils.i("new activity, using default model data");

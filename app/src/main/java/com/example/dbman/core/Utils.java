@@ -16,10 +16,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.UUID;
 
 
 public class Utils {
 
+    public static boolean isNullUUID(UUID uuid){
+        if ((uuid == null) || (Constants.NULL_UUID.equals(uuid))){
+             return true;
+        }
+        return  false;
+    }
     /**
      * 对象转数组
      *

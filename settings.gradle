@@ -1,1 +1,1 @@
-include ':app' ,':libraries:SlidingMenu/library',':libraries:Android-Bootstrap:AndroidBootstrap'
+include ':app' ,':libraries:SlidingMenu/library'

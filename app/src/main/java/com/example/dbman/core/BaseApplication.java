@@ -38,8 +38,9 @@ public class BaseApplication extends Application {
     public void onCreate()
     {
         super.onCreate();
+        app = this;
         BaseDatabase.getInstance().init(this);
-       // TypefaceProvider.registerDefaultIconSets();
+        // TypefaceProvider.registerDefaultIconSets();
         LogUtils.i("init ui database");
         try {
             uiStateDB = DBFactory.open(getApplicationContext(), UI_STATE_DB);
@@ -47,8 +48,5 @@ public class BaseApplication extends Application {
             LogUtils.e("ui database error",e);
         }
 
-        BaseDatabase.getInstance().init(this);
-
-        app = this;
     }
 }

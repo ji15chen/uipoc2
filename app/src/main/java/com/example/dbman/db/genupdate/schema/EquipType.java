@@ -22,7 +22,7 @@ import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 @DatabaseField( columnName ="UserID")
 	private UUID userid;
 @DatabaseField( columnName ="AddDate")
-	private Date adddate;
+	private String adddate;
 @DatabaseField( columnName ="TypeName")
 	private String typename;
 @DatabaseField( columnName ="TypeCode")
@@ -66,10 +66,10 @@ import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 	public void setUserID(UUID UserID){
 		this.userid=UserID;
 	}
-	public Date getAddDate(){
+	public String getAddDate(){
 		return this.adddate;
 	}
-	public void setAddDate(Date AddDate){
+	public void setAddDate(String AddDate){
 		this.adddate=AddDate;
 	}
 	public String getTypeName(){

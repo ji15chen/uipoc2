@@ -26,8 +26,9 @@ import java.lang.reflect.Method;
  * status bar and navigation/system bar) with user interaction.
  */
 public abstract class AbstractBaseUIActivity extends AbstractBaseActivity {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         //设置ActionBar 浮动到view 上层来
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         super.onCreate(savedInstanceState);

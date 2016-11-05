@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 public class PowerIndicatorModel implements Serializable{
     public String textValue;
-    public TreeNode treeNode;
 
     public String getTextValue() {
         return textValue;
@@ -20,13 +19,7 @@ public class PowerIndicatorModel implements Serializable{
         this.textValue = textValue;
     }
 
-    public TreeNode getTreeNode() {
-        return treeNode;
-    }
 
-    public void setTreeNode(TreeNode treeNode) {
-        this.treeNode = treeNode;
-    }
 
     public PowerIndicatorModel(){
 

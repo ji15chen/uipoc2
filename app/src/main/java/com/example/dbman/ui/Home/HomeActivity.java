@@ -21,6 +21,7 @@ import com.example.dbman.ui.core.ui_state.UIState;
 import com.example.dbman.ui.core.ui_state.UIStateBrief;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
 import com.example.dbman.ui.core.menu.CircleMenuLayout;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -58,10 +59,11 @@ public class HomeActivity extends AbstractBaseUIActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-
+        setBehindContentView(R.layout.layout_menu_dummy);
+        getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
         for (int i=0;i<mItemTextResource.length;i++){
             mItemTexts[i] = getResources().getString(mItemTextResource[i]);
         }
