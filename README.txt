@@ -47,5 +47,12 @@ LEFT JOIN SysParameter paramAddType ON paramAddType.ParaID=StoreDetail.AddType
 列2,列3,装备,和型号的区别,分别来自哪个字段?
 
 
+SELECT ExentData.ObjectID, group_concat(ExentData.ExtendID),group_concat(ExtendType.ExtendName),group_concat(ExentData.ExtentValue) FROM ExentData LEFT JOIN  ExtendType ON ExtendType.ExtendID=ExentData.ExtendID WHERE ExentData.ObjectID='5809D095-7F4D-4FAD-B3B9-762236EAC2EA' GROUP BY ExentData.ObjectID 
+
+SELECT ExentData.ObjectID, group_concat(ExentData.ExtendID),group_concat(ExtendType.ExtendName),group_concat(ExentData.ExtentValue) FROM ExentData LEFT JOIN  ExtendType ON ExtendType.ExtendID=ExentData.ExtendID  GROUP BY ExentData.ExtendID; 
+
+
+
+
 扫描盘库中.
 进行装备动态的更新是否仅针对  装备出入库表进行记录的插入操作?能否详细阐述操作流程?
