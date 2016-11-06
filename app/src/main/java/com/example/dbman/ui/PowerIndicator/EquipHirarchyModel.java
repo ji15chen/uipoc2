@@ -18,8 +18,12 @@ import java.util.UUID;
  * Created by jerry on 2016/11/4.
  */
 
+//TODO: 次类为装备类型树形结构图,将其作为数据表示类显示到树形图上.
+
 public class EquipHirarchyModel implements Serializable {
     private static final String THIS_TABLE="EquipType";
+    private static final EquipTypeDaoImpl equipTypeDao = (EquipTypeDaoImpl)BaseDatabase.getInstance().getDaoImpl(THIS_TABLE);
+
     private TreeNode rootNode = TreeNode.root();
     private static int count = 0;
     private static EquipHirarchyModel equipHirarchyModel = null;
@@ -34,7 +38,6 @@ public class EquipHirarchyModel implements Serializable {
     public  EquipHirarchyModel(){
         HashMap<UUID, TreeNode> treeNodeHashMap = new HashMap<UUID,TreeNode>();
 
-        EquipTypeDaoImpl equipTypeDao = (EquipTypeDaoImpl)BaseDatabase.getInstance().getDaoImpl(THIS_TABLE);
         tryAdd(equipTypeDao, rootNode,Constants.NULL_UUID);
         LogUtils.i("adding "+ count +"nodes");
     }

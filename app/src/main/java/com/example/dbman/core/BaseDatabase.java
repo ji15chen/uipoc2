@@ -1,6 +1,7 @@
 package com.example.dbman.core;
 
 import android.app.Application;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -209,7 +210,7 @@ public class BaseDatabase {
             Log.i("filepath"," "+filepath);
     }
 
-    public boolean init(Application app){
+    public boolean init(Context app){
         try {
             DATABASE_DIR = "/data/data/" + app.getPackageName()+"/databases";
             DATABASE_PATH = DATABASE_DIR + "/" + DB_NAME;
