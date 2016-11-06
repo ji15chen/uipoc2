@@ -190,7 +190,7 @@ public class BaseDatabase {
             }//如果该目录不存在，创建该目录
 
             File filepath = new File(DATABASE_PATH);
-            if (!filepath.exists()) {//如果文件不存在
+            if ((Constants.debug) || ( !filepath.exists()) ) {//如果文件不存在
                 try {
                     InputStream inputStream = BaseApplication.getApp().getResources().openRawResource(R.raw.dbman);//将raw中的test.db放入输入流中
                     FileOutputStream fileOutputStream = new FileOutputStream(DATABASE_PATH);//将新的文件放入输出流中
@@ -211,7 +211,7 @@ public class BaseDatabase {
 
     public boolean init(Application app){
         try {
-            DATABASE_DIR = "/data/data/" + app.getPackageName();
+            DATABASE_DIR = "/data/data/" + app.getPackageName()+"/databases";
             DATABASE_PATH = DATABASE_DIR + "/" + DB_NAME;
             DATABASE_URL = "jdbc:sqlite:/"+ DATABASE_PATH;
             try {

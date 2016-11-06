@@ -4,6 +4,7 @@ package com.example.dbman.db.genupdate.schema;
 	*	*@author jichen
 	*/
 
+import com.example.dbman.db.core.MyUUID;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
@@ -13,9 +14,9 @@ import java.util.Date;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 @DatabaseTable(tableName = "EquipType", daoClass =EquipTypeDaoImpl.class)
 	public class EquipType{
-@DatabaseField( columnName ="PkTypeID",id=true ,canBeNull = false )
+@DatabaseField( columnName ="PkTypeID",id=true ,canBeNull = false, persisterClass = MyUUID.class )
 	private UUID pktypeid;
-@DatabaseField( columnName ="SupPkTypeID")
+@DatabaseField( columnName ="SupPkTypeID", persisterClass = MyUUID.class)
 	private UUID suppktypeid;
 @DatabaseField( columnName ="DeptID")
 	private UUID deptid;
