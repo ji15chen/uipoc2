@@ -27,16 +27,25 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
 		queryBuilder = this.queryBuilder();
 	}
 
+	/*
+	* @show 通过父UUID 查找所有子对象
+	* */
 	@Override
 	public CloseableIterator<EquipType> findByParentUUID(UUID parentUUID) throws SQLException {
 		return queryBuilder.where().eq("SupPkTypeID", parentUUID).iterator();
 	}
 
+	/*
+	* @show 通过通过名称模糊查找所有对象
+	* */
 	@Override
 	public CloseableIterator<EquipType> findBySimilarTypeName(String typeName) throws SQLException{
 		return findBySimilarTypeNameQuery(typeName).iterator();
 	}
 
+	/*
+	* @show 查找某个结点下属所有叶子节点
+	* */
 	@Override
 	public Where<EquipType,UUID> getLeafEquipByParentUUIDQuery(UUID ... parentUUIDs) throws SQLException {
 		final Where<EquipType,UUID> nullWhere = queryBuilder.where().in("PkTypeID", Constants.NULL_UUID);
@@ -55,6 +64,9 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
 			return queryBuilder.where().in("PkTypeID", lst);
 		}
 	}
+	/*
+* @show 查找某个结点下属所有叶子节点
+* */
 	@Override
 	public Where<EquipType,UUID> getLeafEquipByParentObjectsQuery(Iterator<EquipType> iterator) throws SQLException{
 		final Where<EquipType,UUID> nullWhere = queryBuilder.where().in("PkTypeID", Constants.NULL_UUID);
@@ -100,6 +112,9 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
 		return  queryBuilder.where().like("TypeName", arg);
 	}
 
+	/*
+	* @show 查找某个装备概要信息
+	* */
 	@Override
 	public CloseableIterator<EquipTypeBriefModel> lookupBriefEquipTypeInfo(Where<EquipType,UUID> query)  throws SQLException {
         StringBuffer stringBuffer = new StringBuffer();
@@ -123,8 +138,5 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
         });
         return view.closeableIterator();
     }
-	@Override
-	public CloseableIterator<EquipType> lookupDetailedEquipTypeInfo(Where<EquipType,UUID> query) throws SQLException{
-		return null;
-	}
+
 }
