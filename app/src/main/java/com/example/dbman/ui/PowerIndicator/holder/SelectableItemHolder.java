@@ -7,7 +7,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.example.dbman.ui.PowerIndicator.EquipHirarchyModelEntry;
+import com.example.dbman.db.model.EquipHirarchyModelEntry;
 import com.unnamed.b.atv.model.TreeNode;
 import com.example.dbman.ui.R;
 

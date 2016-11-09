@@ -5,29 +5,21 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.apkfuns.logutils.LogUtils;
-import com.example.dbman.core.BaseApplication;
 import com.example.dbman.core.BaseDatabase;
-import com.example.dbman.db.core.Database;
-import com.example.dbman.db.gen.Order;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
-import com.example.dbman.db.genupdate.schema.SysParameter;
+import com.example.dbman.db.model.DeptHirarchyModel;
 import com.example.dbman.db.model.EquipTypeBriefView;
 import com.example.dbman.db.model.EquipTypeCpntSetView;
 import com.example.dbman.db.model.EquipTypeFactorySetView;
 import com.example.dbman.db.model.EquipTypeParamSetView;
-import com.example.dbman.ui.PowerIndicator.EquipHirarchyModel;
+import com.example.dbman.db.model.EquipHirarchyModel;
 import com.j256.ormlite.dao.CloseableIterator;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.List;
 import java.util.UUID;
-
-import dalvik.annotation.TestTargetClass;
 
 import static org.junit.Assert.*;
 
@@ -117,6 +109,22 @@ public class ExampleInstrumentedTest {
             }
         }catch (Exception e){
             e.printStackTrace();
+            assertFalse(true);
+        }
+    }
+
+    @Test
+    public void testStoreDetail() throws Exception{
+        // Context of the app under test.
+        //Context appContext = InstrumentationRegistry.getTargetContext();
+        try {
+            Context appContext = InstrumentationRegistry.getTargetContext();
+            BaseDatabase.getInstance().init(appContext);
+
+            //解析部门树形图
+            DeptHirarchyModel.getInstance();
+            assertTrue(true);
+        } catch (Exception e) {
             assertFalse(true);
         }
     }

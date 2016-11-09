@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.dbman.ui.PowerIndicator.EquipHirarchyModelEntry;
+import com.example.dbman.db.model.EquipHirarchyModelEntry;
 import com.example.dbman.ui.R;
 import com.unnamed.b.atv.model.TreeNode;
 import com.github.johnkil.print.PrintView;
