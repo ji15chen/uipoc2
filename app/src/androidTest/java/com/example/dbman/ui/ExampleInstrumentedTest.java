@@ -13,6 +13,9 @@ import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.example.dbman.db.genupdate.schema.SysParameter;
 import com.example.dbman.db.model.EquipTypeBriefView;
+import com.example.dbman.db.model.EquipTypeCpntSetView;
+import com.example.dbman.db.model.EquipTypeFactorySetView;
+import com.example.dbman.db.model.EquipTypeParamSetView;
 import com.example.dbman.ui.PowerIndicator.EquipHirarchyModel;
 import com.j256.ormlite.dao.CloseableIterator;
 import com.j256.ormlite.dao.Dao;
@@ -67,7 +70,7 @@ public class ExampleInstrumentedTest {
                 }
                 assertTrue(count == 311);
             }
-            //综合测试1
+            //装备类型概要查询
             {
                 CloseableIterator<EquipTypeBriefView> iter1 = impl.lookupBriefEquipTypeInfo(impl.getLeafEquipByParentUUIDQuery(UUID.fromString("0FC40DF9-6534-44DA-9018-00EF24CA5E3F")));
                 try {
@@ -88,6 +91,29 @@ public class ExampleInstrumentedTest {
                 }finally {
                     iter1.closeQuietly();
                 }
+            }
+            //装备类型  属性明细
+            {
+                EquipTypeParamSetView paramSetView = EquipTypeParamSetView.loadEquipTypeParamSetView(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                assertTrue(paramSetView != null);
+                assertTrue(paramSetView.getLstEquipExtParam().size() == 6);
+                LogUtils.i(paramSetView.getLstEquipExtParam());
+                assertTrue(paramSetView.getLstEquipTypeParam().size() == 5);
+                LogUtils.i(paramSetView.getLstEquipTypeParam());
+            }
+            //装备类型，工厂信息
+            {
+                EquipTypeFactorySetView factoryView = EquipTypeFactorySetView.loadEquipFactorySet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                assertTrue(factoryView != null);
+                assertTrue(factoryView.getLstEquipFactories().size() == 7);
+                LogUtils.i(factoryView.getLstEquipFactories());
+            }
+            //装备类型，组件信息
+            {
+                EquipTypeCpntSetView cpntView = EquipTypeCpntSetView.loadEquipCpntSet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                assertTrue(cpntView != null);
+                assertTrue(cpntView.getLstEquipCpnts().size() == 1);
+                LogUtils.i(cpntView.getLstEquipCpnts());
             }
         }catch (Exception e){
             e.printStackTrace();

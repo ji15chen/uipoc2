@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.j256.ormlite.support.ConnectionSource;
 import com.example.dbman.db.genupdate.dao.ECFactoryDao;
 import com.example.dbman.db.genupdate.schema.ECFactory;
-public class ECFactoryDaoImpl extends BaseDaoImpl<ECFactory,java.util.UUID>{
+public class ECFactoryDaoImpl extends BaseDaoImpl<ECFactory,java.util.UUID> implements ECFactoryDao{
 public ECFactoryDaoImpl (ConnectionSource connectionSource) throws SQLException {
 		super(connectionSource, ECFactory.class );
 		}

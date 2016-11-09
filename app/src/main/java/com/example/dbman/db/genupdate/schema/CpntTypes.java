@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import com.example.dbman.db.genupdate.daoimpl.CpntTypesDaoImpl;
 @DatabaseTable(tableName = "CpntTypes", daoClass =CpntTypesDaoImpl.class)
-	public class CpntTypes{
+	public class CpntTypes implements Serializable{
 @DatabaseField( columnName ="CpntID",id=true ,canBeNull = false )
 	private UUID cpntid;
 @DatabaseField( columnName ="CpntName")
@@ -22,7 +22,7 @@ import com.example.dbman.db.genupdate.daoimpl.CpntTypesDaoImpl;
 @DatabaseField( columnName ="CpntUnit")
 	private String cpntunit;
 @DatabaseField( columnName ="CpntYear")
-	private BigDecimal cpntyear;
+	private int cpntyear;
 @DatabaseField( columnName ="CpntFunc")
 	private String cpntfunc;
 @DatabaseField( columnName ="IsPublic")
@@ -54,12 +54,15 @@ import com.example.dbman.db.genupdate.daoimpl.CpntTypesDaoImpl;
 	public void setCpntUnit(String CpntUnit){
 		this.cpntunit=CpntUnit;
 	}
-	public BigDecimal getCpntYear(){
-		return this.cpntyear;
+
+	public int getCpntyear() {
+		return cpntyear;
 	}
-	public void setCpntYear(BigDecimal CpntYear){
-		this.cpntyear=CpntYear;
+
+	public void setCpntyear(int cpntyear) {
+		this.cpntyear = cpntyear;
 	}
+
 	public String getCpntFunc(){
 		return this.cpntfunc;
 	}

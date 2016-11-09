@@ -24,19 +24,6 @@ import com.example.dbman.db.genupdate.daoimpl.EqmtCpntInfoDaoImpl;
 @DatabaseField( columnName ="Sorting")
 	private int sorting;
 
-
-	@DatabaseField(id=true, useGetSet=true)
-	private UUID id;
-
-	public UUID getId() {
-		return new UUID(pktypeid.getMostSignificantBits()+cpntid.getMostSignificantBits(), pktypeid.getLeastSignificantBits()+cpntid.getLeastSignificantBits());
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-
 	public UUID getPkTypeID(){
 		return this.pktypeid;
 	}

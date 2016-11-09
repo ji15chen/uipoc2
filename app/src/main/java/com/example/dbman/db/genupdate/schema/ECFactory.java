@@ -24,16 +24,16 @@ import com.example.dbman.db.genupdate.daoimpl.ECFactoryDaoImpl;
 @DatabaseField( columnName ="Describe")
 	private String describe;
 
-	@DatabaseField(id=true, useGetSet=true)
-	private UUID id;
+//	@DatabaseField(id=true, useGetSet=true)
+//	private UUID id;
+//
+//	public UUID getId() {
+//		return new UUID(recid.getMostSignificantBits()+factoryid.getMostSignificantBits(), recid.getLeastSignificantBits()+factoryid.getLeastSignificantBits());
+//	}
 
-	public UUID getId() {
-		return new UUID(recid.getMostSignificantBits()+factoryid.getMostSignificantBits(), recid.getLeastSignificantBits()+factoryid.getLeastSignificantBits());
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
+//	public void setId(UUID id) {
+//		this.id = id;
+//	}
 
 	public UUID getRecID(){
 		return this.recid;
