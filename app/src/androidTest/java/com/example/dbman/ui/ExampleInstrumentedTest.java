@@ -9,11 +9,12 @@ import com.example.dbman.core.BaseDatabase;
 import com.example.dbman.db.genupdate.daoimpl.EquipTypeDaoImpl;
 import com.example.dbman.db.genupdate.schema.EquipType;
 import com.example.dbman.db.model.DeptHirarchyModel;
-import com.example.dbman.db.model.EquipTypeBriefView;
-import com.example.dbman.db.model.EquipTypeCpntSetView;
-import com.example.dbman.db.model.EquipTypeFactorySetView;
-import com.example.dbman.db.model.EquipTypeParamSetView;
+import com.example.dbman.db.model.EquipTypeBriefModel;
+import com.example.dbman.db.model.EquipTypeCpntSetModel;
+import com.example.dbman.db.model.EquipTypeFactorySetModel;
+import com.example.dbman.db.model.EquipTypeParamSetModel;
 import com.example.dbman.db.model.EquipHirarchyModel;
+import com.example.dbman.db.model.StoreInfoModel;
 import com.j256.ormlite.dao.CloseableIterator;
 
 import org.junit.Test;
@@ -64,10 +65,10 @@ public class ExampleInstrumentedTest {
             }
             //装备类型概要查询
             {
-                CloseableIterator<EquipTypeBriefView> iter1 = impl.lookupBriefEquipTypeInfo(impl.getLeafEquipByParentUUIDQuery(UUID.fromString("0FC40DF9-6534-44DA-9018-00EF24CA5E3F")));
+                CloseableIterator<EquipTypeBriefModel> iter1 = impl.lookupBriefEquipTypeInfo(impl.getLeafEquipByParentUUIDQuery(UUID.fromString("0FC40DF9-6534-44DA-9018-00EF24CA5E3F")));
                 try {
                     while (iter1.hasNext()) {
-                        EquipTypeBriefView res = iter1.nextThrow();
+                        EquipTypeBriefModel res = iter1.nextThrow();
                         LogUtils.e(res);
                     }
                 }finally {
@@ -77,7 +78,7 @@ public class ExampleInstrumentedTest {
                 iter1 = impl.lookupBriefEquipTypeInfo(impl.getLeafEquipByParentObjectsQuery(iter));
                 try {
                     while (iter1.hasNext()) {
-                        EquipTypeBriefView res  = iter1.nextThrow();
+                        EquipTypeBriefModel res  = iter1.nextThrow();
                         LogUtils.e(res);
                     }
                 }finally {
@@ -86,7 +87,7 @@ public class ExampleInstrumentedTest {
             }
             //装备类型  属性明细
             {
-                EquipTypeParamSetView paramSetView = EquipTypeParamSetView.loadEquipTypeParamSetView(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                EquipTypeParamSetModel paramSetView = EquipTypeParamSetModel.loadEquipTypeParamSetView(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
                 assertTrue(paramSetView != null);
                 assertTrue(paramSetView.getLstEquipExtParam().size() == 6);
                 LogUtils.i(paramSetView.getLstEquipExtParam());
@@ -95,14 +96,14 @@ public class ExampleInstrumentedTest {
             }
             //装备类型，工厂信息
             {
-                EquipTypeFactorySetView factoryView = EquipTypeFactorySetView.loadEquipFactorySet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                EquipTypeFactorySetModel factoryView = EquipTypeFactorySetModel.loadEquipFactorySet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
                 assertTrue(factoryView != null);
                 assertTrue(factoryView.getLstEquipFactories().size() == 7);
                 LogUtils.i(factoryView.getLstEquipFactories());
             }
             //装备类型，组件信息
             {
-                EquipTypeCpntSetView cpntView = EquipTypeCpntSetView.loadEquipCpntSet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
+                EquipTypeCpntSetModel cpntView = EquipTypeCpntSetModel.loadEquipCpntSet(UUID.fromString("5809D095-7F4D-4FAD-B3B9-762236EAC2EA"));
                 assertTrue(cpntView != null);
                 assertTrue(cpntView.getLstEquipCpnts().size() == 1);
                 LogUtils.i(cpntView.getLstEquipCpnts());
@@ -124,6 +125,12 @@ public class ExampleInstrumentedTest {
             //解析部门树形图
             DeptHirarchyModel.getInstance();
             assertTrue(true);
+
+            //查询实力明细
+            StoreInfoModel model = StoreInfoModel.loadEquipStoreDetail("");
+            assertTrue(model != null);
+            assertTrue(model.getLstEquipStoreInfo().size() == 37);
+            LogUtils.i(model.getLstEquipStoreInfo());
         } catch (Exception e) {
             assertFalse(true);
         }

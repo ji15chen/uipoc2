@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.math.BigDecimal;
 
-public class EquipTypeBriefView implements  Serializable{
+public class EquipTypeBriefModel implements  Serializable{
     private UUID id;
     private String typeName;//装备型号
     private String unit;//计量单位

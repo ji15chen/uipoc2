@@ -18,7 +18,7 @@ import java.util.UUID;
  * Created by ChenJi on 2016/11/9.
  */
 
-public class EquipTypeParamSetView {
+public class EquipTypeParamSetModel {
     private static final EquipTypeDao eqDao = (EquipTypeDao)BaseDatabase.getInstance().getDaoImpl("EquipType");
     private static final EquipTypeDetailDao edDao = (EquipTypeDetailDao)BaseDatabase.getInstance().getDaoImpl("EquipTypeDetail");
 
@@ -47,7 +47,7 @@ public class EquipTypeParamSetView {
 
     }
 
-    public static EquipTypeParamSetView loadEquipTypeParamSetView(final UUID uuid) throws SQLException{
+    public static EquipTypeParamSetModel loadEquipTypeParamSetView(final UUID uuid) throws SQLException{
         StringBuffer stringBuffer = new StringBuffer();
         //[1] 查询相关设备参数
         final String sql = "SELECT ExentData.ObjectID,ExtendType.ExtendName,ExentData.ExtentValue FROM ExentData LEFT JOIN ExtendType on ExentData.ExtendID = ExtendType.ExtendID WHERE  ExentData.ObjectID = '";
@@ -55,7 +55,7 @@ public class EquipTypeParamSetView {
         stringBuffer.append(uuid.toString().toUpperCase());
         stringBuffer.append("'");
 
-        EquipTypeParamSetView view = new EquipTypeParamSetView();
+        EquipTypeParamSetModel view = new EquipTypeParamSetModel();
         GenericRawResults<String []> v = eqDao.queryRaw(stringBuffer.toString(), DBUtil.stringArrayMapper);
         Iterator<String []> iter = v.iterator();
 

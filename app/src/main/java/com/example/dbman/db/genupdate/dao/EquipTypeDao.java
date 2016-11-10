@@ -1,16 +1,13 @@
 package com.example.dbman.db.genupdate.dao;
 
-import com.example.dbman.db.model.EquipTypeBriefView;
+import com.example.dbman.db.model.EquipTypeBriefModel;
 import com.j256.ormlite.dao.CloseableIterator;
-import com.j256.ormlite.dao.CloseableWrappedIterable;
 import com.j256.ormlite.dao.Dao;
 import com.example.dbman.db.genupdate.schema.EquipType;
-import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.UUID;
 
 public interface EquipTypeDao extends Dao<EquipType,java.util.UUID>{
@@ -42,7 +39,7 @@ public interface EquipTypeDao extends Dao<EquipType,java.util.UUID>{
     *
     * @show 产生概要装备信息
     * */
-    CloseableIterator<EquipTypeBriefView> lookupBriefEquipTypeInfo(Where<EquipType,UUID> query)  throws SQLException;
+    CloseableIterator<EquipTypeBriefModel> lookupBriefEquipTypeInfo(Where<EquipType,UUID> query)  throws SQLException;
     /*
 *
 * @show 产生详细装备信息

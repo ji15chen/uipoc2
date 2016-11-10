@@ -1,4 +1,4 @@
-package db.genupdate.schema;
+package com.example.dbman.db.genupdate.schema;
 
 	/**
 	*	*@author jichen
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.math.BigDecimal;
 import java.util.Date;
-import db.genupdate.daoimpl.EquipCardDaoImpl;
+import com.example.dbman.db.genupdate.daoimpl.EquipCardDaoImpl;
 @DatabaseTable(tableName = "EquipCard", daoClass =EquipCardDaoImpl.class)
 	public class EquipCard{
 @DatabaseField( columnName ="CardID",id=true ,canBeNull = false )
@@ -22,5 +22,35 @@ import db.genupdate.daoimpl.EquipCardDaoImpl;
 @DatabaseField( columnName ="RFID")
 	private String rfid;
 
+	public UUID getCardid() {
+		return cardid;
+	}
 
+	public void setCardid(UUID cardid) {
+		this.cardid = cardid;
+	}
+
+	public UUID getCardpid() {
+		return cardpid;
+	}
+
+	public void setCardpid(UUID cardpid) {
+		this.cardpid = cardpid;
+	}
+
+	public UUID getStoreid() {
+		return storeid;
+	}
+
+	public void setStoreid(UUID storeid) {
+		this.storeid = storeid;
+	}
+
+	public String getRfid() {
+		return rfid;
+	}
+
+	public void setRfid(String rfid) {
+		this.rfid = rfid;
+	}
 }

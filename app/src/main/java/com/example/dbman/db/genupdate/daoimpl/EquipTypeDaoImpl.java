@@ -1,16 +1,10 @@
 package com.example.dbman.db.genupdate.daoimpl;
-import com.example.dbman.core.BaseDatabase;
 import com.example.dbman.core.Constants;
 import com.example.dbman.core.DBUtil;
-import com.example.dbman.db.genupdate.schema.SysParameter;
-import com.example.dbman.db.model.EquipTypeBriefView;
-import com.j256.ormlite.dao.CloseableIterable;
+import com.example.dbman.db.model.EquipTypeBriefModel;
 import com.j256.ormlite.dao.CloseableIterator;
-import com.j256.ormlite.dao.CloseableWrappedIterable;
-import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.BaseDaoImpl;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,9 +14,7 @@ import java.util.UUID;
 
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
-import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.example.dbman.db.genupdate.dao.EquipTypeDao;
@@ -109,16 +101,16 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
 	}
 
 	@Override
-	public CloseableIterator<EquipTypeBriefView> lookupBriefEquipTypeInfo(Where<EquipType,UUID> query)  throws SQLException {
+	public CloseableIterator<EquipTypeBriefModel> lookupBriefEquipTypeInfo(Where<EquipType,UUID> query)  throws SQLException {
         StringBuffer stringBuffer = new StringBuffer();
         final String sql = "SELECT EquipType.PkTypeID,EquipType.TypeName, SysParameter.ParaName,EquipType.LimitedYear,EquipType.Scale,EquipType.WarrantyPeriod FROM EquipType LEFT OUTER  JOIN SysParameter ON EquipType.Unit= SysParameter.ParaID ";
         stringBuffer.append(sql);
         stringBuffer.append(" WHERE ");
         stringBuffer.append(query.getStatement());
-        GenericRawResults<EquipTypeBriefView> view = queryRaw(stringBuffer.toString(), new RawRowMapper<EquipTypeBriefView>() {
+        GenericRawResults<EquipTypeBriefModel> view = queryRaw(stringBuffer.toString(), new RawRowMapper<EquipTypeBriefModel>() {
             @Override
-            public EquipTypeBriefView mapRow(String[] col, String[] result) throws SQLException {
-                EquipTypeBriefView view = new EquipTypeBriefView();
+            public EquipTypeBriefModel mapRow(String[] col, String[] result) throws SQLException {
+                EquipTypeBriefModel view = new EquipTypeBriefModel();
                 view.setId(UUID.fromString(result[0]));
                 view.setTypeName(DBUtil.translateString(result[1]));
                 view.setUnit(DBUtil.translateString(result[2]));

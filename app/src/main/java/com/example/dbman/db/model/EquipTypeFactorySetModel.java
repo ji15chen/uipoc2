@@ -5,14 +5,10 @@ import com.example.dbman.core.Constants;
 import com.example.dbman.core.DBUtil;
 import com.example.dbman.db.genupdate.dao.ECFactoryDao;
 import com.example.dbman.db.genupdate.dao.EquipTypeDao;
-import com.example.dbman.db.genupdate.dao.EquipTypeDetailDao;
 import com.example.dbman.db.genupdate.dao.FactoryInfoDao;
 import com.example.dbman.db.genupdate.schema.ECFactory;
 import com.example.dbman.db.genupdate.schema.EquipType;
-import com.example.dbman.db.genupdate.schema.EquipTypeDetail;
-import com.example.dbman.db.genupdate.schema.FactoryInfo;
 import com.j256.ormlite.dao.GenericRawResults;
-import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
@@ -25,7 +21,7 @@ import java.util.UUID;
  * Created by ChenJi on 2016/11/9.
  */
 
-public class EquipTypeFactorySetView {
+public class EquipTypeFactorySetModel {
     private static final FactoryInfoDao fiDao = (FactoryInfoDao)BaseDatabase.getInstance().getDaoImpl("FactoryInfo");
     private static final EquipTypeDao eqDao = (EquipTypeDao)BaseDatabase.getInstance().getDaoImpl("EquipType");
     private static final ECFactoryDao  ecfDao = (ECFactoryDao) BaseDatabase.getInstance().getDaoImpl("ECFactory");
@@ -55,9 +51,9 @@ public class EquipTypeFactorySetView {
         return  where;
     }
 
-    public static EquipTypeFactorySetView loadEquipFactorySet(final UUID uuid) throws SQLException{
+    public static EquipTypeFactorySetModel loadEquipFactorySet(final UUID uuid) throws SQLException{
         StringBuffer stringBuffer = new StringBuffer();
-        EquipTypeFactorySetView view = new EquipTypeFactorySetView();
+        EquipTypeFactorySetModel view = new EquipTypeFactorySetModel();
         //[1] 查询相关设备类型相关的工厂信息
         final String sql = "SELECT fi.FactoryID,fi.FactoryName,\n" +
                 "                paraFactoryType.ParaName,\n" +

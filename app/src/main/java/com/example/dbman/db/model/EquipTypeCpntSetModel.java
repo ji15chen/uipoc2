@@ -1,14 +1,11 @@
 package com.example.dbman.db.model;
 
-import android.view.ViewAnimationUtils;
-
 import com.example.dbman.core.BaseDatabase;
 import com.example.dbman.core.DBUtil;
 import com.example.dbman.db.genupdate.dao.CpntTypesDao;
 import com.example.dbman.db.genupdate.dao.EqmtCpntInfoDao;
 import com.example.dbman.db.genupdate.dao.EquipTypeDao;
 import com.example.dbman.db.genupdate.schema.CpntTypes;
-import com.example.dbman.db.genupdate.schema.EqmtCpntInfo;
 import com.j256.ormlite.dao.GenericRawResults;
 
 import java.sql.SQLException;
@@ -21,7 +18,7 @@ import java.util.UUID;
  * Created by ChenJi on 2016/11/9.
  */
 
-public class EquipTypeCpntSetView {
+public class EquipTypeCpntSetModel {
     private static final EqmtCpntInfoDao eciDao = (EqmtCpntInfoDao) BaseDatabase.getInstance().getDaoImpl("EqmtCpntInfo");
     private static final CpntTypesDao cpntDao = (CpntTypesDao)BaseDatabase.getInstance().getDaoImpl("CpntTypes");
     private static final EquipTypeDao eqDao = (EquipTypeDao)BaseDatabase.getInstance().getDaoImpl("EquipType");
@@ -36,9 +33,9 @@ public class EquipTypeCpntSetView {
         this.lstEquipCpnts = lstEquipCpnts;
     }
 
-    public static EquipTypeCpntSetView loadEquipCpntSet(final UUID uuid) throws SQLException {
+    public static EquipTypeCpntSetModel loadEquipCpntSet(final UUID uuid) throws SQLException {
         StringBuffer stringBuffer = new StringBuffer();
-        EquipTypeCpntSetView view = new EquipTypeCpntSetView();
+        EquipTypeCpntSetModel view = new EquipTypeCpntSetModel();
 
         //[1] 查询相关设备类型相关的工厂信息
         final String sql = "SELECT CpntTypes.*,EqmtCpntInfo.CpntCount FROM EqmtCpntInfo\n" +
