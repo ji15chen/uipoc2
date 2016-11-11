@@ -35,7 +35,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("com.example.jerry.skeldbui", appContext.getPackageName());
+        assertEquals("com.example.dbman.ui", appContext.getPackageName());
     }
     @Test
     public void testEquipType() throws Exception {

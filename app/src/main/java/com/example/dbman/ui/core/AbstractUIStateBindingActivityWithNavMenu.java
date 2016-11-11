@@ -11,6 +11,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.core.BaseApplication;
 import com.example.dbman.core.Utils;
 import com.example.dbman.ui.BR;
+import com.example.dbman.ui.Home.HomeActivity;
 import com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.ui_state.UIState;
@@ -29,15 +30,16 @@ public abstract class AbstractUIStateBindingActivityWithNavMenu extends Abstract
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    private NavigationMenuAdapter navigationMenuAdapter ;
     private static final Class<? extends AbstractBaseActivity> mItemClasses [] = new Class[]{
-            PowerIndicatorActivity.class,
+            HomeActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class
     };
+
     @Override
     public  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -52,9 +54,11 @@ public abstract class AbstractUIStateBindingActivityWithNavMenu extends Abstract
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         if (position >= 0 && position < mItemClasses.length) {
-            Class<? extends AbstractBaseActivity> act = mItemClasses[position];
-            startActivity(act);
-            BaseApplication.setSelectedNavId(position);
+            if (position != BaseApplication.getSelectedNavId()) {
+                Class<? extends AbstractBaseActivity> act = mItemClasses[position];
+                startActivity(act);
+                BaseApplication.setSelectedNavId(position);
+            }
         }
     }
 

@@ -23,6 +23,7 @@ import com.example.dbman.ui.core.ui_state.UIState;
 import com.example.dbman.ui.core.ui_state.UIStateBrief;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
 import com.example.dbman.ui.core.menu.CircleMenuLayout;
+import com.example.dbman.ui.databinding.HomeActivityBinding;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Field;

@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#0099cc"
+        android:id="@+id/drawer_layout"
         tools:context="com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity">
         <FrameLayout
             android:id="@+id/container"
