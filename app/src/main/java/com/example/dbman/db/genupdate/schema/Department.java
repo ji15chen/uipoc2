@@ -44,7 +44,7 @@ import com.example.dbman.db.genupdate.daoimpl.DepartmentDaoImpl;
 @DatabaseField( columnName ="CreateUserID")
 	private UUID createuserid;
 @DatabaseField( columnName ="ChangeDate")
-	private Date changedate;
+	private String changedate;
 
 	public UUID getDeptID(){
 		return this.deptid;
@@ -136,11 +136,12 @@ import com.example.dbman.db.genupdate.daoimpl.DepartmentDaoImpl;
 	public void setCreateUserID(UUID CreateUserID){
 		this.createuserid=CreateUserID;
 	}
-	public Date getChangeDate(){
-		return this.changedate;
-	}
-	public void setChangeDate(Date ChangeDate){
-		this.changedate=ChangeDate;
+
+	public String getChangedate() {
+		return changedate;
 	}
 
+	public void setChangedate(String changedate) {
+		this.changedate = changedate;
+	}
 }

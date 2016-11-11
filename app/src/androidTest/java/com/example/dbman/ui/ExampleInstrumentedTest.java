@@ -131,6 +131,12 @@ public class ExampleInstrumentedTest {
             assertTrue(model != null);
             assertTrue(model.getLstEquipStoreInfo().size() == 37);
             LogUtils.i(model.getLstEquipStoreInfo());
+
+            //通过卡号查询实力明细
+            model = StoreInfoModel.loadEquipStoreDetail(StoreInfoModel.buildEquipCardQuery("111112222233333"));
+            assertTrue(model != null);
+            assertTrue(model.getLstEquipStoreInfo().size() == 1);
+            LogUtils.i(model.getLstEquipStoreInfo().get(0).getColumnValues());
         } catch (Exception e) {
             assertFalse(true);
         }

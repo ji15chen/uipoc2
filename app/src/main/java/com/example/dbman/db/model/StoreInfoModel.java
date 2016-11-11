@@ -69,7 +69,7 @@ public class StoreInfoModel {
         return view;
     }
 
-    final String buildEquipCardQuery(String cardId) throws SQLException{
+    public static final String buildEquipCardQuery(String cardId) throws SQLException{
         List<EquipCard> lst = ecDao.queryForEq("RFID", cardId);
         if (lst.size()>0){
             return "WHERE StoreDetail.StoreID = '"+ lst.get(0).getStoreid()+"'";
