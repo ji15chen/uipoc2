@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/SlidingMenu/library" />
+            <option value="$PROJECT_DIR$/libraries/TableFixHeaders/library" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
