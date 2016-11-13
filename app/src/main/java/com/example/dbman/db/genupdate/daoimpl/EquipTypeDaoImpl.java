@@ -139,4 +139,6 @@ public class EquipTypeDaoImpl extends BaseDaoImpl<EquipType,java.util.UUID> impl
         return view.closeableIterator();
     }
 
+
+
 }

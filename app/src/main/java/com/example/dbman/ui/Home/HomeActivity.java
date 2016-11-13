@@ -14,7 +14,13 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.example.dbman.core.BaseDatabase;
+import com.example.dbman.db.genupdate.dao.EquipTypeDao;
+import com.example.dbman.db.genupdate.schema.EquipType;
+import com.example.dbman.db.genupdate.schema.ExtendType;
+import com.example.dbman.db.model.EquipTypeBriefModel;
 import com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity;
+import com.example.dbman.ui.PowerIndicator.adapter.PowerIndicatorBriefTableAdapter;
 import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.AbstractBaseActivity;
 import com.example.dbman.ui.core.AbstractBaseUIActivity;
@@ -24,18 +30,21 @@ import com.example.dbman.ui.core.ui_state.UIStateBrief;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
 import com.example.dbman.ui.core.menu.CircleMenuLayout;
 import com.example.dbman.ui.databinding.HomeActivityBinding;
+import com.j256.ormlite.stmt.Where;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class HomeActivity extends AbstractUIStateBindingActivityWithNavMenu {
-
+    private HomeActivityBinding binding;
+    private PowerIndicatorBriefTableAdapter adapter ;
     @Override
     public boolean isSupportSaveState() {
         return false;
@@ -53,7 +62,19 @@ public class HomeActivity extends AbstractUIStateBindingActivityWithNavMenu {
 
     @Override
     protected void onFinishUIBinding(ViewDataBinding viewDataBinding) {
+        binding = (HomeActivityBinding) viewDataBinding;
 
+        adapter = new PowerIndicatorBriefTableAdapter(this);
+        binding.table.setAdapter(adapter);
+
+        try{
+            EquipTypeDao dao = (EquipTypeDao)BaseDatabase.getInstance().getDaoImpl("EquipType");
+            Where<EquipType,UUID>  query = dao.findBySimilarTypeNameQuery("车");
+            List<EquipTypeBriefModel>  model = EquipTypeBriefModel.lookupBriefEquipTypeInfo(query);
+            adapter.setData(model);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

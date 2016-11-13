@@ -20,7 +20,6 @@ public class PowerIndicatorModel implements Serializable{
     }
 
 
-
     public PowerIndicatorModel(){
 
         textValue ="test";
