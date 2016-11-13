@@ -7,22 +7,20 @@ import android.view.View;
 import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.AbstractBaseUIActivity;
 import com.example.dbman.ui.core.AbstractUIStateBindingActivity;
-import com.example.dbman.ui.core.AbstractUIStateBindingActivityWithSlideMenu;
+import com.example.dbman.ui.core.AbstractUIStateBindingActivityWithNavMenu;
 import com.example.dbman.ui.databinding.PowerIndicatorActivityBinding;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class PowerIndicatorActivity extends AbstractUIStateBindingActivity  {
-    private PowerIndicatorActivityBinding binding ;
+public class PowerIndicatorActivity extends AbstractUIStateBindingActivityWithNavMenu {
+    private com.example.dbman.ui.databinding.PowerIndicatorActivityBinding binding ;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setBehindContentView(R.layout.layout_menu_power_indicator);
     }
 
     @Override
@@ -37,14 +35,7 @@ public class PowerIndicatorActivity extends AbstractUIStateBindingActivity  {
 
     @Override
     protected void onFinishUIBinding(ViewDataBinding viewDataBinding) {
-        binding = (PowerIndicatorActivityBinding) viewDataBinding;
-//        binding.fragmentWeaponMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((PowerIndicatorModel)getModelData()).setTextValue("111");
-//                saveUIState();
-//            }
-//        });
+        binding = (com.example.dbman.ui.databinding.PowerIndicatorActivityBinding) viewDataBinding;
     }
 
     @Override

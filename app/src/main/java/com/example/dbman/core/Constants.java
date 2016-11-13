@@ -9,4 +9,11 @@ import java.util.UUID;
 public class Constants {
     public static UUID NULL_UUID = new UUID(0,0);
     public static boolean debug = true;
+
+    private static BaseFunctionDesc functionDescs[] = null;
+
+    static {
+        functionDescs = new BaseFunctionDesc[6];
+
+    }
 }

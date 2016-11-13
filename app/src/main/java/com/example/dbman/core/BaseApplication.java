@@ -15,7 +15,15 @@ import static com.example.dbman.ui.core.ui_state.UIStateManager.UI_STATE_DB;
 public class BaseApplication extends Application {
     private static BaseApplication app = null;
     public  static String DATABASE_URL ;
+    private static int selectedNavId=0;
 
+    public static int getSelectedNavId() {
+        return selectedNavId;
+    }
+
+    public static void setSelectedNavId(int selectedNavId) {
+        BaseApplication.selectedNavId = selectedNavId;
+    }
 
     private DB uiStateDB;// database for ui state
 

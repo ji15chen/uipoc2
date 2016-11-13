@@ -12,7 +12,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public abstract class AbstractBaseActivity extends SlidingFragmentActivity {
+public abstract class AbstractBaseActivity extends Activity {
     public abstract  String getShortName();
 
     public void startSavedActivity(UIStateBrief uiStateBrief){
