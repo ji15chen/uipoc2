@@ -16,6 +16,7 @@ public class BaseApplication extends Application {
     private static BaseApplication app = null;
     public  static String DATABASE_URL ;
 
+
     private DB uiStateDB;// database for ui state
 
     public static String getDatabaseUrl() {
@@ -40,6 +41,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         app = this;
         BaseDatabase.getInstance().init(this);
+        BaseFileManager.init(this);
         // TypefaceProvider.registerDefaultIconSets();
         LogUtils.i("init ui database");
         try {
