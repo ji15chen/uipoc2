@@ -1,33 +1,22 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.Home.HomeModel"/>
+    </data>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <com.example.dbman.ui.core.menu.CircleMenuLayout
-        android:id="@+id/id_menulayout"
-        android:layout_width="match_parent"
+    <fragment
+        android:id="@+id/navigation_drawer"
+        android:name="com.example.dbman.ui.core.NavigationDrawerFragment"
+        android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:padding="100dp"
-        android:background="@mipmap/circle_bg3" >
-
-        <RelativeLayout
-            android:id="@id/id_circle_menu_item_center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:layout_width="124.0dip"
-                android:layout_height="124.0dip"
-                android:layout_centerInParent="true"
-                android:background="@mipmap/turnplate_center_unlogin" />
-
-            <!--<ImageView-->
-                <!--android:layout_width="116.0dip"-->
-                <!--android:layout_height="116.0dip"-->
-                <!--android:layout_centerInParent="true"-->
-                <!--android:background="@mipmap/turnplate_mask_unlogin_normal" />-->
-        </RelativeLayout>
-    </com.example.dbman.ui.core.menu.CircleMenuLayout>
-</LinearLayout>
+        android:layout_gravity="start"
+        tools:layout="@layout/drawer_nav" />
+</android.support.v4.widget.DrawerLayout>
+</layout>
