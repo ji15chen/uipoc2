@@ -24,6 +24,7 @@ public abstract class AbstractUIStateBindingActivity extends AbstractBaseUIActiv
     private ViewDataBinding binding;
     private Object modelData;
 
+    abstract public boolean isSupportSaveState();
     abstract protected int getActivityId();
 
     //get current UIState

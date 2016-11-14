@@ -37,6 +37,11 @@ import java.util.List;
 public class HomeActivity extends AbstractUIStateBindingActivityWithNavMenu {
 
     @Override
+    public boolean isSupportSaveState() {
+        return false;
+    }
+
+    @Override
     protected int getActivityId() {
         return R.layout.home_activity;
     }

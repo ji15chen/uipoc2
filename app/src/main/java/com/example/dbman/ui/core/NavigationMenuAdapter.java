@@ -78,7 +78,7 @@ public class NavigationMenuAdapter extends ArrayAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
         TextView item = (TextView) convertView;
         if(item == null) {
-            item = new TextView(mContext);
+            item = (TextView) LayoutInflater.from(mContext).inflate(R.layout.nav_menu_item,null);
         }
         item.setText(getItem(position));
         item.setCompoundDrawablesWithIntrinsicBounds(mContext.getResources().getDrawable(getIconId(position), null),null,null,null);

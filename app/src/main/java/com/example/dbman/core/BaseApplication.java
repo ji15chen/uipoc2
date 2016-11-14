@@ -3,6 +3,7 @@ package com.example.dbman.core;
 import android.app.Application;
 
 import com.apkfuns.logutils.LogUtils;
+import com.example.dbman.ui.R;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 
@@ -16,6 +17,7 @@ public class BaseApplication extends Application {
     private static BaseApplication app = null;
     public  static String DATABASE_URL ;
     private static int selectedNavId=0;
+    private static String applicationName;
 
     public static int getSelectedNavId() {
         return selectedNavId;
@@ -43,11 +45,15 @@ public class BaseApplication extends Application {
         return uiStateDB;
     }
 
+    public static String getApplicationName() {
+        return applicationName;
+    }
 
     public void onCreate()
     {
         super.onCreate();
         app = this;
+        applicationName = this.getResources().getString(R.string.app_name);
         BaseDatabase.getInstance().init(this);
         BaseFileManager.init(this);
         // TypefaceProvider.registerDefaultIconSets();

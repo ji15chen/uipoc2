@@ -14,6 +14,7 @@ import android.view.ViewConfiguration;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.example.dbman.core.BaseApplication;
 import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.ui_state.UIStateBrief;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
@@ -39,6 +40,7 @@ public abstract class AbstractBaseUIActivity extends AbstractBaseActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         // 是否显示应用程序标题，默认为true
         actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(BaseApplication.getApplicationName()+"---"+getShortName());
         /*
          * 是否将应用程序图标转变成可点击的按钮，默认为false。
          *
@@ -46,7 +48,7 @@ public abstract class AbstractBaseUIActivity extends AbstractBaseActivity {
          *
          * 则该设置自动为 true。
          */
-        actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeButtonEnabled(false);
         /*
          * 在应用程序图标的左边显示一个向左的箭头，
          *
@@ -85,10 +87,29 @@ public abstract class AbstractBaseUIActivity extends AbstractBaseActivity {
          * 将会执行此case
          */
             case android.R.id.home:
+            case R.id.id_menu_item_home:
+            {
                 finish();
-                break;
+            }
+            break;
+            case R.id.id_menu_item_addfav:
+            {
+                if (!(this instanceof AbstractUIStateBindingActivity)){
+                    return super.onOptionsItemSelected(item);
+                }
+                AbstractUIStateBindingActivity act = (AbstractUIStateBindingActivity) this;
+                if (!act.isSupportSaveState()){
+                    return super.onOptionsItemSelected(item);
+                }
+                try {
+                    act.saveUIState();
+                    Toast.makeText(this, "当前页面状态已保存", Toast.LENGTH_LONG).show();
+                }catch (Exception e){
+                    Toast.makeText(this, "当前页面状态保存失败", Toast.LENGTH_LONG).show();
+                }
+            }
             case R.id.id_menu_item_scan:
-                Toast.makeText(this, "添加", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "扫描", Toast.LENGTH_LONG).show();
                 break;
             // 其他省略...
             default:
