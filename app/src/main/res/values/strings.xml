@@ -453,20 +453,14 @@
     <string name="title_home_4">扫描盘库</string>
     <string name="title_home_5">质量反馈</string>
     <string name="title_home_6">系统帮助</string>
-    <string name="title_activity_power_indicator">PowerIndicatorActivity</string>
-    <string name="title_activity_nav">NavActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="t1">T1</string>
-    <string name="t2">T2</string>
-    <string name="t3">T3</string>
-    <string name="t4">T4</string>
+    <string name="t1">参数</string>
+    <string name="t2">厂家</string>
+    <string name="t3">组件</string>
+    <string name="t4">配件</string>
 
-    <string name="t1_view">这是一个T1界面</string>
-    <string name="t2_view">这是一个T2界面</string>
-    <string name="t3_view">这是一个T3界面</string>
-    <string name="t4_view">这是一个T4界面</string>
+    <string name="t1_view">参数</string>
+    <string name="t2_view">厂家</string>
+    <string name="t3_view">组件</string>
+    <string name="t4_view">配件</string>
 </resources>
