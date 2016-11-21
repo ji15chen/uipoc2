@@ -39,7 +39,7 @@ import static com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity.REQUEST
  * Use the {@link PowerIndicatorBriefViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PowerIndicatorBriefViewFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class PowerIndicatorBriefViewFragment extends Fragment implements SearchView.OnQueryTextListener, View.OnClickListener{
     private static EquipTypeDao equipTypeDao = (EquipTypeDao) BaseDatabase.getInstance().getDaoImpl("EquipType");
     private String lastQuery="";
     PowerindicatorBriefViewFragmentBinding binding = null;
@@ -94,9 +94,6 @@ public class PowerIndicatorBriefViewFragment extends Fragment implements SearchV
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        adapter = new PowerIndicatorBriefTableAdapter(getActivity());
-
     }
 
     public void updateQuery(final String query){
@@ -113,7 +110,7 @@ public class PowerIndicatorBriefViewFragment extends Fragment implements SearchV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = PowerindicatorBriefViewFragmentBinding.inflate(LayoutInflater.from(getActivity()), container, false);
-        adapter = new PowerIndicatorBriefTableAdapter(getActivity());
+        adapter = new PowerIndicatorBriefTableAdapter(getActivity(),this);
         binding.table.setAdapter(adapter);
         {
             binding.PowerIndicatorBriefSimlSearch.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +164,14 @@ public class PowerIndicatorBriefViewFragment extends Fragment implements SearchV
         mListener = null;
     }
 
+    @Override
+    public void onClick(View v) {
+        EquipTypeBriefModel model = (EquipTypeBriefModel) v.getTag();
+        Intent intent = new Intent(getActivity(), PowerIndicatorDetailActivity.class);
+        intent.putExtra("id", model.getId().toString());
+        getActivity().startActivity(intent);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -181,4 +186,6 @@ public class PowerIndicatorBriefViewFragment extends Fragment implements SearchV
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

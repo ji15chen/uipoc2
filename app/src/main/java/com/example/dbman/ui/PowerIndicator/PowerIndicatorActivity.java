@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -31,7 +32,7 @@ import java.util.UUID;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class PowerIndicatorActivity extends AbstractUIStateBindingActivityWithNavMenu {
+public class PowerIndicatorActivity extends AbstractUIStateBindingActivityWithNavMenu implements  PowerIndicatorBriefViewFragment.OnFragmentInteractionListener{
     public static final int REQUEST_QUERY = 1;
     private PowerIndicatorActivityBinding binding;
     PowerIndicatorBriefViewFragment fragment;
@@ -90,5 +91,10 @@ public class PowerIndicatorActivity extends AbstractUIStateBindingActivityWithNa
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

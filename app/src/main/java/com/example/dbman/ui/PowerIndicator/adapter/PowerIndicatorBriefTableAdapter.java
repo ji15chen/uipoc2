@@ -2,6 +2,8 @@ package com.example.dbman.ui.PowerIndicator.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.dbman.db.model.EquipTypeBriefModel;
 import com.example.dbman.ui.R;
@@ -14,15 +16,20 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
     private  int height;
     List<EquipTypeBriefModel> model = null;
     private static final String [] headers = new String[]{"序号", "装备型号", "计量单位", "管理类别", "使用年限", "退保比例", "保修期", "详情"};
+    View.OnClickListener onClickListener;
 
-
-    public PowerIndicatorBriefTableAdapter(Context context) {
+    public PowerIndicatorBriefTableAdapter(Context context, View.OnClickListener onClickListener) {
         super(context);
-
+        this.onClickListener = onClickListener;
         Resources resources = context.getResources();
 
         width = resources.getDimensionPixelSize(R.dimen.table_width);
         height = resources.getDimensionPixelSize(R.dimen.table_height);
+    }
+
+    @Override
+    public Object getItem(int row, int col) {
+        return model.get(row);
     }
 
     public void setData(List<EquipTypeBriefModel> model) {
@@ -49,6 +56,7 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
     public int getHeight(int row) {
         return height;
     }
+
 
     @Override
     public String getCellString(int row, int column) {
@@ -78,9 +86,25 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
                 return rowData.getScale();
             case 6:
                 return rowData.getWarrantyperiod();
+            case 7:
+                return "详情";
             default:
                 return "";
         }
+    }
+
+    @Override
+    public View getView(int row, int column, View converView, ViewGroup parent) {
+        if (converView == null) {
+            int resId = getLayoutResource(row, column);
+            converView = getInflater().inflate(getLayoutResource(row, column), parent, false);
+            if (resId == R.layout.powerindicator_table_detail){
+                converView.setTag(getItem(row,column));
+                converView.setOnClickListener(onClickListener);
+            }
+        }
+        setText(converView, getCellString(row, column));
+        return converView;
     }
 
     @Override
@@ -93,6 +117,9 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
             case 1:
                 layoutResource = R.layout.powerindicator_table_body;
                 break;
+            case 2:
+                layoutResource = R.layout.powerindicator_table_detail;
+                break;
             default:
                 throw new RuntimeException("wtf?");
         }
@@ -104,12 +131,16 @@ public class PowerIndicatorBriefTableAdapter extends SampleTableAdapter {
         if (row < 0) {
             return 0;
         } else {
-            return 1;
+            if (column >= headers.length -2){
+                return 2;
+            }else {
+                return 1;
+            }
         }
     }
 
     @Override
     public int getViewTypeCount() {
-        return 2;
+        return 3;
     }
 }

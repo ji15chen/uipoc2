@@ -2,6 +2,7 @@ package com.example.dbman.ui.StoreDetail;
 
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -14,7 +15,7 @@ import com.example.dbman.ui.databinding.StoreDetailActivityBinding;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class StoreDetailActivity extends AbstractUIStateBindingActivityWithNavMenu {
+public class StoreDetailActivity extends AbstractUIStateBindingActivityWithNavMenu implements StoreDetailViewFragment.OnFragmentInteractionListener{
     public static final int REQUEST_QUERY = 1;
     private StoreDetailActivityBinding binding;
     StoreDetailViewFragment fragment;
@@ -73,5 +74,10 @@ public class StoreDetailActivity extends AbstractUIStateBindingActivityWithNavMe
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

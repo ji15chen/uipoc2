@@ -34,6 +34,14 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.WithActionBar"></activity>
         <activity
+            android:name=".PowerIndicator.PowerIndicatorDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_power_indicator"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            ></activity>
+
+        <activity
             android:name=".StoreDetail.StoreDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_power_indicator"

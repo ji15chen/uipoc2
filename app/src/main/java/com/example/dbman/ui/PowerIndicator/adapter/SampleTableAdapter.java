@@ -30,6 +30,8 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 		inflater = LayoutInflater.from(context);
 	}
 
+	public abstract Object getItem(int row,int col);
+
 	/**
 	 * Returns the context associated with this array adapter. The context is
 	 * used to create views from the resource passed to the constructor.
@@ -65,9 +67,10 @@ public abstract class SampleTableAdapter extends BaseTableAdapter {
 	 * @param view
 	 * @param text
 	 */
-	private void setText(View view, String text) {
+	protected void setText(View view, String text) {
 		((TextView) view.findViewById(android.R.id.text1)).setText(text);
 	}
+
 
 	/**
 	 * @param row
