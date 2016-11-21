@@ -1,4 +1,4 @@
-package com.example.dbman.ui.PowerIndicator;
+package com.example.dbman.ui.StoreDetail;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.example.dbman.db.model.EquipHirarchyModel;
 import com.example.dbman.db.model.EquipHirarchyModelEntry;
+import com.example.dbman.ui.R;
 import com.example.dbman.ui.core.holder.IconTreeItemHolder;
 import com.example.dbman.ui.core.holder.SelectableHeaderHolder;
 import com.example.dbman.ui.core.holder.SelectableItemHolder;
-import com.example.dbman.ui.R;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
 
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Bogdan Melnychuk on 2/12/15.
  */
-public class FolderStructureFragment extends Fragment {
+public class EquipTypeFolderStructureFragment extends Fragment {
     private AndroidTreeView tView;
     public TreeNode treeRootNode = EquipHirarchyModel.getInstance().getRootNode();
 
@@ -65,6 +65,7 @@ public class FolderStructureFragment extends Fragment {
         tView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom);
         tView.setDefaultViewHolder(IconTreeItemHolder.class);
         tView.setDefaultNodeClickListener(nodeClickListener);
+        tView.setSelectionModeEnabled(true);
         if (getActivity() instanceof TreeNode.TreeNodeLongClickListener){
             tView.setDefaultNodeLongClickListener((TreeNode.TreeNodeLongClickListener)getActivity());
         }else {

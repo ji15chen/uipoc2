@@ -1,4 +1,4 @@
-package com.example.dbman.ui.PowerIndicator.holder;
+package com.example.dbman.ui.core.holder;
 
 import android.content.Context;
 import android.view.LayoutInflater;

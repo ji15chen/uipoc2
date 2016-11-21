@@ -7,7 +7,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.example.dbman.ui.PowerIndicator.holder.IconTreeItemHolder;
+import com.example.dbman.ui.core.holder.IconTreeItemHolder;
 import com.example.dbman.ui.R;
 import com.github.johnkil.print.PrintView;
 import com.unnamed.b.atv.model.TreeNode;

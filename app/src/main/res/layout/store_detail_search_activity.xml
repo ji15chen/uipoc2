@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sliding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.PowerIndicator.PowerIndicatorModel"/>
+    </data>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_actionbar_margin"
+        android:background="@mipmap/bg">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/dept_type_dir"
+                    android:textSize="@dimen/headerTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!--<LinearLayout-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_gravity="right|center_vertical"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<TextView-->
+                        <!--android:layout_marginTop="@dimen/fbutton_default_padding_left"-->
+                        <!--android:text="@string/multi_sel_mode"-->
+                        <!--android:textSize="@dimen/headerTextSize"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<Switch-->
+                        <!--android:typeface="normal"-->
+                        <!--android:switchMinWidth="40dp"-->
+                        <!--android:switchPadding="10dp"-->
+                        <!--android:id="@+id/deptMultiSel"-->
+                        <!--android:clickable="false"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:checked="true"-->
+                        <!--android:showText="false"-->
+                        <!--android:splitTrack="false" />-->
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:background="@color/fbutton_color_clouds"
+                android:layout_height="1dip" />
+            <fragment class ="com.example.dbman.ui.StoreDetail.DeptFolderStructureFragment"
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:id = "@+id/StoreDetailSearch_deptTree"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/fbutton_default_padding_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_margin="0dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/equip_type_dir"
+                    android:textSize="@dimen/headerTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <!--<TextView-->
+                    <!--android:layout_marginTop="@dimen/fbutton_default_padding_left"-->
+                    <!--android:text="@string/multi_sel_mode"-->
+                    <!--android:textSize="@dimen/headerTextSize"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<Switch-->
+                    <!--android:id="@+id/equipMultiSel"-->
+                    <!--android:showText="false"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:background="@color/fbutton_color_clouds"
+                android:layout_height="1dip" />
+            <fragment class ="com.example.dbman.ui.StoreDetail.EquipTypeFolderStructureFragment"
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:id = "@+id/StoreDetailSearch_EquipTypeTree"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/fbutton_default_padding_left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ext_attrbutes"
+                android:textSize="@dimen/headerTextSize"
+                />
+                <View
+                    android:layout_width="fill_parent"
+                    android:background="@color/fbutton_color_clouds"
+                    android:layout_height="1dip" />
+            <ListView
+                android:id="@+id/EquipTypeOptionList"
+                android:layout_width="wrap_content"
+                android:layout_height="500dp">
+            </ListView>
+            <View
+                android:layout_width="fill_parent"
+                android:background="@color/fbutton_color_clouds"
+                android:layout_height="1dip" />
+            <info.hoang8f.widget.FButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/buttonSearchApply"
+                android:text="@string/search_apply"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

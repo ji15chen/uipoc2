@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.dbman.db.model.EquipHirarchyModel;
 import com.example.dbman.db.model.EquipHirarchyModelEntry;
-import com.example.dbman.ui.PowerIndicator.holder.SelectableHeaderHolder;
-import com.example.dbman.ui.PowerIndicator.holder.SelectableItemHolder;
+import com.example.dbman.ui.core.holder.SelectableHeaderHolder;
+import com.example.dbman.ui.core.holder.SelectableItemHolder;
 import com.example.dbman.ui.R;
 import com.unnamed.b.atv.model.TreeNode;
 

@@ -441,6 +441,9 @@
     <string name="ext_attrbutes">特征参数:</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="multi_sel_mode">多选</string>
+    <string name="equip_type_dir">装备目录</string>
+    <string name="dept_type_dir">单位目录</string>
 
     <string name="title_activity_entry">EntryActivity</string>
     <string name="title_home_0">首页</string>

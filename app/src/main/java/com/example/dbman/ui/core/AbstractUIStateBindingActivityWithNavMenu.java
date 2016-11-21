@@ -14,6 +14,7 @@ import com.example.dbman.ui.BR;
 import com.example.dbman.ui.Home.HomeActivity;
 import com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity;
 import com.example.dbman.ui.R;
+import com.example.dbman.ui.StoreDetail.StoreDetailActivity;
 import com.example.dbman.ui.core.ui_state.UIState;
 import com.example.dbman.ui.core.ui_state.UIStateManager;
 
@@ -31,10 +32,10 @@ public abstract class AbstractUIStateBindingActivityWithNavMenu extends Abstract
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private NavigationMenuAdapter navigationMenuAdapter ;
-    private static final Class<? extends AbstractBaseActivity> mItemClasses [] = new Class[]{
+    public static final Class<? extends AbstractBaseActivity> mItemClasses [] = new Class[]{
             HomeActivity.class,
             PowerIndicatorActivity.class,
-            PowerIndicatorActivity.class,
+            StoreDetailActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class

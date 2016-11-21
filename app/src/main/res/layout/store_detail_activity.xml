@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sliding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="modelData" type="com.example.dbman.ui.StoreDetail.StoreDetailModel"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg">
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_actionbar_margin"
+        android:gravity="center_horizontal"
+        android:id="@+id/drawer_layout"
+        tools:context="com.example.dbman.ui.StoreDetail.StoreDetailActivity"
+        android:orientation="vertical" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <fragment class="com.example.dbman.ui.StoreDetail.StoreDetailViewFragment"
+                android:name="com.example.dbman.ui.StoreDetail.StoreDetailViewFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/content"
+                />
+        </LinearLayout>
+        <!-- The drawer is given a fixed width in dp and extends the full height of
+             the container. -->
+        <fragment
+            android:id="@+id/navigation_drawer"
+            android:name="com.example.dbman.ui.core.NavigationDrawerFragment"
+            android:layout_width="@dimen/navigation_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/drawer_nav" />
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>
+</layout>

@@ -21,6 +21,11 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <fragment class="com.example.dbman.ui.Home.HomeViewFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/PowerIndicatorBriefViewFragment_Content"
+                    />
             </FrameLayout>
             <fragment
                 android:id="@+id/navigation_drawer"

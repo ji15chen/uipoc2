@@ -1,4 +1,4 @@
-package com.example.dbman.ui.PowerIndicator.holder;
+package com.example.dbman.ui.core.holder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,56 +8,45 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.dbman.db.model.EquipHirarchyModelEntry;
-import com.github.johnkil.print.PrintView;
 import com.unnamed.b.atv.model.TreeNode;
 import com.example.dbman.ui.R;
+
 /**
  * Created by Bogdan Melnychuk on 2/15/15.
  */
-public class SelectableHeaderHolder extends TreeNode.BaseNodeViewHolder<EquipHirarchyModelEntry> {
+public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<EquipHirarchyModelEntry> {
     private TextView tvValue;
-    private PrintView arrowView;
     private CheckBox nodeSelector;
 
-    public SelectableHeaderHolder(Context context) {
+    public SelectableItemHolder(Context context) {
         super(context);
     }
 
     @Override
     public View createNodeView(final TreeNode node, EquipHirarchyModelEntry value) {
         final LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.layout_selectable_header, null, false);
+        final View view = inflater.inflate(R.layout.layout_selectable_item, null, false);
 
         tvValue = (TextView) view.findViewById(R.id.node_value);
-        tvValue.setText(value.getName());
+        tvValue.setText(value.toString());
 
-        final PrintView iconView = (PrintView) view.findViewById(R.id.icon);
-        iconView.setIconText(context.getResources().getString(value.getIcon()));
-
-        arrowView = (PrintView) view.findViewById(R.id.arrow_icon);
-        if (node.isLeaf()) {
-            arrowView.setVisibility(View.GONE);
-        }
 
         nodeSelector = (CheckBox) view.findViewById(R.id.node_selector);
         nodeSelector.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 node.setSelected(isChecked);
-                for (TreeNode n : node.getChildren()) {
-                    getTreeView().selectNode(n, isChecked);
-                }
             }
         });
         nodeSelector.setChecked(node.isSelected());
 
+        if (node.isLastChild()) {
+            view.findViewById(R.id.bot_line).setVisibility(View.INVISIBLE);
+        }
+
         return view;
     }
 
-    @Override
-    public void toggle(boolean active) {
-        arrowView.setIconText(context.getResources().getString(active ? R.string.ic_keyboard_arrow_down : R.string.ic_keyboard_arrow_right));
-    }
 
     @Override
     public void toggleSelectionMode(boolean editModeEnabled) {
