@@ -10,6 +10,7 @@ public class StoreInfoModelEntry {
     private String time;
     private String epc;
     private String uuid;
+    private String typeUUid;
     public String getEpc() {
         return epc;
     }
@@ -20,6 +21,14 @@ public class StoreInfoModelEntry {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public String getTypeUUid() {
+        return typeUUid;
+    }
+
+    public void setTypeUUid(String typeUUid) {
+        this.typeUUid = typeUUid;
     }
 
     public void setEpc(String epc) {

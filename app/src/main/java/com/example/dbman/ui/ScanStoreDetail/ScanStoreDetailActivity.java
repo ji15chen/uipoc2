@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -73,6 +74,18 @@ public class ScanStoreDetailActivity extends DeviceActivity implements View.OnCl
         binding = (ScanStoreDetailActivityBinding) viewDataBinding;
         scanStoreDetailBasicTableAdapter = new ScanStoreDetailBasicTableAdapter(this,this);
         binding.table.setAdapter(scanStoreDetailBasicTableAdapter);
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = ScanStoreDetailSaveDialog.createView(ScanStoreDetailActivity.this, scanStoreDetailBasicTableAdapter.getModel());
+                new AlertDialog.Builder(ScanStoreDetailActivity.this).setTitle("装备动态 确认完成").setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+            }
+        });
     }
 
     @Override
@@ -104,7 +117,7 @@ public class ScanStoreDetailActivity extends DeviceActivity implements View.OnCl
         if (entry == null) return;
 
         View view = ScanStoreDetailDialog.createView(this,entry);
-        new ScanStoreDetailDialog.Builder(this).setTitle(entry.getColumnValues()[1]).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this).setTitle(entry.getColumnValues()[1]).setView(view).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

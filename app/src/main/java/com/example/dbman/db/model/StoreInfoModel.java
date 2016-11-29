@@ -5,6 +5,8 @@ import com.example.dbman.core.DBUtil;
 import com.example.dbman.db.genupdate.dao.EquipCardDao;
 import com.example.dbman.db.genupdate.dao.EquipTypeDao;
 import com.example.dbman.db.genupdate.dao.StoreDetailDao;
+import com.example.dbman.db.genupdate.dao.SysParameterDao;
+import com.example.dbman.db.genupdate.schema.SysParameter;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.stmt.Where;
 import com.example.dbman.db.genupdate.schema.EquipCard;
@@ -41,7 +43,7 @@ public class StoreInfoModel {
                 "paramStatus.ParaName, paramQuality.ParaName,\n" +
                 "StoreDetail.ProduceDate,StoreDetail.PurchaseDate,StoreDetail.UseDate,\n" +
                 "paramAddType.ParaName,StoreDetail.OtherDate,PersonInfo.PersonName,\n" +
-                "DepotInfo.RoomName,FactoryInfo.FactoryName,StoreDetail.StoreID\n" +
+                "DepotInfo.RoomName,FactoryInfo.FactoryName,StoreDetail.PkTypeID,StoreDetail.StoreID\n" +
                 "FROM StoreDetail\n" +
                 "LEFT JOIN Department ON Department.DeptID=StoreDetail.DeptID\n" +
                 "LEFT JOIN EquipType  ON EquipType.PkTypeID=StoreDetail.PkTypeID\n" +
@@ -66,6 +68,7 @@ public class StoreInfoModel {
             entry.setColumnValues(iter.next());
             {
                 String [] arr = entry.getColumnValues();
+                entry.setTypeUUid(arr[arr.length - 2]);
                 entry.setUuid(arr[arr.length - 1]);
             }
             view.lstEquipStoreInfo.add(entry);
@@ -81,4 +84,6 @@ public class StoreInfoModel {
             return null;
         }
     }
+
+
 }

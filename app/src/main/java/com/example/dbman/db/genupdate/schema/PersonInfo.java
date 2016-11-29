@@ -168,4 +168,8 @@ import com.example.dbman.db.genupdate.daoimpl.PersonInfoDaoImpl;
 		this.headimage=HeadImage;
 	}
 
+	@Override
+	public String toString(){
+		return getPersonName();
+	}
 }

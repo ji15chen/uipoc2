@@ -56,6 +56,10 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
         this.notifyDataSetChanged();
     }
 
+    public List<StoreInfoModelEntry> getModel() {
+        return model;
+    }
+
     @Override
     public int getRowCount() {
         return (model == null)?0:model.size();

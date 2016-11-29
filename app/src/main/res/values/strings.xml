@@ -483,6 +483,7 @@
     <string name="select_device">选择要连接的设备</string>
     <string name="imgNote">图片说明</string>
 
+    <string name="scan_store_detail_save">保存装备动态</string>
     <string name="scan_store_detail_time">扫描时间：</string>
     <string name="scan_store_detail_storecode">装备编号：</string>
     <string name="scan_store_detail_storetime">装备日期：</string>
@@ -491,6 +492,7 @@
     <string name="scan_store_detail_owner">责任人员：</string>
     <string name="scan_store_detail_maintaintime">保养日期：</string>
     <string name="scan_store_detail_save_scanreason">扫描事由</string>
-    <string name="scan_store_detail_save_in_reason">入库事由</string>
-    <string name="scan_store_detail_save_out_reason">出库事由</string>
+    <string name="scan_store_detail_save_in_reason">入库事由：</string>
+    <string name="scan_store_detail_save_out_reason">出库事由：</string>
+    <string name="scan_store_detail_save_out_owner">负责人：</string>
 </resources>
