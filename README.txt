@@ -51,6 +51,13 @@ SELECT ExentData.ObjectID, group_concat(ExentData.ExtendID),group_concat(ExtendT
 
 SELECT ExentData.ObjectID, group_concat(ExentData.ExtendID),group_concat(ExtendType.ExtendName),group_concat(ExentData.ExtentValue) FROM ExentData LEFT JOIN  ExtendType ON ExtendType.ExtendID=ExentData.ExtendID  GROUP BY ExentData.ExtendID; 
 
+#返回参数值
+SELECT et.* ,group_concat(etd.ExtendID,'$#$#') AS attr_ids,group_concat(etd.ExtentValue,'$#$#') AS attr_values,group_concat(etd.UnitName,'$#$#') AS attr_units FROM (SELECT * FROM EquipType WHERE EquipType.PkTypeID IN ('5809D095-7F4D-4FAD-B3B9-762236EAC2EA','0FC40DF9-6534-44DA-9018-00EF24CA5E3F') ) et 
+LEFT JOIN ExtendTypeData  etd ON etd.ObjectID=et.PkTypeID GROUP BY et.PkTypeID;
+
+#汇总所有参数
+SELECT * FROM (SELECT ExentData.ObjectID,ExentData.ExtendID,ExtendType.ExtendName,group_concat(ExentData.ExtentValue,'$#$#'),group_concat(SysParameter.ParaName,'$#$#') FROM ExentData INNER JOIN  ExtendType ON ExtendType.ExtendID=ExentData.ExtendID  LEFT JOIN SysParameter ON ExtendType.ExtendUnit=SysParameter.ParaID GROUP BY ExentData.ExtendID) stat WHERE stat.ObjectID='5809D095-7F4D-4FAD-B3B9-762236EAC2EA'; 
+
 
 
 

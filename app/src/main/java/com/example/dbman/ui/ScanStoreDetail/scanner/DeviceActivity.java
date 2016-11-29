@@ -240,6 +240,11 @@ public abstract class DeviceActivity extends AbstractUIStateBindingActivity {
 				LogUtils.d("EPC:"+msg);
 				try {
 					String query = StoreInfoModel.buildEquipCardQuery(msg);
+					if (query == null){
+						Toast.makeText(this,"查询无此EPC:"+msg,Toast.LENGTH_SHORT).show();
+						return;
+					}
+
 					StoreInfoModel model =  StoreInfoModel.loadEquipStoreDetail(query);
 					List<StoreInfoModelEntry> data = model.getLstEquipStoreInfo();
 					if (data.size() <= 0 ){
