@@ -11,17 +11,22 @@ import com.apkfuns.logutils.LogUtils;
 import com.example.dbman.db.model.StoreInfoModelEntry;
 import com.example.dbman.ui.PowerIndicator.adapter.SampleTableAdapter;
 import com.example.dbman.ui.R;
+import com.example.dbman.ui.ScanStoreDetail.beans.ScanStoreDetailStatEntry;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
     private  int width;
     private  int height;
-    List<StoreInfoModelEntry> model = new ArrayList<>();
+    List<ScanStoreDetailStatEntry> model = new ArrayList<>();
+    HashMap<String, ScanStoreDetailStatEntry> hashMapEPC = new HashMap<>();
     private static final String [] headers = new String[]{"序号", "装备名称","现有数量","扫描时间", "装备型号", "编号", "数量", "性能指标", "移除"};
     View.OnClickListener onClickListener;
     private Resources resources;
+
     public ScanStoreDetailBasicTableAdapter(Context context, View.OnClickListener onClickListener) {
         super(context);
         this.onClickListener = onClickListener;
@@ -30,6 +35,20 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
         height = resources.getDimensionPixelSize(R.dimen.table_height);
     }
 
+    public ScanStoreDetailStatEntry getItem(String epc){
+        return hashMapEPC.get(epc);
+    }
+
+    public void putItem(String epc, ScanStoreDetailStatEntry entry){
+        hashMapEPC.put(epc,entry);
+        model.add(entry);
+        notifyDataSetChanged();
+    }
+    public void delData(ScanStoreDetailStatEntry entry){
+        model.remove(entry);
+        hashMapEPC.remove(entry.getEntry().getEpc());
+        this.notifyDataSetChanged();
+    }
     @Override
     public Object getItem(int row, int col) {
         return model.get(row);
@@ -43,20 +62,15 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
         }
         return -1;
     }
-    public void delData(StoreInfoModelEntry entry){
-        model.remove(entry);
-        this.notifyDataSetChanged();
-    }
-    public void setData(List<StoreInfoModelEntry> model) {
+
+
+    public void setData(List<ScanStoreDetailStatEntry> model) {
         this.model = model;
         this.notifyDataSetChanged();
     }
-    public void addData(StoreInfoModelEntry entry){
-        this.model.add(entry);
-        this.notifyDataSetChanged();
-    }
 
-    public List<StoreInfoModelEntry> getModel() {
+
+    public List<ScanStoreDetailStatEntry> getModel() {
         return model;
     }
 
@@ -89,26 +103,28 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
         if (model == null){
             return "";
         }
-        StoreInfoModelEntry rowData = model.get(row );
+        ScanStoreDetailStatEntry rowData = model.get(row );
         if (rowData == null){
             return "";
         }
+
+        StoreInfoModelEntry entry = rowData.getEntry();
 
         switch( column + 1){
             case 0:
                 return String.valueOf(row+1);
             case 1:
-                return rowData.getColumnValues()[1];
+                return entry.getColumnValues()[2];
             case 2:
-                return rowData.getColumnValues()[4];
+                return String.valueOf(rowData.getCount());
             case 3:
-                return rowData.getTime();
+                return entry.getTime();
             case 4:
-                return rowData.getColumnValues()[2];
+                return entry.getColumnValues()[1];
             case 5:
-                return rowData.getColumnValues()[3];
+                return entry.getColumnValues()[3];
             case 6:
-                return rowData.getColumnValues()[4];
+                return String.valueOf(rowData.getCur_total());
             case 7:
                 return "性能指标";
             default:

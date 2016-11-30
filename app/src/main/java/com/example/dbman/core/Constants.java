@@ -11,7 +11,7 @@ public class Constants {
     public static boolean debug = true;
     public static final UUID STORE_CHECKINOUT_REASON_UUID = UUID.fromString("00000000-0000-0000-0000-000000000013");
     private static BaseFunctionDesc functionDescs[] = null;
-
+    public static boolean test_card = true;
     static {
         functionDescs = new BaseFunctionDesc[6];
 

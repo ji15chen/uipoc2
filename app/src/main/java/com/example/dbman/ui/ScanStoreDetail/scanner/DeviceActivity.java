@@ -48,14 +48,13 @@ public abstract class DeviceActivity extends AbstractUIStateBindingActivity {
     
     public Handler messageHandler;    //消息对象
 
-	protected abstract void onNewStoreDetailFound(final String epc, final StoreInfoModelEntry entry);
+	protected abstract void onNewStoreDetailFound(final String epc);
 	//保持屏幕常亮
 	private PowerManager powerManager = null; 
 	private WakeLock wakeLock = null; 
 	
 	//EPC显示的列表
 //    private ArrayList<HashMap<String,Object>> listRturnEPC = new ArrayList<HashMap<String,Object>>();//数据返回
-	HashMap<String, StoreInfoModelEntry> hashMapEPC = new HashMap<>();
     private String LastString="";//剩余的字符
     private String StrUnThink;//记忆上次没有解析完成的数据
     private Boolean  IsUseXY=true;
@@ -236,30 +235,7 @@ public abstract class DeviceActivity extends AbstractUIStateBindingActivity {
 	    */
 	    private void addItemepc(String msg) 
 	    {
-			if (!hashMapEPC.containsKey(msg)){
-				LogUtils.d("EPC:"+msg);
-				try {
-					String query = StoreInfoModel.buildEquipCardQuery(msg);
-					if (query == null){
-						Toast.makeText(this,"查询无此EPC:"+msg,Toast.LENGTH_SHORT).show();
-						return;
-					}
-
-					StoreInfoModel model =  StoreInfoModel.loadEquipStoreDetail(query);
-					List<StoreInfoModelEntry> data = model.getLstEquipStoreInfo();
-					if (data.size() <= 0 ){
-						Toast.makeText(this,"查询无此数据",Toast.LENGTH_SHORT).show();
-					}else{
-						StoreInfoModelEntry entry = data.get(0);
-						hashMapEPC.put(msg,entry);
-						entry.setEpc(msg);
-						onNewStoreDetailFound(msg, entry);
-					}
-				}catch (Exception e){
-					e.printStackTrace();
-				}
-
-			}
+			onNewStoreDetailFound(msg);
 
 	    }
 	    

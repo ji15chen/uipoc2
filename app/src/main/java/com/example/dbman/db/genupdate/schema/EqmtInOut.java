@@ -22,7 +22,7 @@ import com.example.dbman.db.genupdate.daoimpl.EqmtInOutDaoImpl;
 @DatabaseField( columnName ="Reason")
 	private String reason;
 @DatabaseField( columnName ="ScanTime")
-	private Date scantime;
+	private String scantime;
 @DatabaseField( columnName ="Describe")
 	private String describe;
 @DatabaseField( columnName ="TakeMan")
@@ -52,12 +52,15 @@ import com.example.dbman.db.genupdate.daoimpl.EqmtInOutDaoImpl;
 	public void setReason(String Reason){
 		this.reason=Reason;
 	}
-	public Date getScanTime(){
-		return this.scantime;
+
+	public String getScantime() {
+		return scantime;
 	}
-	public void setScanTime(Date ScanTime){
-		this.scantime=ScanTime;
+
+	public void setScantime(String scantime) {
+		this.scantime = scantime;
 	}
+
 	public String getDescribe(){
 		return this.describe;
 	}

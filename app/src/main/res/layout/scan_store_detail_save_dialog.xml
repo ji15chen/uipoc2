@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:sliding="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="modelData" type="com.example.dbman.db.model.StoreInfoModelEntry"/>
+        <variable name="modelData" type="com.example.dbman.ui.ScanStoreDetail.beans.ScanStoreDetailSaveModel"/>
     </data>
 
 <LinearLayout
