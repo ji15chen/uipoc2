@@ -36,7 +36,7 @@ public class StoreInfoModelEntry {
     }
 
     private String currentTime(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMDD HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月DD日 HH:mm:ss");
         return sdf.format(System.currentTimeMillis());
     }
 

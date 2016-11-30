@@ -89,6 +89,6 @@ public class ScanStoreDetailStatEntry {
 
     @Override
     public String toString(){
-        return getName()+"("+getCount()+")";
+        return getName()+"("+getCur_total()+")";
     }
 }

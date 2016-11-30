@@ -42,12 +42,10 @@ public class ScanStoreDetailBasicTableAdapter extends SampleTableAdapter {
     public void putItem(String epc, ScanStoreDetailStatEntry entry){
         hashMapEPC.put(epc,entry);
         model.add(entry);
-        notifyDataSetChanged();
     }
     public void delData(ScanStoreDetailStatEntry entry){
         model.remove(entry);
         hashMapEPC.remove(entry.getEntry().getEpc());
-        this.notifyDataSetChanged();
     }
     @Override
     public Object getItem(int row, int col) {

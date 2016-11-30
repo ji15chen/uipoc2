@@ -13,11 +13,11 @@ import java.util.Date;
 import com.example.dbman.db.genupdate.daoimpl.EqmtInOutDaoImpl;
 @DatabaseTable(tableName = "EqmtInOut", daoClass =EqmtInOutDaoImpl.class)
 	public class EqmtInOut{
-@DatabaseField( columnName ="EIOID",id=true ,canBeNull = false )
+@DatabaseField( columnName ="EIOID",id=true  )
 	private UUID eioid;
 @DatabaseField( columnName ="PIOID")
 	private UUID pioid;
-@DatabaseField( columnName ="StoreID",canBeNull = false )
+@DatabaseField( columnName ="StoreID" )
 	private UUID storeid;
 @DatabaseField( columnName ="Reason")
 	private String reason;

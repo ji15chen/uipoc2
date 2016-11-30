@@ -37,13 +37,13 @@ import com.example.dbman.db.genupdate.daoimpl.PersonInfoDaoImpl;
 @DatabaseField( columnName ="QQ")
 	private String qq;
 @DatabaseField( columnName ="Birthday")
-	private Date birthday;
+	private String birthday;
 @DatabaseField( columnName ="Describe")
 	private String describe;
 @DatabaseField( columnName ="IsDelete")
 	private boolean isdelete;
 @DatabaseField( columnName ="EnlistTime")
-	private Date enlisttime;
+	private String enlisttime;
 @DatabaseField( columnName ="Fax")
 	private String fax;
 @DatabaseField( columnName ="DeptID")
@@ -119,12 +119,7 @@ import com.example.dbman.db.genupdate.daoimpl.PersonInfoDaoImpl;
 	public void setQQ(String QQ){
 		this.qq=QQ;
 	}
-	public Date getBirthday(){
-		return this.birthday;
-	}
-	public void setBirthday(Date Birthday){
-		this.birthday=Birthday;
-	}
+
 	public String getDescribe(){
 		return this.describe;
 	}
@@ -137,12 +132,23 @@ import com.example.dbman.db.genupdate.daoimpl.PersonInfoDaoImpl;
 	public void IsDelete(boolean IsDelete){
 		this.isdelete=IsDelete;
 	}
-	public Date getEnlistTime(){
-		return this.enlisttime;
+
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setEnlistTime(Date EnlistTime){
-		this.enlisttime=EnlistTime;
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
+
+	public String getEnlisttime() {
+		return enlisttime;
+	}
+
+	public void setEnlisttime(String enlisttime) {
+		this.enlisttime = enlisttime;
+	}
+
 	public String getFax(){
 		return this.fax;
 	}

@@ -77,16 +77,37 @@ public class ScanStoreDetailSaveModel {
 
         if (scanStoreDetailStatEntryList == null) return;
         if (scanStoreDetailStatEntryList.size() <= 0) return;
+        String sql = "INSERT INTO EqmtInOut ('Describe' ,'EIOID' ,'PIOID' ,'Reason' ,'ScanTime' ,'StoreID' ,'TakeMan' ) \n" +
+                "VALUES (";
 
         for(ScanStoreDetailStatEntry entry:scanStoreDetailStatEntryList){
+            StringBuffer sb = new StringBuffer();
+
             EqmtInOut inOut = new EqmtInOut();
             inOut.setEIOID(UUID.randomUUID());
             inOut.setPIOID(Constants.NULL_UUID);
             inOut.setReason(getReason());
             inOut.setStoreID(UUID.fromString(entry.getEntry().getUuid()));
             inOut.setScantime(entry.getEntry().getTime());
+            inOut.setDescribe("");
+            inOut.setTakeMan(getOwner().getPersonID());
             try {
-                eqmtInOutDao.create(inOut);
+                sb.append(sql);
+                sb.append("'");sb.append(inOut.getDescribe());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getEIOID());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getPIOID());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getReason());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getScantime());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getStoreID());sb.append("'");
+                sb.append(",");
+                sb.append("'");sb.append(inOut.getTakeMan());sb.append("'");
+                sb.append(")\n");
+                eqmtInOutDao.executeRaw(sb.toString());
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -98,7 +119,7 @@ public class ScanStoreDetailSaveModel {
         @Override
         protected Void doInBackground(ScanStoreDetailSaveModel... params) {
             for (ScanStoreDetailSaveModel model:params){
-                model.save();
+                model._save();
             }
             return null;
         }
