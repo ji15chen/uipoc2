@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.dao.RawRowMapper;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -24,6 +25,22 @@ public class DBUtil {
                 }
             }
             return result;
+        }
+    };
+
+    public static final RawRowMapper<HashMap<String,String>> mapMapper = new RawRowMapper<HashMap<String,String>>() {
+        @Override
+        public HashMap<String,String> mapRow(String[] column, String[] result) throws SQLException {
+            HashMap<String,String> hashMap = new HashMap<>();
+            int i;
+            for (i=0; i < result.length;i++){
+                if (result[i] == null){
+                   hashMap.put(column[i], emptyString);
+                }else{
+                    hashMap.put(column[i], result[i]);
+                }
+            }
+            return hashMap;
         }
     };
 
