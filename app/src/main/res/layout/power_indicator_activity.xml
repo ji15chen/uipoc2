@@ -13,7 +13,6 @@
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/activity_actionbar_margin"
         android:gravity="center_horizontal"
         android:id="@+id/drawer_layout"
         tools:context="com.example.dbman.ui.PowerIndicator.PowerIndicatorActivity"

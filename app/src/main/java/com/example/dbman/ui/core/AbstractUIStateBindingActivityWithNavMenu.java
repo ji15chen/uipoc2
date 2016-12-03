@@ -39,6 +39,7 @@ public abstract class AbstractUIStateBindingActivityWithNavMenu extends Abstract
             StoreDetailActivity.class,
             PowerIndicatorActivity.class,
             PowerIndicatorActivity.class,
+            PowerIndicatorActivity.class,
             ScanStoreDetailActivity.class
     };
 

@@ -9,7 +9,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/activity_actionbar_margin"
         android:background="@mipmap/bg">
         <fragment class ="com.example.dbman.ui.PowerIndicator.fragment.FolderStructureFragment"
             android:layout_width="500dp"

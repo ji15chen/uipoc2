@@ -45,6 +45,7 @@ public class ScanStoreDetailSaveDialog extends AlertDialog {
             String value = arrayAdapter.getItem(position);
             model.setReason(value);
             model.setIn(spinner == binding.inReasonSelector);
+            spinner.invalidate();
         }
 
         @Override
@@ -60,6 +61,7 @@ public class ScanStoreDetailSaveDialog extends AlertDialog {
             ArrayAdapter<PersonInfo> arrayAdapter = (ArrayAdapter<PersonInfo>) spinner.getAdapter();
             PersonInfo value = arrayAdapter.getItem(position);
             model.setOwner(value);
+            spinner.invalidate();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -67,7 +69,7 @@ public class ScanStoreDetailSaveDialog extends AlertDialog {
     };
 
     public ScanStoreDetailSaveDialog(Context context,List<ScanStoreDetailStatEntry> stat) {
-        super(context,R.style.dialog);
+        super(context);
         mContext=context;
         model = new ScanStoreDetailSaveModel(stat);
     }

@@ -42,12 +42,14 @@ public class VariableDataColumn implements IDataColumn{
         }
         return  variableDataColumnInfo.getName()+"("+variableDataColumnInfo.getUnit()+")";
     }
-
+    public VariableDataColumnInfo getColumnInfo(String id){
+        return columnMap.get(id);
+    }
 
     public static class Builder{
         private static final StoreDetailDao sdDao = (StoreDetailDao) BaseDatabase.getInstance().getDaoImpl("StoreDetail");
-        private static String valueIdFromUUID(String uuid){
-            return "ATTR_"+uuid.replace("-","").toUpperCase().concat("_VALUE");
+        public static String valueIdFromUUID(String uuid){
+            return "ATTR"+uuid.replace("-","").toUpperCase().concat("_VALUE");
         }
 
         public static VariableDataColumn sql(String condition){

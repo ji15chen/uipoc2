@@ -492,7 +492,7 @@
     <string name="scan_store_detail_storestatus">当前状态：</string>
     <string name="scan_store_detail_owner">责任人员：</string>
     <string name="scan_store_detail_maintaintime">保养日期：</string>
-    <string name="scan_store_detail_save_scanreason">扫描事由</string>
+    <string name="scan_store_detail_save_scanreason">----扫描事由----</string>
     <string name="scan_store_detail_save_in_reason">入库事由：</string>
     <string name="scan_store_detail_save_out_reason">出库事由：</string>
     <string name="scan_store_detail_save_out_owner">负责人：</string>
