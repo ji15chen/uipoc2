@@ -8,6 +8,6 @@ import java.util.HashMap;
 
 public interface IDataColumn {
     int size();
-    String [] getDataRefIDs();
+    String  getDataRefID(int index);
     String getColumnName(String dataRefID);
 }

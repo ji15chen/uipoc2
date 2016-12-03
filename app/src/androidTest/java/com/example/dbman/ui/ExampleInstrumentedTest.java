@@ -15,6 +15,7 @@ import com.example.dbman.db.model.EquipTypeFactorySetModel;
 import com.example.dbman.db.model.EquipTypeParamSetModel;
 import com.example.dbman.db.model.EquipHirarchyModel;
 import com.example.dbman.db.model.StoreInfoModel;
+import com.example.dbman.ui.StoreDetail.dbmodel.VariableDataColumn;
 import com.j256.ormlite.dao.CloseableIterator;
 
 import org.junit.Test;
@@ -141,6 +142,16 @@ public class ExampleInstrumentedTest {
         } catch (Exception e) {
             assertFalse(true);
         }
+    }
+    @Test
+    public void testStoreDetailQuery(){
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        BaseDatabase.getInstance().init(appContext);
+        //解析所有指定的属性
+        VariableDataColumn variableDataColumn = VariableDataColumn.Builder.sql(null);
+        assertTrue(variableDataColumn != null);
+        assertTrue(variableDataColumn.size() > 0);
+
     }
     @Test
     public void testScannerDevice() throws InterruptedException {

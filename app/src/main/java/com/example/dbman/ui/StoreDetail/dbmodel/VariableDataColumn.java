@@ -18,6 +18,7 @@ import java.util.List;
 public class VariableDataColumn implements IDataColumn{
 
     private  HashMap<String,VariableDataColumnInfo> columnMap = new HashMap<>();
+    private  String [] dataRefIDs = null;
 
     @Override
     public int size() {
@@ -25,20 +26,28 @@ public class VariableDataColumn implements IDataColumn{
     }
 
     @Override
-    public String[] getDataRefIDs() {
-        return new String[0];
+    public String getDataRefID(int index) {
+        if (dataRefIDs == null) {
+            return null;
+        }else{
+            return dataRefIDs[index];
+        }
     }
 
     @Override
     public String getColumnName(String dataRefID) {
-        return null;
+        VariableDataColumnInfo variableDataColumnInfo = columnMap.get(dataRefID);
+        if (variableDataColumnInfo == null) {
+            return null;
+        }
+        return  variableDataColumnInfo.getName()+"("+variableDataColumnInfo.getUnit()+")";
     }
 
 
     public static class Builder{
         private static final StoreDetailDao sdDao = (StoreDetailDao) BaseDatabase.getInstance().getDaoImpl("StoreDetail");
         private static String valueIdFromUUID(String uuid){
-            return uuid.replace("-","").concat("_value");
+            return "ATTR_"+uuid.replace("-","").toUpperCase().concat("_VALUE");
         }
 
         public static VariableDataColumn sql(String condition){
@@ -78,6 +87,7 @@ public class VariableDataColumn implements IDataColumn{
                 }finally {
                     iterator.closeQuietly();
                 }
+                variableDataColumn.dataRefIDs = variableDataColumn.columnMap.keySet().toArray(new String [0]);
             }
             return variableDataColumn;
         }

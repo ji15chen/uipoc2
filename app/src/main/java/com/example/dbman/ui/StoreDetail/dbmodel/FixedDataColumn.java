@@ -59,8 +59,8 @@ public class FixedDataColumn implements IDataColumn{
     }
 
     @Override
-    public String[] getDataRefIDs() {
-        return values;
+    public String getDataRefID(int index) {
+        return values[index];
     }
 
     @Override
